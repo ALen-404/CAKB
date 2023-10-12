@@ -1,5 +1,6 @@
+import { ArrowDownOutlined } from '@ant-design/icons'
 import { formatAmount, shorten } from '@did-network/dapp-sdk'
-import { Pagination, Table } from 'antd'
+import { Input, Pagination, Table } from 'antd'
 import { ColumnsType } from 'antd/es/table'
 import { useAccount } from 'wagmi'
 
@@ -193,7 +194,7 @@ const Home = () => {
           <p className="swapTitle">兑换</p>
           <div className="inputBox">
             <div className="inputBoxLeft">
-              <input type="text" />
+              <Input className="inputBtn"></Input>
               <p>Balance：0</p>
             </div>
             <div className="inputBoxRight">
@@ -201,10 +202,12 @@ const Home = () => {
               <p>CAKE</p>
             </div>
           </div>
-          <div>1</div>
+          <div className="inputIcon">
+            <ArrowDownOutlined />
+          </div>
           <div className="inputBox">
             <div className="inputBoxLeft">
-              <input type="text" />
+              <Input className="inputBtn"></Input>
               <p>Balance：0</p>
             </div>
             <div className="inputBoxRight">
@@ -212,12 +215,29 @@ const Home = () => {
               <p>CAKE</p>
             </div>
           </div>
-          <div>
+          <div className="rate">
             <img src={Mt} alt="" />
             <p>1CAKE=8CAKB</p>
           </div>
+          <div className="normalBtn">确定</div>
         </div>
-        123
+        <div className="recordBox">
+          <div className="recordTitle">兑换记录</div>
+          <div className="recordBoxItem">
+            <div>
+              <p>兑换时间</p>
+              <span>2023-12-13 10:12</span>
+            </div>
+            <div>
+              <p>兑换币种</p>
+              <span>cake-Cakb</span>
+            </div>
+            <div>
+              <p>兑换数量</p>
+              <span>1000</span>
+            </div>
+          </div>
+        </div>
       </div>
     </LayoutElement>
   )
