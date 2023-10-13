@@ -1,17 +1,16 @@
-import { formatAmount, shorten } from '@did-network/dapp-sdk'
 import { Pagination, Table } from 'antd'
 import { ColumnsType } from 'antd/es/table'
-import { useAccount } from 'wagmi'
+import { t } from 'i18next'
+import { useAccount, useBalance, useNetwork } from 'wagmi'
 
 import { LayoutElement } from '@/components/layout'
-import { Header } from '@/components/layout/Header'
 import { NetworkSwitcher } from '@/components/SwitchNetworks'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useToast } from '@/components/ui/use-toast'
 import { WalletModal } from '@/components/WalletModal'
-import { useWagmi } from '@/hooks'
+import { getCakbAddress } from '@/contracts/cakb'
+import { getCakeAddress } from '@/contracts/cake'
 import { useCopyToClipboard } from '@/hooks/useCopy'
+import { getBalanceDisplay } from '@/utils/formatter'
 
 import binance from '../assets/image/index/binance.png'
 import BitKeep from '../assets/image/index/bitkeep.png'
@@ -164,14 +163,18 @@ const Home = () => {
   ]
   const [_, copy] = useCopyToClipboard()
   const { toast } = useToast()
+  const { chain } = useNetwork()
 
-  const copyHandler = useCallback(() => {
-    copy('pnpm dlx fisand')
-
-    toast({
-      title: 'Copied success!',
-    })
-  }, [copy, toast])
+  const cakeTokenBalance = useBalance({
+    address,
+    token: getCakeAddress(chain?.id),
+    watch: true,
+  })
+  const cakbTokenBalance = useBalance({
+    address,
+    token: getCakbAddress(chain?.id),
+    watch: true,
+  })
 
   return (
     <LayoutElement>
@@ -182,48 +185,48 @@ const Home = () => {
         <img className="topEthIcon" src={topEthIcon} alt="topEthIcon" />
 
         <div className="incomeCard">
-          <p className="incomeTitle">收益(cake)</p>
+          <p className="incomeTitle">{t('income')}(cake)</p>
           <p className="incomeTotal">2343.00</p>
-          <div className="incomeToday">今日收益213.23</div>
+          <div className="incomeToday">{t('TodayEarnings')}213.23</div>
           <div className="currBox">
             <div>
-              <p>当前质押CAKE</p>
+              <p>{t('CurrentPledge')}CAKE</p>
               <span>466.00</span>
             </div>
             <div>
-              <p>CAKB余额</p>
-              <span>45.00</span>
+              <p>CAKB{t('balance')}</p>
+              <span>{getBalanceDisplay(cakbTokenBalance)}</span>
             </div>
           </div>
           <div className="btnBox">
-            <div className="arrowBtn">提现</div>
-            <div className="normalBtn">转入余额宝</div>
+            <div className="arrowBtn">{t('Withdrawal')}</div>
+            <div className="normalBtn">{t('Transferred')}</div>
           </div>
         </div>
         <div className="ticketsCard">
-          <p className="ticketsCardTitle">购买门票</p>
-          <p className="ticketsCardInfo">必须购买通证CAKB才能参与投币</p>
+          <p className="ticketsCardTitle">{t('PurchaseTickets')}</p>
+          <p className="ticketsCardInfo">{t('butTicketsInfo')}</p>
           <div className="ticketsCardBox">
-            <div className="buyBtn">购买门票</div>
-            <div className="normalBtn">立即投资</div>
+            <div className="buyBtn">{t('PurchaseTickets')}</div>
+            <div className="normalBtn">{t('ImmediateInvestment')}</div>
           </div>
         </div>
         <div className="poolCard">
-          <p className="poolCardTitle">奖金池</p>
+          <p className="poolCardTitle">{t('bonusPool')}</p>
           <p className="poolCardNum">10000000.00 </p>
           <div className="countdown">
             <div className="countdownItem">24</div>：<div className="countdownItem">24</div>：
             <div className="countdownItem">24</div>
           </div>
           <div className="poolRank">
-            <p className="rankTitle">大单质押排名池</p>
+            <p className="rankTitle">{t('poolRank')}</p>
             <p className="rankNum">500000.00 </p>
             <Table className="poolTable" columns={columns} dataSource={data} pagination={false} />
           </div>
           <Pagination className="pagination" defaultCurrent={1} total={50} />
         </div>
         <div className="fomoCard">
-          <p className="fomoCardTitle">股东分红池</p>
+          <p className="fomoCardTitle">{t('dividendPool')}</p>
           <p className="fomoNum">355600.00 </p>
           <div className="countdown">
             <div className="countdownItem">24</div>：<div className="countdownItem">24</div>：
@@ -231,7 +234,7 @@ const Home = () => {
           </div>
         </div>
         <div className="partners">
-          <p className="partnersTitle">合作伙伴</p>
+          <p className="partnersTitle">{t('Partners')}</p>
           <div className="partnersBox">
             {partnersData.map((item) => {
               return (
@@ -244,7 +247,7 @@ const Home = () => {
           </div>
         </div>
         <div className="aboutCard">
-          <p className="aboutTitle">关于我们</p>
+          <p className="aboutTitle">{t('AboutUs')}</p>
           <div className="aboutBox">
             {aboutData.map((item) => {
               return (

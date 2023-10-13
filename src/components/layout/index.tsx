@@ -1,7 +1,7 @@
-import { GlobalOutlined, MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
+import { GlobalOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import { shorten } from '@did-network/dapp-sdk'
-import { Button, Layout, Space } from 'antd'
-import { ReactNode } from 'react'
+import { Button, Layout } from 'antd'
+import { t } from 'i18next'
 import { Link } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 
@@ -37,43 +37,43 @@ export const LayoutElement = ({ children }: { children: ToastActionElement | und
 
   const menuArr = [
     {
-      label: '首页',
+      label: t('index'),
       key: 'index',
       link: '/index',
       img: Index,
     },
     {
-      label: '质押',
+      label: t('pledge'),
       key: 'stake',
       link: '/stake',
       img: Mining,
     },
     {
-      label: '兑换',
+      label: t('swap'),
       key: 'swap',
       link: '/swap',
       img: Swap,
     },
     {
-      label: '排行榜',
+      label: t('rank'),
       key: 'rank',
       link: '/rank',
       img: Rank,
     },
     {
-      label: '我的社区',
+      label: t('MyCommunity'),
       key: 'MyCommunity',
       link: '/community',
       img: MyCommunity,
     },
     {
-      label: '余额宝',
+      label: t('YuEbao'),
       key: 'fundRecords',
       link: '/fund',
       img: FundRecords,
     },
     {
-      label: '分享应用',
+      label: t('shar'),
       key: 'share',
       link: '/share',
       img: Share,
@@ -95,7 +95,7 @@ export const LayoutElement = ({ children }: { children: ToastActionElement | und
       >
         <div className="iconBox">
           <img src={Icon} alt="Icon" />
-          <p>欢迎来到CAKE</p>
+          <p>{t('welecome')}CAKE</p>
         </div>
         <div className="menuBox">
           {menuArr.map((item) => {

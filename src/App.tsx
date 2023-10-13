@@ -5,6 +5,8 @@ import { Toast, ToastClose, ToastDescription, ToastProvider, ToastTitle, ToastVi
 import { useToast } from '@/components/ui/use-toast'
 import routes from '~react-pages'
 
+import './react-i18next/i18n'
+
 function Redirect({ to }: { to: string }) {
   let navigate = useNavigate()
   useEffect(() => {
