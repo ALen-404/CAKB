@@ -53,6 +53,13 @@ const config = createConfig({
         getProvider: () => (typeof window !== 'undefined' ? (window as any).bitkeep?.ethereum : undefined),
       },
     }),
+    new InjectedConnector({
+      chains,
+      options: {
+        name: 'Inject',
+        getProvider: () => (typeof window !== 'undefined' ? (window as any).ethereum : undefined),
+      },
+    }),
   ],
   publicClient,
   webSocketPublicClient,

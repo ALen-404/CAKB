@@ -1,7 +1,7 @@
 import { GlobalOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import { shorten } from '@did-network/dapp-sdk'
-import { Button, Layout } from 'antd'
-import { t } from 'i18next'
+import { Button, Dropdown, Layout, MenuProps } from 'antd'
+import { changeLanguage, t } from 'i18next'
 import { Link } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 
@@ -22,7 +22,7 @@ import { WalletModal } from '../WalletModal'
 import './index.less'
 
 export const LayoutElement = ({ children }: { children: ToastActionElement | undefined }) => {
-  const [collapsed, setCollapsed] = useState(false)
+  const [collapsed, setCollapsed] = useState(true)
   const toggleCollapsed = () => {
     setCollapsed(!collapsed)
   }
@@ -30,6 +30,7 @@ export const LayoutElement = ({ children }: { children: ToastActionElement | und
   const { Header, Footer, Sider, Content } = Layout
 
   const [show, setShow] = useState(false)
+  const [isShowLauBox, setIsShowLauBox] = useState(false)
 
   const toggleModal = (e: boolean) => {
     setShow(e)
@@ -77,6 +78,17 @@ export const LayoutElement = ({ children }: { children: ToastActionElement | und
       key: 'share',
       link: '/share',
       img: Share,
+    },
+  ]
+
+  const items = [
+    {
+      key: 'en',
+      label: 'EN',
+    },
+    {
+      key: 'zh',
+      label: 'ZH',
     },
   ]
 
@@ -149,7 +161,29 @@ export const LayoutElement = ({ children }: { children: ToastActionElement | und
                 </WalletModal>
               </div>
               <div>
-                <GlobalOutlined />
+                <GlobalOutlined
+                  onClick={() => {
+                    setIsShowLauBox(!isShowLauBox)
+                  }}
+                />
+                {isShowLauBox && (
+                  <div className="languageBox">
+                    {items.map((res) => {
+                      return (
+                        <div
+                          key={res.key}
+                          className="languageItem"
+                          onClick={() => {
+                            changeLanguage(res.key)
+                            setIsShowLauBox(false)
+                          }}
+                        >
+                          {res.label}
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
               </div>
             </div>
           </div>

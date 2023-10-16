@@ -1,0 +1,370 @@
+.indexTop {
+  width: 100%;
+  border-radius: 0px 0px 0px 0px;
+  opacity: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15px;
+  box-sizing: border-box;
+
+  .indexTopImgBox {
+    height: 236px;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      background: linear-gradient(70deg, rgb(90, 186, 215), rgb(121, 135, 230));
+      margin-top: -110px;
+    }
+  }
+
+  .topEthIcon {
+    width: 125px;
+    height: 125px;
+    position: absolute;
+    z-index: 3;
+    right: 15px;
+    top: 16px;
+  }
+
+ 
+
+  .rankCard {
+    width: 100%;
+    height: 719px;
+    background: linear-gradient(180deg, #E7FAFE 0%, #FFFFFF 100%);
+    box-shadow: -2px -2px 8px 0px rgba(116, 158, 207, 0.2), 2px 2px 8px 0px rgba(116, 158, 207, 0.2);
+    border-radius: 20px 20px 20px 20px;
+    opacity: 1;
+    border: 2px solid #FFFFFF;
+    margin-top: 30px;
+    padding: 20px 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+
+    .rankCardTitle {
+      font-size: 20px;
+      font-weight: 500;
+      color: #222222;
+      line-height: 23px;
+      text-align: center;
+    }
+
+    .rankCardNum {
+      font-size: 24px;
+      font-weight: 500;
+      color: #51C7D3;
+      line-height: 28px;
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    .poolTable {
+      margin-top: 18px;
+      &>div>div>div{
+        background-color: transparent !important;
+
+      }
+
+
+      tr>th {
+        padding: 0 10px;
+        border: none;
+        background-color: transparent !important;
+        padding-bottom: 17px;
+
+      }
+
+      tr>td {
+        padding: 7px 10px;
+        border: none;
+        background-color: transparent !important;
+
+        font-size: 14px;
+        font-weight: 500;
+        color: #888888;
+        line-height: 16px;
+      }
+
+
+    }
+
+    .poolRank {
+      width: 100%;
+      // height: 442px;
+      // background: #FFFFFF;
+      border-radius: 16px 16px 16px 16px;
+      opacity: 1;
+      overflow: hidden;
+      // padding: 25px 20px;
+    }
+
+    .rankTitle {
+      font-size: 14px;
+      font-weight: bold;
+      color: #222222;
+      line-height: 16px;
+      text-align: center;
+    }
+
+    .rankNum {
+      font-size: 24px;
+      font-weight: 500;
+      color: #51C7D3;
+      line-height: 28px;
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    .countdown {
+      display: flex;
+      align-items: center;
+
+      font-size: 16px;
+      font-weight: 500;
+      color: #51C7D3;
+      letter-spacing: 1px;
+      margin-top: 20px;
+
+      .countdownItem {
+        width: 44px;
+        height: 44px;
+        background: #51C7D3;
+        box-shadow: -2px -2px 8px 0px rgba(116, 158, 207, 0.2), 2px 2px 8px 0px rgba(116, 158, 207, 0.2);
+        border-radius: 3px 3px 3px 3px;
+        opacity: 1;
+        border: 2px solid #FFFFFF;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: #FFFFFF;
+        line-height: 39px;
+      }
+
+    }
+
+    .pagination {
+      margin-top: 25px;
+
+      li {
+        border-color: #51C7D3;
+
+        button {
+          background: #51C7D3;
+          border-radius: 10px 10px 10px 10px;
+          opacity: 1;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+
+
+  .cakeBotBox {
+    width: 100%;
+    height: 266px;
+    position: relative;
+    // overflow: hidden;
+    margin-top: 20px;
+
+
+  }
+
+  .cakeBot {
+    position: absolute;
+    width: 100vw;
+    height: 266px;
+    bottom: 0px;
+  }
+
+  .mask {
+    content: '';
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+
+  }
+
+  .mustBox {
+    width: 100%;
+    height: 426px;
+    background: #FFFFFF;
+    opacity: 1;
+    position: fixed;
+    z-index: 99999;
+    bottom: 0;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    box-sizing: border-box;
+    padding: 15px;
+
+
+
+    p {
+      font-size: 18px;
+      font-weight: 500;
+      color: #0F1112;
+      line-height: 21px;
+      text-align: center;
+      margin-top: 20px;
+
+    }
+
+    .bindIpt {
+      width: 100%;
+      height: 48px;
+      background: #F5F5F5;
+      border-radius: 11px 11px 11px 11px;
+      opacity: 1;
+      border: none;
+      margin-top: 25px;
+    }
+
+    .mustBoxTips {
+      margin-top: 30px;
+
+      p {
+        margin: 0;
+        text-align: left;
+        font-size: 14px;
+        font-weight: 400;
+        color: #888888;
+        line-height: 16px;
+        margin-top: 12px;
+      }
+
+      .mustBoxTipsTitle {
+        font-size: 14px;
+        font-weight: 500;
+        color: #0F1112;
+        line-height: 16px;
+      }
+
+
+    }
+
+    .sureBtn {
+      width: 100%;
+      height: 48px;
+      background: #51C7D3;
+      border-radius: 11px 11px 11px 11px;
+      opacity: 1;
+      font-size: 14px;
+      font-weight: 400;
+      color: #FFFFFF;
+      line-height: 48px;
+      text-align: center;
+      margin-top: 45px;
+
+    }
+  }
+
+}
+
+.WithdrawalTokenBox {
+  .withdrawTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #222222;
+    line-height: 21px;
+    text-align: center;
+  }
+
+  .tokenBox {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 26px;
+    margin-top: 15px;
+
+    .noramToken {
+      width: 74px;
+      height: 36px;
+      background: #fff;
+      border-radius: 8px 8px 8px 8px;
+      opacity: 1;
+      border: 1px solid #DADADA;
+      line-height: 36px;
+      text-align: center;
+    }
+
+    .currToken {
+      background: #9C83FF;
+      border: none;
+      color: #fff;
+    }
+  }
+
+  .withdrawIptBox {
+    width: 100%;
+    height: 102px;
+    border-radius: 10px 10px 10px 10px;
+    opacity: 1;
+    border: 1px solid #F4F5F7;
+    box-sizing: border-box;
+    padding: 15px 18px;
+    margin-top: 20px;
+
+    p {
+      font-size: 14px;
+      font-weight: 500;
+      color: #222222;
+      line-height: 16px;
+    }
+
+    &>div {
+      display: flex;
+      margin-top: 16px;
+      justify-content: space-between;
+
+      .withdrawIpt {
+        width: 144px;
+        height: 32px;
+        background: #F4F5F7;
+        border-radius: 8px 8px 8px 8px;
+        opacity: 1;
+        border: none;
+      }
+
+      div {
+        width: 50px;
+        height: 32px;
+        background: #51C7D3;
+        border-radius: 10px 10px 10px 10px;
+        opacity: 1;
+        font-size: 14px;
+        font-weight: 500;
+        color: #FFFFFF;
+        line-height: 32px;
+        text-align: center;
+      }
+    }
+  }
+
+  .sureBtn {
+    width: 100%;
+    height: 48px;
+    background: #51C7D3;
+    border-radius: 12px 12px 12px 12px;
+    opacity: 1;
+    text-align: center;
+    line-height: 48px;
+    color: #fff;
+    margin-top: 25px;
+  }
+}

@@ -2,7 +2,7 @@ import { message } from 'antd'
 import BigNumber from 'bignumber.js'
 import copyThat from 'copy-to-clipboard'
 import { format, isValid, parseISO } from 'date-fns/fp'
-import { BigNumberish, utils } from 'ethers'
+import { BigNumber as BN, BigNumberish, utils } from 'ethers'
 import { identity } from 'lodash'
 import { flow, trimCharsEnd } from 'lodash/fp'
 import React, { ReactNode } from 'react'
@@ -160,4 +160,10 @@ export const copyMsg = (text: string, tips: string) => {
 
 export const spanChunkValues = {
   span: (chunks: ReactNode[]) => <span>{chunks}</span>,
+}
+export const formatAmountByApi = (value: string) => {
+  if (!value) {
+    return '0'
+  }
+  return new BigNumber(value).div(10 ** 18).toString()
 }

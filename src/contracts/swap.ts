@@ -2,7 +2,7 @@ import { bsc, bscTestnet } from 'wagmi/chains'
 
 export const getSwapAddress = (chainId?: number): `0x${string}` => {
   if (chainId === bscTestnet.id) {
-    return '0x1Be4881365c6B1e579A2C708C7630744608D40d3'
+    return '0x5EdCb8124876535fD2f352B1A259fEdC1ebf5AF5'
   }
   if (chainId === bsc.id) {
     return '0x'

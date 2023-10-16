@@ -27,6 +27,12 @@
   "record":"记录",
   "time":"时间",
   "amount":"数量",
-  "token":"币种"
+  "token":"币种",
+  "Recommendation":"推荐关系绑定",
+  "BindingTips":"绑定提示：",
+  "Rules1":"1.绑定推荐人关系，才能使用DAPP功能",
+  "Rules2":"2.通过邀请人链接可以获得邀请人id",
+  "Rules3":"3.绑定邀请人ID，即可获得个人账户ID",
+  "parentAddressInfo":"请输入上级地址"
 
 }

@@ -27,6 +27,11 @@
   "record":"record",
   "time":"time",
   "amount":"amount",
-  "token":"token"
-
+  "token":"token",
+  "Recommendation": "Recommendation Relationship Binding",
+  "BindingTips":"Binding prompt:",
+  "Rules1":" 1. Bind the recommender relationship in order to use the DAPP function ",
+  "Rules2":" 2. The inviter ID can be obtained through the inviter link ",
+  "Rules3":" 3. Bind the inviter ID to obtain a personal account ID ",
+  "parentAddressInfo":"Please enter the parent address"
 }

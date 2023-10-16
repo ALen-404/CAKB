@@ -9,199 +9,148 @@
   padding: 0 15px;
   box-sizing: border-box;
 
-  .indexTopImgBox {
-    height: 236px;
+  .fundTopCard {
+    background: url('../../assets/image/stake/banner.png') no-repeat;
     width: 100%;
+    height: 100px;
+    background-size: cover;
+    border-radius: 30px;
     overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-
-    img {
-      width: 100%;
-      background: linear-gradient(70deg, rgb(90, 186, 215), rgb(121, 135, 230));
-      margin-top: -110px;
-    }
-  }
-
-  .topEthIcon {
-    width: 125px;
-    height: 125px;
-    position: absolute;
-    z-index: 3;
-    right: 15px;
-    top: 16px;
-  }
-
-  .buyBox {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    z-index: 2;
+    text-align: center;
     margin-top: 15px;
 
-    .buyItem {
-      width: 165px;
-      height: 71px;
-      background: linear-gradient(180deg, #E7FAFE 0%, #FFFFFF 100%);
-      box-shadow: -2px -2px 8px 0px rgba(116, 158, 207, 0.2), 2px 2px 8px 0px rgba(116, 158, 207, 0.2);
-      border-radius: 12px 12px 12px 12px;
-      opacity: 1;
-      border: 1px solid #FFFFFF;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 10px 0;
-      box-sizing: border-box;
+    p {
+      font-size: 16px;
+      font-weight: 400;
+      color: #FFFFFF;
+      line-height: 19px;
+      margin-top: 18px;
+    }
 
-      p {
-        font-size: 13px;
-        font-weight: 400;
-        color: #888888;
-      }
-
-      span {
-        font-size: 16px;
-        font-weight: 400;
-        color: #51C7D3;
-        margin-top: 5px;
-      }
+    span {
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+      color: #FFFFFF;
+      line-height: 21px;
+      margin-top: 16px;
     }
   }
 
-  .swapCard {
-    position: relative;
-    z-index: 2;
+
+
+  .stakeChooseBox {
     width: 100%;
-    // height: 296px;
-    background: linear-gradient(180deg, #D8F1FF 0%, #FFFFFF 52%);
+    // height: 410px;
+    background: linear-gradient(180deg, #E7FAFE 0%, #FFFFFF 100%);
     box-shadow: -2px -2px 8px 0px rgba(116, 158, 207, 0.2), 2px 2px 8px 0px rgba(116, 158, 207, 0.2);
     border-radius: 16px 16px 16px 16px;
     opacity: 1;
     border: 2px solid #FFFFFF;
-    margin-top: 20px;
-    padding: 20px 15px;
     box-sizing: border-box;
+    padding: 30px 25px;
+    margin-top: 30px;
 
-
-    .swapTitle {
+    .stakeChooseTitle {
       font-size: 20px;
       font-weight: bold;
-      color: #222222;
+      color: #51C7D3;
       line-height: 23px;
       text-align: center;
     }
 
-    .inputBox {
-      width: 100%;
-      height: 70px;
-      background: #FFFFFF;
-      border-radius: 14px 14px 14px 14px;
-      opacity: 1;
-      border: 1px solid #51C7D3;
+    .daysBox {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 12px 14px;
       box-sizing: border-box;
-      margin-top: 20px;
+      margin-top: 25px;
+      width: 100%;
 
-      .inputBoxLeft {
-        .inputBtn {
-          border: none;
-          padding: 0;
-        }
-
-        p {
-          font-size: 12px;
-          font-weight: 500;
-          color: #AFB4C0;
-          line-height: 14px;
-        }
-      }
-
-      .inputBoxRight {
+      .dayItemBox {
         display: flex;
+        flex-direction: column;
+        align-items: center;
 
         img {
-          width: 24px;
-          height: 24px;
-        }
+          width: 50px;
+          height: 50px;
+          margin-bottom: 16px;
 
-        p {
-          margin-left: 7px;
         }
       }
 
+      .noramToken {
+        width: 80px;
+        height: 40px;
+        background: #FFFFFF;
+        border-radius: 8px 8px 8px 8px;
+        opacity: 1;
+        border: 1px solid #51C7D3;
+        line-height: 40px;
+        text-align: center;
+      }
+
+      .currToken {
+        background: #9C83FF;
+        border: none;
+        color: #fff;
+      }
     }
 
-    .btnBox {
+    .fundInputBoxTop {
       display: flex;
       justify-content: space-between;
-      margin-top: 30px;
-
-      .arrowBtn {
-        width: 140px;
-        height: 46px;
-        background: #FFFFFF;
-        border-radius: 6px 6px 6px 6px;
-        opacity: 1;
-        border: 2px solid #51C7D3;
-        font-size: 14px;
-        font-weight: 500;
-        color: #51C7D3;
-        line-height: 46px;
-        text-align: center;
-      }
-
-      .normalBtn {
-        width: 140px;
-        height: 46px;
-        background: #51C7D3;
-        border-radius: 6px 6px 6px 6px;
-        opacity: 1;
-        font-size: 14px;
-        font-weight: 500;
-        color: #FFFFFF;
-        line-height: 46px;
-        text-align: center;
-      }
-    }
-
-    .inputIcon {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-
-      svg {
-        width: 13px;
-        height: 17px;
-        color: #51C7D3;
-        border-radius: 0px 0px 0px 0px;
-        opacity: 1;
-      }
-    }
-
-    .rate {
-      display: flex;
-      align-items: center;
-      width: 100%;
       margin-top: 20px;
 
-      img {
-        width: 18px;
+      p {
+        font-size: 14px;
+        font-weight: 400;
+        color: #888888;
+        line-height: 16px;
       }
 
-      p {
-        font-size: 12px;
-        font-weight: 500;
+      span {
+        font-size: 14px;
+        font-weight: bold;
         color: #51C7D3;
-        line-height: 14px;
-        letter-spacing: 1px;
-        margin-left: 7px;
+        line-height: 16px;
       }
+
+    }
+
+    .fundIpt {
+      width: 100%;
+      height: 46px;
+      background: #FFFFFF;
+      border-radius: 7px 7px 7px 7px;
+      opacity: 1;
+      border: 1px solid #51C7D3;
+      margin-top: 8px;
+    }
+
+    .DailyYieldBox,
+    .ResumptionBox {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 43px;
+
+      p {
+        font-size: 14px;
+        font-weight: 400;
+        color: #888888;
+        line-height: 16px;
+      }
+
+      span {
+        font-size: 14px;
+        font-weight: 400;
+        color: #222222;
+        line-height: 16px;
+      }
+    }
+
+    .ResumptionBox {
+      margin-top: 20px;
     }
 
     .normalBtn {
@@ -215,20 +164,48 @@
       color: #FFFFFF;
       line-height: 46px;
       text-align: center;
+      margin-top: 25px;
+    }
+
+    .infoBox {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 71px;
+      background: #FFFFFF;
+      border-radius: 10px 10px 10px 10px;
+      opacity: 1;
+      border: 1px solid #51C7D3;
+      box-sizing: border-box;
+      padding: 15px 25px;
       margin-top: 35px;
 
-
+      p {
+        font-size: 12px;
+        font-weight: 500;
+        color: #888888;
+        line-height: 14px;
+      }
+      span {
+        font-size: 14px;
+        font-weight: 500;
+        color: #51C7D3;
+        line-height: 16px;
+        display: block;
+        margin-top: 8px;
+      }
     }
   }
 
-  .recordBox {
+
+  .recordStakeBox {
     width: 100%;
     margin-top: 30px;
 
     .recordTitle {
       font-size: 18px;
       font-weight: bold;
-      color: #51C7D3;
+      color: #222222;
       line-height: 21px;
       padding-left: 10px;
       border-left: 4px solid #51C7D3;
@@ -236,7 +213,7 @@
 
     .recordBoxItem {
       width: 100%;
-      height: 130px;
+      // height: 130px;
       background: linear-gradient(180deg, #F2F9F8 0%, #FFFFFF 100%);
       box-shadow: -2px -2px 8px 0px rgba(116, 158, 207, 0.2), 2px 2px 8px 0px rgba(116, 158, 207, 0.2);
       border-radius: 12px 12px 12px 12px;
@@ -248,13 +225,13 @@
       div {
         display: flex;
         justify-content: space-between;
+        margin-top: 15px;
 
         p {
           font-size: 14px;
           font-weight: 400;
           color: #888888;
           line-height: 16px;
-          margin-top: 15px;
         }
 
         span {
@@ -378,7 +355,7 @@
         }
       }
 
-    
+
     }
 
     .charts {
@@ -391,7 +368,8 @@
       margin-top: 20px;
       box-sizing: border-box;
       padding: 15px;
-      .chartsItem{
+
+      .chartsItem {
         width: 100%;
         height: 200px;
       }
@@ -399,15 +377,16 @@
 
   }
 
-.quotationsIcon{
-  position: absolute;
-  right: 30px;
-  top: 20px;
-  img{
-    width: 20px;
-    height: 20px;
+  .quotationsIcon {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
   }
-}
 
 
 }

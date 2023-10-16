@@ -10,7 +10,7 @@ export const getCakbDapp = (chainId?: number): `0x${string}` => {
   return '0x'
 }
 
-export const cakbAbi = [
+export const cakbDappAbi = [
   {
     inputs: [],
     stateMutability: 'nonpayable',
