@@ -17,16 +17,17 @@ import { ellipsis, formatAmountByApi, getBalanceDisplay, getCoinDisplay } from '
 
 import binance from '../../assets/image/index/binance.png'
 import BitKeep from '../../assets/image/index/bitkeep.png'
-import cakeBot from '../../assets/image/index/cakeBot.png'
 import GitHub from '../../assets/image/index/github.png'
 import imToken from '../../assets/image/index/imToken.png'
 import metamask from '../../assets/image/index/metamask.png'
 import Mt from '../../assets/image/index/mt.png'
 import Telegram from '../../assets/image/index/telegram.png'
 import topBackground from '../../assets/image/index/topBackground.png'
-import topEthIcon from '../../assets/image/index/topEthIcon.png'
-import Tp from '../../assets/image/index/tp.png'
 import Twitter from '../../assets/image/index/twitter.png'
+import Gold1 from '../../assets/image/rank/gold1.png'
+import Gold2 from '../../assets/image/rank/gold2.png'
+import cakeBot from '../../assets/image/rank/rankBg.png'
+import rankIcon from '../../assets/image/rank/rankIcon.png'
 
 import './index.less'
 
@@ -57,7 +58,13 @@ const Home = () => {
       dataIndex: 'rank',
       key: 'rank',
       render: (res, _, index) => {
-        return <p>{index + 1}</p>
+        return (
+          <div>
+            {index + 1 == 1 && <img className="rankListIcon" src={Gold1} alt="firstIcon"></img>}
+            {index + 1 == 2 && <img className="rankListIcon" src={Gold2} alt="firstIcon"></img>}
+            <p>{index + 1}</p>
+          </div>
+        )
       },
     },
     {
@@ -72,6 +79,14 @@ const Home = () => {
       title: '额度',
       dataIndex: 'pledgeCake',
       key: 'stakeNum',
+      render: (res) => {
+        return <p>{getCoinDisplay(formatAmountByApi(res))}</p>
+      },
+    },
+    {
+      title: '奖励',
+      dataIndex: 'cumulativeIncomeCake',
+      key: 'cumulativeIncomeCake',
       render: (res) => {
         return <p>{getCoinDisplay(formatAmountByApi(res))}</p>
       },
@@ -147,20 +162,23 @@ const Home = () => {
 
   return (
     <LayoutElement>
-      <div className="indexTop">
+      <div className="rankTop">
+        <div className="rankTopTextBox">
+          <p>排行榜</p>
+        </div>
         <div className="indexTopImgBox">
           <img src={topBackground} alt="topBackground" />
         </div>
-        <img className="topEthIcon" src={topEthIcon} alt="topEthIcon" />
+        <img className="topEthIcon" src={rankIcon} alt="rankIcon" />
 
         <div className="rankCard">
           <div className="poolRank">
             <Table className="poolTable" columns={columns} dataSource={rankList} pagination={false} />
           </div>
-          <Pagination className="pagination" defaultCurrent={1} total={total} onChange={handlePageChange} />
         </div>
 
         <div className="cakeBotBox"></div>
+        <p className="cakeBotText">引领WEB3.0新时代</p>
         <img className="cakeBot" src={cakeBot} alt="cakeBot" />
       </div>
     </LayoutElement>

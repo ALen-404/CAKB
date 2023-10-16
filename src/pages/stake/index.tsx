@@ -44,6 +44,7 @@ const Fund = () => {
   const [isCurrenDays, setIsCurrenDays] = useState<any>('100')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isGoOutModalOpen, setIsGoOutModalOpen] = useState(false)
+  const [isPending, setIsPending] = useState(false)
   const [isReopen, setIsReopen] = useState(0)
   const [baoPldgeValue, setBaoPldgeValue] = useState('0')
   const [pondInfo, setPondInfo] = useState<any>({})
@@ -69,7 +70,7 @@ const Fund = () => {
       }
     })
   }, [])
-  const onStake = useStake({ value: isCurrenDays })
+  const onStake = useStake({ value: isCurrenDays || '0', setIsPending })
 
   useEffect(() => {
     getPledge().then((res: any) => {
@@ -133,8 +134,12 @@ const Fund = () => {
     })
   }
 
-  const switchChange = (e: any) => {
-    console.log(e)
+  const changeBaoPldgeValue = (e: any) => {
+    if (!e.target.value) {
+      setIsCurrenDays('')
+      return
+    }
+    setIsCurrenDays(e.target.value)
   }
   return (
     <LayoutElement>
@@ -149,13 +154,14 @@ const Fund = () => {
           <div className="fundInputBox">
             <div className="fundInputBoxTop">
               <p>质押数量</p>
-              <span>余额：{getCoinDisplay(formatAmountByApi(userInfo?.baoBalanceCake || '0'))} </span>
+              {/* <span>余额：{getCoinDisplay(formatAmountByApi(userInfo?.baoBalanceCake || '0'))} </span> */}
+              <span>余额：{getBalanceDisplay(cakeTokenBalance)} </span>
             </div>
             <Input
               className="fundIpt"
               value={isCurrenDays}
-              // onChange={changeBaoPldgeValue}
-              disabled
+              onChange={changeBaoPldgeValue}
+              // disabled
             ></Input>
           </div>
           <div className="daysBox">
@@ -204,13 +210,13 @@ const Fund = () => {
             </div>
             <div>
               <p>当前等级</p>
-              <span>{getCoinDisplay(userInfo?.vip)}</span>
+              <span>V{userInfo?.vip}</span>
             </div>
           </div>
 
-          <div className="normalBtn" onClick={onStake}>
+          <button disabled={isPending} className="normalBtn" onClick={onStake}>
             {t('confirm')}
-          </div>
+          </button>
         </div>
         <div className="recordStakeBox">
           <div className="recordTitle">质押记录</div>
@@ -219,7 +225,9 @@ const Fund = () => {
               <div className="recordBoxItem">
                 <div>
                   <p>质押状态</p>
-                  <span className="yuEDay">{item.status === 0 ? '进行中' : '已完成'}</span>
+                  <span className={item.status === 0 ? 'doing yuEDay' : 'done yuEDay'}>
+                    {item.status === 0 ? '进行中' : '已完成'}
+                  </span>
                 </div>
                 <div>
                   <p>质押数量</p>

@@ -8,6 +8,7 @@ import { useAccount } from 'wagmi'
 import FundRecords from '../../assets/image/fundRecords.png'
 import Icon from '../../assets/image/icon.png'
 import Index from '../../assets/image/index.png'
+import Logo from '../../assets/image/index/logo.png'
 import Mining from '../../assets/image/mining.png'
 import MyCommunity from '../../assets/image/myCommunity.png'
 import Rank from '../../assets/image/rankingList.png'
@@ -145,7 +146,7 @@ export const LayoutElement = ({ children }: { children: ToastActionElement | und
                 <MenuUnfoldOutlined />
               </div>
               <div className="flex items-center font-bold cursor-pointer">
-                <img className="w-12 h-12" src={Icon} alt="Icon" />
+                <img className="w-9 h-9" src={Logo} alt="Icon" />
               </div>
               <div className="flex items-center gap-2 bg-white networkBox">
                 <NetworkSwitcher />

@@ -1,3 +1,4 @@
+import { message } from 'antd'
 import BigNumber from 'bignumber.js'
 import { BigNumber as BN, utils } from 'ethers'
 import { useCallback } from 'react'
@@ -10,9 +11,10 @@ import { cakeABI, getCakeAddress } from '@/contracts/cake'
 
 export interface UseSpacemeshParams {
   value: string
+  setIsPending: (value: boolean) => void
 }
 
-export default ({ value }: UseSpacemeshParams) => {
+export default ({ value, setIsPending }: UseSpacemeshParams) => {
   const { address, isConnected } = useAccount()
   const { chain } = useNetwork()
   const chainId = chain?.id
@@ -35,6 +37,7 @@ export default ({ value }: UseSpacemeshParams) => {
       if (!chainId || !address) {
         return
       }
+      setIsPending(true)
 
       const { gasPrice } = await fetchFeeData()
       const gasSupportEIP1559 = { gasPrice }
@@ -111,11 +114,15 @@ export default ({ value }: UseSpacemeshParams) => {
     async function stakeWithRetries() {
       try {
         await stakeFnc()
-
+        setIsPending(false)
+        message.success('success')
         return
-      } catch (e: any) {}
+      } catch (e: any) {
+        setIsPending(false)
+        message.error('error')
+      }
     }
 
     stakeWithRetries()
-  }, [isConnected, chainId, address, tokenAddress, chain?.id, bigNumber, refetch])
+  }, [isConnected, chainId, address, setIsPending, chain?.id, bigNumber, refetch, tokenAddress])
 }

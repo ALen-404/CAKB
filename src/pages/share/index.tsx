@@ -13,7 +13,7 @@ import { WalletModal } from '@/components/WalletModal'
 import { getCakbAddress } from '@/contracts/cakb'
 import { getCakeAddress } from '@/contracts/cake'
 import { useCopyToClipboard } from '@/hooks/useCopy'
-import { ellipsis, formatAmountByApi, getBalanceDisplay, getCoinDisplay } from '@/utils/formatter'
+import { copyMsg, ellipsis, formatAmountByApi, getBalanceDisplay, getCoinDisplay } from '@/utils/formatter'
 
 import binance from '../../assets/image/index/binance.png'
 import BitKeep from '../../assets/image/index/bitkeep.png'
@@ -152,6 +152,7 @@ const Home = () => {
       }
     })
   }
+  // useEffect()
 
   return (
     <LayoutElement>
@@ -163,8 +164,15 @@ const Home = () => {
         <div className="invitAddressBox">
           <p className="invitAddressTitle">分享地址</p>
           <div className="inputBox">
-            <Input className="invitAddressIpt" disabled></Input>
-            <div className="copy">复制</div>
+            <Input className="invitAddressIpt" value={`${window.location.origin}?a=${address}`} disabled></Input>
+            <div
+              className="copy"
+              onClick={() => {
+                copyMsg(`${window.location.origin}?a=${address}` || '--', '复制成功')
+              }}
+            >
+              复制
+            </div>
           </div>
           <p className="invitInfo">奖励规则</p>
           <span>动态奖金1代10%加速释放，2-4代3%加速释放，5-10代1%加速释放。</span>
@@ -172,7 +180,7 @@ const Home = () => {
         <div className="myComiu">
           <div className="myComTitle">我的社区</div>
           <div className="myComContent">
-            <p className="myComContentTitle">总收益(cake)</p>
+            <p className="myComContentTitle">总收益(CAKE)</p>
             <p className="myComContentNum">
               {getCoinDisplay(formatAmountByApi(userInfo?.balanceCumulativeIncomeCake))}
             </p>

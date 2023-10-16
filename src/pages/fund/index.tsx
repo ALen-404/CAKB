@@ -160,7 +160,7 @@ const Fund = () => {
         <div className="fundCard">
           <p className="incomeTitle">
             {t('YuEbao')}
-            {t('income')}(cake)
+            {t('income')}(CAKE)
           </p>
           <p className="incomeTotal">{getCoinDisplay(formatAmountByApi(userInfo?.baoBalanceCumulativeIncomeCake))}</p>
 

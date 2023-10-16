@@ -3,6 +3,7 @@ import { ColumnsType } from 'antd/es/table'
 import BigNumber from 'bignumber.js'
 import { BigNumber as BN, utils } from 'ethers'
 import { t } from 'i18next'
+import { Link } from 'react-router-dom'
 import { useAccount, useBalance, useNetwork, useSignMessage } from 'wagmi'
 
 import { getBind, getPledgeRankList, getPond, loginDapp, withdrawal } from '@/apis'
@@ -22,6 +23,7 @@ import GitHub from '../assets/image/index/github.png'
 import imToken from '../assets/image/index/imToken.png'
 import metamask from '../assets/image/index/metamask.png'
 import Mt from '../assets/image/index/mt.png'
+import RankRecord from '../assets/image/index/rankRecord.png'
 import Telegram from '../assets/image/index/telegram.png'
 import topBackground from '../assets/image/index/topBackground.png'
 import topEthIcon from '../assets/image/index/topEthIcon.png'
@@ -59,7 +61,7 @@ const Home = () => {
       dataIndex: 'rank',
       key: 'rank',
       render: (res, _, index) => {
-        return <p>{index}</p>
+        return <p>{index + 1}</p>
       },
     },
     {
@@ -174,11 +176,20 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess])
   useEffect(() => {
+    const anchor = location.search.substring(1)
+
     if (address) {
       getBind(address).then((res: any) => {
         if (res.code === 200) {
           if (!res.data) {
             setMustShow(true)
+            if (anchor) {
+              const anchorObj = anchor.split('=')
+              console.log(anchorObj)
+              if (anchorObj[1]) {
+                setParentAddress(anchorObj[1])
+              }
+            }
             return
           }
           signMessage()
@@ -278,9 +289,9 @@ const Home = () => {
           <img src={topBackground} alt="topBackground" />
         </div>
         <img className="topEthIcon" src={topEthIcon} alt="topEthIcon" />
-
+        <p className="">欢迎来到cakb</p>
         <div className="incomeCard">
-          <p className="incomeTitle">{t('income')}(cake)</p>
+          <p className="incomeTitle">{t('income')}(CAKE)</p>
           <p className="incomeTotal">{getCoinDisplay(formatAmountByApi(userInfo?.balanceCumulativeIncomeCake))}</p>
           <div className="incomeToday">
             {t('TodayEarnings')} {getCoinDisplay(formatAmountByApi(userInfo?.balanceYesterdayIncomeCake))}
@@ -304,44 +315,47 @@ const Home = () => {
             >
               {t('Withdrawal')}
             </div>
-            <div className="normalBtn">{t('Transferred')}</div>
+            <Link to="/fund">
+              <div className="normalBtn">{t('Transferred')}</div>
+            </Link>
           </div>
         </div>
         <div className="ticketsCard">
           <p className="ticketsCardTitle">{t('PurchaseTickets')}</p>
           <p className="ticketsCardInfo">{t('butTicketsInfo')}</p>
           <div className="ticketsCardBox">
-            <div className="buyBtn">{t('PurchaseTickets')}</div>
-            <div className="normalBtn">{t('ImmediateInvestment')}</div>
+            <Link to="/swap">
+              <div className="buyBtn">{t('PurchaseTickets')}</div>
+            </Link>
+            <Link to="/stake">
+              <div className="normalBtn">{t('ImmediateInvestment')}</div>
+            </Link>
           </div>
         </div>
         <div className="poolCard">
           <p className="poolCardTitle">{t('bonusPool')}</p>
-          <p className="poolCardNum">
-            {getCoinDisplay(
-              formatAmountByApi(
-                new BigNumber(pondInfo?.bigOrderPond)
-                  .plus(pondInfo?.compensationPond)
-                  .plus(pondInfo?.shareholderPond)
-                  .toString()
-              )
-            )}{' '}
-          </p>
+          <p className="poolCardNum">{getCoinDisplay(formatAmountByApi(pondInfo?.bigOrderPond))} </p>
           <div className="countdown">
             <div className="countdownItem">{rankCondown.hours}</div>：
             <div className="countdownItem">{rankCondown.minutes}</div>：
             <div className="countdownItem">{rankCondown.seconds}</div>
           </div>
           <div className="poolRank">
+            <div className="RankRecordIcon">
+              <Link to={'/rank'}>
+                <img src={RankRecord} alt="RankRecord" />
+              </Link>
+            </div>
             <p className="rankTitle">{t('poolRank')}</p>
-            <p className="rankNum">{getCoinDisplay(formatAmountByApi(pondInfo?.bigOrderPond))} </p>
+            <p className="rankNum">
+              {getCoinDisplay(formatAmountByApi(new BigNumber(pondInfo?.bigOrderPond || '0').div(2).toString()))}{' '}
+            </p>
             <Table className="poolTable" columns={columns} dataSource={rankList} pagination={false} />
           </div>
-          <Pagination className="pagination" defaultCurrent={1} total={rankList?.length} onChange={handlePageChange} />
         </div>
         <div className="fomoCard">
           <p className="fomoCardTitle">{t('dividendPool')}</p>
-          <p className="fomoNum">{getCoinDisplay(formatAmountByApi(pondInfo?.shareholderPond))}</p>
+          <p className="fomoNum">{getCoinDisplay(formatAmountByApi(pondInfo?.newPerformance))}</p>
           <div className="countdown">
             <div className="countdownItem">{poolCondown.hours}</div>：
             <div className="countdownItem">{poolCondown.minutes}</div>：

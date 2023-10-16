@@ -1,9 +1,10 @@
 import { ArrowDownOutlined } from '@ant-design/icons'
-import { Input, message, Pagination, Table } from 'antd'
+import { Button, Input, message, Pagination, Table } from 'antd'
 import BigNumber from 'bignumber.js'
 import ReactECharts from 'echarts-for-react'
 import { BigNumber as BN, utils } from 'ethers'
 import { t } from 'i18next'
+import { getBalance } from 'viem/_types/actions/public/getBalance'
 import { useAccount, useBalance, useContractRead, useNetwork } from 'wagmi'
 
 import { getQuotes, getSwap, getUser } from '@/apis'
@@ -11,12 +12,14 @@ import { LayoutElement } from '@/components/layout'
 import { getCakbAddress } from '@/contracts/cakb'
 import { getCakeAddress } from '@/contracts/cake'
 import { getSwapAddress, swapABI } from '@/contracts/swap'
-import { date, formatAmountByApi, getBalanceDisplay, getCoinDisplay } from '@/utils/formatter'
+import { date, datetime, formatAmountByApi, getBalanceDisplay, getCoinDisplay } from '@/utils/formatter'
 import useSwap from '@/utils/use-swap'
 
 import topBackground from '../../assets/image/index/topBackground.png'
+import cakb from '../../assets/image/swap/cakb.png'
 import cake from '../../assets/image/swap/cake.png'
 import quotationsIcon from '../../assets/image/swap/quotationsIcon.png'
+import swapIcon from '../../assets/image/swap/swapIcon.png'
 
 import './index.less'
 
@@ -26,6 +29,7 @@ const Home = () => {
   const [swapCakeAmount, setSwapCakeAmount] = useState('0')
   const [swapCakbAmount, setSwapCakbAmount] = useState('0')
   const [marketQuotationsShow, setMarketQuotationsShow] = useState(false)
+  const [isPending, setIsPending] = useState(false)
 
   const [userInfo, setUserInfo] = useState<any>({})
   const [swapRecord, setSwapRecord] = useState<any>([])
@@ -59,12 +63,12 @@ const Home = () => {
     address: getSwapAddress(chain?.id),
     abi: swapABI,
     functionName: 'swapEstimate',
-    args: [false, BN.from(swapCakeAmount).toBigInt()],
+    args: [false, BN.from(swapCakeAmount || '0').toBigInt()],
   })
 
   const handleCakeChange = (e: any) => {
     if (!Number(e.target.value)) {
-      setSwapCakeAmount('0')
+      setSwapCakeAmount('')
       return
     }
     setSwapCakeAmount(e.target.value)
@@ -83,7 +87,7 @@ const Home = () => {
     })
   }, [])
 
-  const onSwap = useSwap({ value: swapCakeAmount })
+  const onSwap = useSwap({ value: swapCakeAmount || '0', setIsPending })
 
   useEffect(() => {
     getSwap().then((res: any) => {
@@ -198,17 +202,25 @@ const Home = () => {
               <p>Balance：{getBalanceDisplay(cakbTokenBalance)}</p>
             </div>
             <div className="inputBoxRight">
-              <img src={cake} alt="" />
+              <img src={cakb} alt="" />
               <p>CAKB</p>
             </div>
           </div>
           <div className="rate">
-            <img src={cake} alt="" />
-            <p>1CAKE=8CAKB</p>
+            <img src={swapIcon} alt="" />
+            <p>
+              1CAKE=
+              {getCoinDisplay(
+                new BigNumber(swapInfo.data?.cakePrice?.toString() || '0')
+                  .div(swapInfo.data?.cakbPrice?.toString() || '0')
+                  .toString()
+              )}
+              CAKB
+            </p>
           </div>
-          <div className="normalBtn" onClick={onSwap}>
+          <button disabled={isPending} className="normalBtn" onClick={onSwap}>
             {t('confirm')}
-          </div>
+          </button>
         </div>
         <div className="recordBox">
           <div className="recordTitle">
@@ -223,7 +235,7 @@ const Home = () => {
                     {t('swap')}
                     {t('time')}
                   </p>
-                  <span>{date()(item.transactionTime)}</span>
+                  <span>{datetime()(item.transactionTime)}</span>
                 </div>
                 <div>
                   <p>
@@ -237,7 +249,7 @@ const Home = () => {
                     {t('swap')}
                     {t('amount')}
                   </p>
-                  <span>{getCoinDisplay(formatAmountByApi(item.cakeAmount))}</span>
+                  <span>{getCoinDisplay(formatAmountByApi(item.cakbAmount))}</span>
                 </div>
               </div>
             )
