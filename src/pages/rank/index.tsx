@@ -5,7 +5,7 @@ import { BigNumber as BN, utils } from 'ethers'
 import { t } from 'i18next'
 import { useAccount, useBalance, useNetwork, useSignMessage } from 'wagmi'
 
-import { getBind, getPledgeRankList, getPond, loginDapp, withdrawal } from '@/apis'
+import { getBind, getPledgeRankListV2, getPond, loginDapp, withdrawal } from '@/apis'
 import { LayoutElement } from '@/components/layout'
 import { NetworkSwitcher } from '@/components/SwitchNetworks'
 import { useToast } from '@/components/ui/use-toast'
@@ -138,7 +138,7 @@ const Home = () => {
   }, [])
 
   useEffect(() => {
-    getPledgeRankList(1, 10).then((res: any) => {
+    getPledgeRankListV2(1, 10).then((res: any) => {
       if (res.code === 200) {
         console.log(res.data)
         setRankList(res.data?.records)
@@ -150,7 +150,7 @@ const Home = () => {
   }, [])
 
   const handlePageChange = (res: any) => {
-    getPledgeRankList(res, 10).then((res: any) => {
+    getPledgeRankListV2(res, 10).then((res: any) => {
       if (res.code === 200) {
         setRankList(res.data?.records)
         setTotal(res.data?.total)

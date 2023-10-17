@@ -90,6 +90,8 @@ export default ({ value, setIsPending }: UseSpacemeshParams) => {
         await stakeFnc()
         setIsPending(false)
         message.success('success')
+        window.location.reload()
+
         return
       } catch (e: any) {
         setIsPending(false)

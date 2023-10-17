@@ -6,7 +6,7 @@ import { t } from 'i18next'
 import { Link } from 'react-router-dom'
 import { useAccount, useBalance, useNetwork, useSignMessage } from 'wagmi'
 
-import { getBind, getPledgeRankList, getPond, loginDapp, withdrawal } from '@/apis'
+import { baoTransfer, getBind, getPledgeRankList, getPond, loginDapp, withdrawal } from '@/apis'
 import { LayoutElement } from '@/components/layout'
 import { NetworkSwitcher } from '@/components/SwitchNetworks'
 import { useToast } from '@/components/ui/use-toast'
@@ -45,6 +45,8 @@ const Home = () => {
   const [rankList, setRankList] = useState<any>([])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [withdrawValue, setWithdrawValue] = useState('')
+  const [isGoOutModalOpen, setIsGoOutModalOpen] = useState(false)
+  const [goOutValue, setGoOutValue] = useState('')
 
   const handleChangeParentAddress = (e: any) => {
     setParentAddress(e.target.value)
@@ -172,6 +174,21 @@ const Home = () => {
           message.error(res.msg)
         }
       })
+      getPond().then((res: any) => {
+        if (res.code === 200) {
+          setPondInfo(res.data)
+        } else {
+          message.error(res.msg)
+        }
+      })
+      getPledgeRankList(1, 10).then((res: any) => {
+        if (res.code === 200) {
+          console.log(res.data)
+          setRankList(res.data?.records)
+        } else {
+          message.error(res.msg)
+        }
+      })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess])
@@ -187,12 +204,25 @@ const Home = () => {
               const anchorObj = anchor.split('=')
               console.log(anchorObj)
               if (anchorObj[1]) {
-                setParentAddress(anchorObj[1])
+                const moreAnchor = anchorObj[1].split('&')
+                if (moreAnchor[0]) {
+                  setParentAddress(moreAnchor[0])
+                } else {
+                  setParentAddress(anchorObj[1])
+                }
               }
             }
             return
           }
-          signMessage()
+          getPledgeRankList(1, 10).then((res: any) => {
+            if (res.code === 200) {
+              console.log(res.data)
+              setRankList(res.data?.records)
+            } else {
+              message.error(res.msg)
+              signMessage()
+            }
+          })
         } else {
           message.error(res.msg)
           setMustShow(true)
@@ -252,6 +282,17 @@ const Home = () => {
     })
   }, [])
 
+  const handleSureGoOut = () => {
+    baoTransfer(formatAmountByApi(userInfo?.balanceCake || '0'), 0, address).then((res: any) => {
+      if (res.code === 200) {
+        setIsGoOutModalOpen(false)
+        message.success(res.msg)
+      } else {
+        message.error(res.msg)
+      }
+    })
+  }
+
   const handlePageChange = (res: any) => {
     getPledgeRankList(res, 10).then((res: any) => {
       if (res.code === 200) {
@@ -262,7 +303,9 @@ const Home = () => {
     })
   }
   const handleChangeWithdrawValue = (e: any) => {
-    console.log(e.target.value)
+    setWithdrawValue(e.target.value)
+  }
+  const handleChangeGoOutValue = (e: any) => {
     setWithdrawValue(e.target.value)
   }
   const handleSureWithdraw = () => {
@@ -279,6 +322,9 @@ const Home = () => {
     })
   }
   const handleMaxWithdraw = () => {
+    setWithdrawValue(formatAmountByApi(userInfo.balanceCake))
+  }
+  const handleMaxGoOut = () => {
     setWithdrawValue(formatAmountByApi(userInfo.balanceCake))
   }
 
@@ -315,9 +361,14 @@ const Home = () => {
             >
               {t('Withdrawal')}
             </div>
-            <Link to="/fund">
-              <div className="normalBtn">{t('Transferred')}</div>
-            </Link>
+            <div
+              onClick={() => {
+                setIsGoOutModalOpen(true)
+              }}
+              className="normalBtn"
+            >
+              {t('Transferred')}
+            </div>
           </div>
         </div>
         <div className="ticketsCard">
@@ -454,6 +505,36 @@ const Home = () => {
             </div>
           </div>
           <div className="sureBtn" onClick={handleSureWithdraw}>
+            确认
+          </div>
+        </Modal>
+        <Modal
+          title=""
+          open={isGoOutModalOpen}
+          width={290}
+          onOk={() => {
+            setIsGoOutModalOpen(false)
+            setGoOutValue('')
+          }}
+          onCancel={() => {
+            setIsGoOutModalOpen(false)
+            setGoOutValue('')
+          }}
+          className="WithdrawalTokenBox"
+          footer={null}
+        >
+          <div className="withdrawTitle">转入余额宝</div>
+          <div className="tokenBox">
+            <div className={'currToken noramToken'}>CAKE</div>
+          </div>
+          <div className="withdrawIptBox">
+            <p>请输入数量</p>
+            <div>
+              <Input className="withdrawIpt" value={withdrawValue} onChange={handleChangeGoOutValue}></Input>
+              <div onClick={handleMaxGoOut}>最大</div>
+            </div>
+          </div>
+          <div className="sureBtn" onClick={handleSureGoOut}>
             确认
           </div>
         </Modal>

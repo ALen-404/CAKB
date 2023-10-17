@@ -22,7 +22,7 @@ import { LayoutElement } from '@/components/layout'
 import { getCakbAddress } from '@/contracts/cakb'
 import { getCakeAddress } from '@/contracts/cake'
 import { getSwapAddress, swapABI } from '@/contracts/swap'
-import { date, formatAmountByApi, getBalanceDisplay, getCoinDisplay } from '@/utils/formatter'
+import { date, datetime, formatAmountByApi, getBalanceDisplay, getCoinDisplay } from '@/utils/formatter'
 import useStake from '@/utils/use-stake'
 import useSwap from '@/utils/use-swap'
 
@@ -239,7 +239,7 @@ const Fund = () => {
                 </div>
                 <div>
                   <p>质押时间</p>
-                  <span>{date()(item.pledgeTime)}</span>
+                  <span>{datetime()(item.pledgeTime)}</span>
                 </div>
               </div>
             )

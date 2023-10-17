@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import { configureChains, createConfig, WagmiConfig } from 'wagmi'
 import { arbitrum, arbitrumGoerli, bsc, bscTestnet, goerli, mainnet, polygon } from 'wagmi/chains'
 import { InjectedConnector } from 'wagmi/connectors/injected'
@@ -30,6 +30,11 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
     publicProvider(),
   ]
 )
+
+window.onbeforeunload = function (e) {
+  const storage = window.localStorage
+  storage.clear()
+}
 
 const config = createConfig({
   autoConnect: true,
@@ -67,7 +72,7 @@ const config = createConfig({
 
 // ReactDOM.render(
 //   <WagmiConfig client={client}>
-//     <BrowserRouter>
+//     <HashRouter>
 //       <ConfigProvider
 //         theme={{
 //           token: {
@@ -77,7 +82,7 @@ const config = createConfig({
 //       >
 //         <App />
 //       </ConfigProvider>
-//     </BrowserRouter>
+//     </HashRouter>
 //   </WagmiConfig>,
 //   document.getElementById('root')
 // )
@@ -85,8 +90,8 @@ const config = createConfig({
 const root = createRoot(document.getElementById('root')!)
 root.render(
   <WagmiConfig config={config}>
-    <BrowserRouter>
+    <HashRouter>
       <App />
-    </BrowserRouter>
+    </HashRouter>
   </WagmiConfig>
 )

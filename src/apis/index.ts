@@ -116,3 +116,10 @@ export const getUserSon = (page: any, pageSize: any) => {
     },
   })
 }
+export const getPledgeRankListV2 = (page: any, pageSize: any) => {
+  return get(`/rankList/getPledgeRankListV2?page=${page}&pageSize=${pageSize}`, {
+    headers: {
+      authorization: localStorage.getItem('authorization'),
+    },
+  })
+}
