@@ -5,7 +5,7 @@ import { BigNumber as BN, utils } from 'ethers'
 import { t } from 'i18next'
 import { useAccount, useBalance, useNetwork, useSignMessage } from 'wagmi'
 
-import { getBind, getPond, getUserSon, loginDapp, withdrawal } from '@/apis'
+import { getBind, getPond, getUser, getUserSon, loginDapp, withdrawal } from '@/apis'
 import { LayoutElement } from '@/components/layout'
 import { NetworkSwitcher } from '@/components/SwitchNetworks'
 import { useToast } from '@/components/ui/use-toast'
@@ -99,6 +99,15 @@ const Home = () => {
       }
     })
   }, [])
+  useEffect(() => {
+    getUser().then((res: any) => {
+      if (res.code === 200) {
+        setUserInfo(res.data)
+      } else {
+        message.error(res.msg)
+      }
+    })
+  }, [])
 
   const calculateRemainingTime = (targetHour: number) => {
     const now = new Date()
@@ -182,7 +191,11 @@ const Home = () => {
           <div className="myComContent">
             <p className="myComContentTitle">总收益(CAKE)</p>
             <p className="myComContentNum">
-              {getCoinDisplay(formatAmountByApi(userInfo?.balanceCumulativeIncomeCake))}
+              {getCoinDisplay(
+                formatAmountByApi(
+                  new BigNumber(userInfo?.dynamicIncome || '0').plus(userInfo?.shareholderIncome).toString()
+                )
+              )}
             </p>
             <div className="fenhongBox">
               <div className="fenhongBoxItem">

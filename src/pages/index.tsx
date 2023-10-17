@@ -6,7 +6,7 @@ import { t } from 'i18next'
 import { Link } from 'react-router-dom'
 import { useAccount, useBalance, useNetwork, useSignMessage } from 'wagmi'
 
-import { baoTransfer, getBind, getPledgeRankList, getPond, loginDapp, withdrawal } from '@/apis'
+import { baoTransfer, getBind, getPledgeRankList, getPond, getUser, loginDapp, withdrawal } from '@/apis'
 import { LayoutElement } from '@/components/layout'
 import { NetworkSwitcher } from '@/components/SwitchNetworks'
 import { useToast } from '@/components/ui/use-toast'
@@ -147,15 +147,6 @@ const Home = () => {
     message: 'CAKBDAPP:LOGIN',
   })
 
-  // const login = useCallback(async () => {
-  //   console.log(data, 'data')
-  //   if (data) {
-  //     loginDapp(data || '')
-  //     return
-  //   }
-
-  //   await signMessage()
-  // }, [data, signMessage])
   const loging = async () => {
     await signMessage()
   }
@@ -174,21 +165,23 @@ const Home = () => {
           message.error(res.msg)
         }
       })
-      getPond().then((res: any) => {
-        if (res.code === 200) {
-          setPondInfo(res.data)
-        } else {
-          message.error(res.msg)
-        }
-      })
-      getPledgeRankList(1, 10).then((res: any) => {
-        if (res.code === 200) {
-          console.log(res.data)
-          setRankList(res.data?.records)
-        } else {
-          message.error(res.msg)
-        }
-      })
+      setTimeout(() => {
+        getPond().then((res: any) => {
+          if (res.code === 200) {
+            setPondInfo(res.data)
+          } else {
+            message.error(res.msg)
+          }
+        })
+        getPledgeRankList(1, 10).then((res: any) => {
+          if (res.code === 200) {
+            console.log(res.data)
+            setRankList(res.data?.records)
+          } else {
+            message.error(res.msg)
+          }
+        })
+      }, 2000)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess])
@@ -230,7 +223,15 @@ const Home = () => {
       })
     }
   }, [address, setMustShow, signMessage])
-
+  useEffect(() => {
+    getUser().then((res: any) => {
+      if (res.code === 200) {
+        setUserInfo(res.data)
+      } else {
+        message.error(res.msg)
+      }
+    })
+  }, [])
   useEffect(() => {
     getPond().then((res: any) => {
       if (res.code === 200) {
@@ -283,9 +284,17 @@ const Home = () => {
   }, [])
 
   const handleSureGoOut = () => {
-    baoTransfer(formatAmountByApi(userInfo?.balanceCake || '0'), 0, address).then((res: any) => {
+    baoTransfer(goOutValue, 0, address).then((res: any) => {
       if (res.code === 200) {
         setIsGoOutModalOpen(false)
+        setGoOutValue('0')
+        getUser().then((res: any) => {
+          if (res.code === 200) {
+            setUserInfo(res.data)
+          } else {
+            message.error(res.msg)
+          }
+        })
         message.success(res.msg)
       } else {
         message.error(res.msg)
@@ -306,7 +315,7 @@ const Home = () => {
     setWithdrawValue(e.target.value)
   }
   const handleChangeGoOutValue = (e: any) => {
-    setWithdrawValue(e.target.value)
+    setGoOutValue(e.target.value)
   }
   const handleSureWithdraw = () => {
     withdrawal(withdrawValue, address).then((res: any) => {
@@ -325,7 +334,7 @@ const Home = () => {
     setWithdrawValue(formatAmountByApi(userInfo.balanceCake))
   }
   const handleMaxGoOut = () => {
-    setWithdrawValue(formatAmountByApi(userInfo.balanceCake))
+    setGoOutValue(formatAmountByApi(userInfo.balanceCake))
   }
 
   return (
@@ -338,7 +347,7 @@ const Home = () => {
         <p className="">欢迎来到cakb</p>
         <div className="incomeCard">
           <p className="incomeTitle">{t('income')}(CAKE)</p>
-          <p className="incomeTotal">{getCoinDisplay(formatAmountByApi(userInfo?.balanceCumulativeIncomeCake))}</p>
+          <p className="incomeTotal">{getCoinDisplay(formatAmountByApi(userInfo?.balanceCake))}</p>
           <div className="incomeToday">
             {t('TodayEarnings')} {getCoinDisplay(formatAmountByApi(userInfo?.balanceYesterdayIncomeCake))}
           </div>
@@ -530,7 +539,7 @@ const Home = () => {
           <div className="withdrawIptBox">
             <p>请输入数量</p>
             <div>
-              <Input className="withdrawIpt" value={withdrawValue} onChange={handleChangeGoOutValue}></Input>
+              <Input className="withdrawIpt" value={goOutValue} onChange={handleChangeGoOutValue}></Input>
               <div onClick={handleMaxGoOut}>最大</div>
             </div>
           </div>

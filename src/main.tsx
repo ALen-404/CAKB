@@ -31,10 +31,10 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
   ]
 )
 
-window.onbeforeunload = function (e) {
-  const storage = window.localStorage
-  storage.clear()
-}
+// window.onbeforeunload = function (e) {
+//   const storage = window.localStorage
+//   storage.clear()
+// }
 
 const config = createConfig({
   autoConnect: true,

@@ -121,10 +121,21 @@ const Fund = () => {
   const handleMaxWithdraw = () => {
     setWithdrawValue(formatAmountByApi(userInfo?.balanceCake || '0'))
   }
+  const handleMaxGoOutValue = () => {
+    setGoOutValue(formatAmountByApi(userInfo?.baoBalanceCake || '0'))
+  }
   const handleMaxGoOut = () => {
-    baoTransfer(formatAmountByApi(userInfo?.balanceCake || '0'), 1, address).then((res: any) => {
+    baoTransfer(goOutValue || '0', 1, address).then((res: any) => {
       if (res.code === 200) {
         setIsGoOutModalOpen(false)
+        setGoOutValue('0')
+        getUser().then((res: any) => {
+          if (res.code === 200) {
+            setUserInfo(res.data)
+          } else {
+            message.error(res.msg)
+          }
+        })
         message.success(res.msg)
       } else {
         message.error(res.msg)
@@ -167,7 +178,7 @@ const Fund = () => {
           <div className="currBox">
             <div>
               <p>我的存入</p>
-              <span>{getCoinDisplay(formatAmountByApi(userInfo?.baoPledgeCake))}</span>
+              <span>{getCoinDisplay(formatAmountByApi(userInfo?.baoBalanceCake))}</span>
             </div>
             <div>
               <p>累计收益</p>
@@ -303,7 +314,7 @@ const Fund = () => {
           <div className="withdrawIptBox">
             <p>请输入数量</p>
             <div>
-              <Input className="withdrawIpt" value={goOutValue} onChange={handleChangeGoOutValue}></Input>
+              <Input className="withdrawIpt" value={withdrawValue} onChange={handleChangeWithdrawValue}></Input>
               <div onClick={handleMaxWithdraw}>最大</div>
             </div>
           </div>
@@ -333,8 +344,8 @@ const Fund = () => {
           <div className="withdrawIptBox">
             <p>请输入数量</p>
             <div>
-              <Input className="withdrawIpt" value={withdrawValue} onChange={handleChangeWithdrawValue}></Input>
-              <div onClick={handleMaxWithdraw}>最大</div>
+              <Input className="withdrawIpt" value={goOutValue} onChange={handleChangeGoOutValue}></Input>
+              <div onClick={handleMaxGoOutValue}>最大</div>
             </div>
           </div>
           <div className="sureBtn" onClick={handleMaxGoOut}>

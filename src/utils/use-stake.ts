@@ -116,11 +116,15 @@ export default ({ value, setIsPending }: UseSpacemeshParams) => {
         await stakeFnc()
         setIsPending(false)
         message.success('success')
-        window.location.reload()
+        setTimeout(() => {
+          window.location.reload()
+        }, 2000)
         return
       } catch (e: any) {
         setIsPending(false)
-        message.error('error')
+        console.log(e)
+
+        message.error('The pledge interval is 5 minutes')
       }
     }
 

@@ -65,7 +65,7 @@ export const LayoutElement = ({ children }: { children: ToastActionElement | und
     {
       label: t('MyCommunity'),
       key: 'MyCommunity',
-      link: '/community',
+      link: '/share',
       img: MyCommunity,
     },
     {
