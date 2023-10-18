@@ -1,7 +1,9 @@
 import { shorten } from '@did-network/dapp-sdk'
+import { message } from 'antd'
 import { ReactNode } from 'react'
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
 
+import { loginOut } from '@/apis'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -39,6 +41,13 @@ export function WalletModal(props: {
                 onClick={(e) => {
                   disconnect()
                   props.close?.()
+                  loginOut().then((res: any) => {
+                    message.success(res.msg)
+                    localStorage.clear()
+                    setTimeout(() => {
+                      window.location.reload()
+                    }, 3000)
+                  })
                 }}
                 className="flex-center w-full"
               >

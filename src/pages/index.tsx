@@ -207,15 +207,7 @@ const Home = () => {
             }
             return
           }
-          getPledgeRankList(1, 10).then((res: any) => {
-            if (res.code === 200) {
-              console.log(res.data)
-              setRankList(res.data?.records)
-            } else {
-              message.error(res.msg)
-              signMessage()
-            }
-          })
+          signMessage()
         } else {
           message.error(res.msg)
           setMustShow(true)

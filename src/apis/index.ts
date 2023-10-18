@@ -123,3 +123,14 @@ export const getPledgeRankListV2 = (page: any, pageSize: any) => {
     },
   })
 }
+export const loginOut = () => {
+  return post(
+    `/user/loginOut`,
+    {},
+    {
+      headers: {
+        authorization: localStorage.getItem('authorization'),
+      },
+    }
+  )
+}
