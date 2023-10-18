@@ -6,7 +6,7 @@ import { t } from 'i18next'
 import { Link } from 'react-router-dom'
 import { useAccount, useBalance, useNetwork, useSignMessage } from 'wagmi'
 
-import { baoTransfer, getBind, getPledgeRankList, getPond, getUser, loginDapp, withdrawal } from '@/apis'
+import { baoTransfer, getBind, getIsToken, getPledgeRankList, getPond, getUser, loginDapp, withdrawal } from '@/apis'
 import { LayoutElement } from '@/components/layout'
 import { NetworkSwitcher } from '@/components/SwitchNetworks'
 import { useToast } from '@/components/ui/use-toast'
@@ -207,7 +207,11 @@ const Home = () => {
             }
             return
           }
-          signMessage()
+          getIsToken(address).then((res: any) => {
+            if (!res?.data) {
+              signMessage()
+            }
+          })
         } else {
           message.error(res.msg)
           setMustShow(true)

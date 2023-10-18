@@ -134,3 +134,10 @@ export const loginOut = () => {
     }
   )
 }
+export const getIsToken = (userAddr: any) => {
+  return get(`/user/isToken?userAddr=${userAddr}`, {
+    headers: {
+      authorization: localStorage.getItem('authorization'),
+    },
+  })
+}
