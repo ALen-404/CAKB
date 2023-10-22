@@ -5,10 +5,10 @@ export const getSwapAddress = (chainId?: number): `0x${string}` => {
     return '0x5EdCb8124876535fD2f352B1A259fEdC1ebf5AF5'
   }
   if (chainId === bsc.id) {
-    return '0x'
+    return '0x436134a415e82b1E6A06A8d076D1C838fC348DcE'
   }
 
-  return '0x'
+  return '0x436134a415e82b1E6A06A8d076D1C838fC348DcE'
 }
 
 export const swapABI = [

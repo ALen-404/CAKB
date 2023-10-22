@@ -53,7 +53,7 @@ const Home = () => {
 
   const columns: ColumnsType<DataType> = [
     {
-      title: '直推地址',
+      title: t('zhituiAdd'),
       dataIndex: 'rank',
       key: 'rank',
       render: (res, _, index) => {
@@ -61,7 +61,7 @@ const Home = () => {
       },
     },
     {
-      title: '总人数',
+      title: t('totalpeople'),
       dataIndex: 'userAddr',
       key: 'address',
       render: (res) => {
@@ -69,7 +69,7 @@ const Home = () => {
       },
     },
     {
-      title: '个人质押',
+      title: t('gerenStake'),
       dataIndex: 'pledgeCake',
       key: 'stakeNum',
       render: (res) => {
@@ -77,7 +77,7 @@ const Home = () => {
       },
     },
     {
-      title: '总质押量',
+      title: t('totalStake'),
       dataIndex: 'pledgeCake',
       key: 'stakeNum',
       render: (res) => {
@@ -171,25 +171,25 @@ const Home = () => {
         </div>
         <img className="topEthIcon" src={topEthIcon} alt="topEthIcon" />
         <div className="invitAddressBox">
-          <p className="invitAddressTitle">分享地址</p>
+          <p className="invitAddressTitle">{t('fenxiangAddr')}</p>
           <div className="inputBox">
             <Input className="invitAddressIpt" value={`${window.location.origin}?a=${address}`} disabled></Input>
             <div
               className="copy"
               onClick={() => {
-                copyMsg(`${window.location.origin}?a=${address}` || '--', '复制成功')
+                copyMsg(`${window.location.origin}?a=${address}` || '--', t('copySuc'))
               }}
             >
-              复制
+              {t('copy')}
             </div>
           </div>
-          <p className="invitInfo">奖励规则</p>
-          <span>动态奖金1代10%加速释放，2-4代3%加速释放，5-10代1%加速释放。</span>
+          <p className="invitInfo">{t('rewardRules')}</p>
+          <span>{t('ruleInfo')}</span>
         </div>
         <div className="myComiu">
-          <div className="myComTitle">我的社区</div>
+          <div className="myComTitle">{t('MyCommunity')}</div>
           <div className="myComContent">
-            <p className="myComContentTitle">总收益(CAKE)</p>
+            <p className="myComContentTitle">{t('currShouyi')}(CAKE)</p>
             <p className="myComContentNum">
               {getCoinDisplay(
                 formatAmountByApi(
@@ -199,12 +199,12 @@ const Home = () => {
             </p>
             <div className="fenhongBox">
               <div className="fenhongBoxItem">
-                <p className="itemLabel">股东分红</p>
+                <p className="itemLabel">{t('dividend')}</p>
                 <p className="itemNum">{getCoinDisplay(formatAmountByApi(userInfo?.shareholderIncome))}</p>
                 {/* <span>+18.12</span> */}
               </div>
               <div className="fenhongBoxItem">
-                <p className="itemLabel">动态收益</p>
+                <p className="itemLabel">{t('dongshou')}</p>
                 <p className="itemNum">{getCoinDisplay(formatAmountByApi(userInfo?.dynamicIncome))}</p>
                 {/* <span>+18.12</span> */}
               </div>
@@ -213,15 +213,15 @@ const Home = () => {
         </div>
         <div className="myTeam">
           <div className="myTeamItem">
-            <p>个人算力</p>
+            <p>{t('peopleSuan')}</p>
             <span>{getCoinDisplay(formatAmountByApi(userInfo?.power))}</span>
           </div>
           <div className="myTeamItem">
-            <p>团队算力</p>
+            <p>{t('teamSuan')}</p>
             <span>{getCoinDisplay(formatAmountByApi(userInfo?.teamPower))}</span>
           </div>
           <div className="myTeamItem">
-            <p>社区人数</p>
+            <p>{t('shePeople')}</p>
             <span>{getCoinDisplay(userInfo?.teamSize)}</span>
           </div>
         </div>

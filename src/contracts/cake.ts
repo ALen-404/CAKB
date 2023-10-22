@@ -5,9 +5,9 @@ export const getCakeAddress = (chainId?: number): `0x${string}` => {
     return '0xB24e8D19550F4bC3f097a50Ba7Cb4786b38060b1'
   }
   if (chainId === bsc.id) {
-    return '0x'
+    return '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82'
   }
-  return '0x'
+  return '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82'
 }
 
 export const cakeABI = [

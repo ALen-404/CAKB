@@ -5,9 +5,9 @@ export const getCakbAddress = (chainId?: number): `0x${string}` => {
     return '0x8f4C90768c3627Dc8051311Dc367879aedd6E88E'
   }
   if (chainId === bsc.id) {
-    return '0x'
+    return '0x7A60aD51CEDCF21BB9926279efe32B8E556002d7'
   }
-  return '0x'
+  return '0x7A60aD51CEDCF21BB9926279efe32B8E556002d7'
 }
 
 export const cakbABI = [

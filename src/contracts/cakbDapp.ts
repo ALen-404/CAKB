@@ -5,9 +5,9 @@ export const getCakbDapp = (chainId?: number): `0x${string}` => {
     return '0xeccB2b475F4Df88EfEe30538B9BD596F4158833D'
   }
   if (chainId === bsc.id) {
-    return '0x'
+    return '0x31Aa0Da829601BC314F1b3689cd73bFBE9F01773'
   }
-  return '0x'
+  return '0x31Aa0Da829601BC314F1b3689cd73bFBE9F01773'
 }
 
 export const cakbDappAbi = [

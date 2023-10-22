@@ -124,7 +124,7 @@ const Home = () => {
       trigger: 'axis',
     },
     legend: {
-      data: ['市值'],
+      data: [t('market')],
     },
 
     init: {
@@ -149,9 +149,9 @@ const Home = () => {
     ],
     series: [
       {
-        name: '市值',
+        name: t('market'),
         type: 'line',
-        stack: '总量',
+        stack: t('total'),
         areaStyle: { normal: {} },
         data: cakbQuotes,
       },
@@ -259,7 +259,7 @@ const Home = () => {
         {marketQuotationsShow && (
           <div className="marketQuotationsBox">
             <div className="marketQuotationsTop">
-              <p>行情走势</p>
+              <p>{t('hangqin')}</p>
               <p
                 onClick={() => {
                   setMarketQuotationsShow(false)
@@ -276,17 +276,17 @@ const Home = () => {
                   <p>CAKB</p>
                 </div>
                 <div className="priceBox">
-                  <p>当前价格：</p>
+                  <p>{t('currPrice')}：</p>
                   <span>{getCoinDisplay(formatAmountByApi(swapInfo?.data?.cakbPrice?.toString() || '0'))} </span>
                 </div>
               </div>
               <div className="currBoxBot">
                 <div className="currBoxBotItem">
-                  <p>CAKB总市值</p>
+                  <p>{t('cakbTotalMarket')}</p>
                   <span>{getCoinDisplay(formatAmountByApi(swapInfo?.data?.cakb_arket_value?.toString() || '0'))}</span>
                 </div>
                 <div className="currBoxBotItem">
-                  <p>流动池资金量</p>
+                  <p>{t('liudongchi')}</p>
                   <span>
                     {getCoinDisplay(
                       new BigNumber(formatAmountByApi(swapInfo?.data?.cakb_arket_value?.toString() || '0'))

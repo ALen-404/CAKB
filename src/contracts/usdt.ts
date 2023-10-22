@@ -5,10 +5,10 @@ export const getUsdtAddress = (chainId?: number): `0x${string}` => {
     return '0x1B0385bEF8D6Fa1734fD2A7dF827a6B87D35EE0b'
   }
   if (chainId === bsc.id) {
-    return '0x'
+    return '0x55d398326f99059fF775485246999027B3197955'
   }
 
-  return '0x'
+  return '0x55d398326f99059fF775485246999027B3197955'
 }
 
 export const usdtAbi = [

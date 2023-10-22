@@ -59,7 +59,7 @@ const Home = () => {
 
   const columns: ColumnsType<DataType> = [
     {
-      title: '排名',
+      title: t('ranktext'),
       dataIndex: 'rank',
       key: 'rank',
       render: (res, _, index) => {
@@ -67,7 +67,7 @@ const Home = () => {
       },
     },
     {
-      title: '地址',
+      title: t('address'),
       dataIndex: 'userAddr',
       key: 'address',
       render: (res) => {
@@ -75,7 +75,7 @@ const Home = () => {
       },
     },
     {
-      title: '质押数量',
+      title: t('stakeNum'),
       dataIndex: 'pledgeCake',
       key: 'stakeNum',
       render: (res) => {
@@ -340,7 +340,7 @@ const Home = () => {
           <img src={topBackground} alt="topBackground" />
         </div>
         <img className="topEthIcon" src={topEthIcon} alt="topEthIcon" />
-        <p className="">欢迎来到cakb</p>
+        <p className="">{t('welcomeText')}</p>
         <div className="incomeCard">
           <p className="incomeTitle">{t('income')}(CAKE)</p>
           <p className="incomeTotal">{getCoinDisplay(formatAmountByApi(userInfo?.balanceCake))}</p>
@@ -463,7 +463,7 @@ const Home = () => {
               <p>{t('Rules3')}</p>
             </div>
             <div className="sureBtn" onClick={loging}>
-              确定
+              {t('confirm')}
             </div>
           </div>
         )}
@@ -503,14 +503,14 @@ const Home = () => {
             </div> */}
           </div>
           <div className="withdrawIptBox">
-            <p>请输入数量</p>
+            <p>{t('inputNum')}</p>
             <div>
               <Input className="withdrawIpt" value={withdrawValue} onChange={handleChangeWithdrawValue}></Input>
-              <div onClick={handleMaxWithdraw}>最大</div>
+              <div onClick={handleMaxWithdraw}>{t('max')}</div>
             </div>
           </div>
           <div className="sureBtn" onClick={handleSureWithdraw}>
-            确认
+            {t('confirm')}
           </div>
         </Modal>
         <Modal
@@ -528,19 +528,19 @@ const Home = () => {
           className="WithdrawalTokenBox"
           footer={null}
         >
-          <div className="withdrawTitle">转入余额宝</div>
+          <div className="withdrawTitle">{t('Transferred')}</div>
           <div className="tokenBox">
             <div className={'currToken noramToken'}>CAKE</div>
           </div>
           <div className="withdrawIptBox">
-            <p>请输入数量</p>
+            <p>{t('inputAdd')}</p>
             <div>
               <Input className="withdrawIpt" value={goOutValue} onChange={handleChangeGoOutValue}></Input>
-              <div onClick={handleMaxGoOut}>最大</div>
+              <div onClick={handleMaxGoOut}>{t('max')}</div>
             </div>
           </div>
           <div className="sureBtn" onClick={handleSureGoOut}>
-            确认
+            {t('confirm')}
           </div>
         </Modal>
       </div>

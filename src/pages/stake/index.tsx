@@ -145,17 +145,19 @@ const Fund = () => {
     <LayoutElement>
       <div className="indexTop">
         <div className="fundTopCard">
-          <p>CAKE基金池</p>
+          <p>{t('jijingchi')}</p>
           <span>{getCoinDisplay(formatAmountByApi(pondInfo?.bigPond))}</span>
         </div>
 
         <div className="stakeChooseBox">
-          <div className="stakeChooseTitle">质押</div>
+          <div className="stakeChooseTitle">{t('pledge')}</div>
           <div className="fundInputBox">
             <div className="fundInputBoxTop">
-              <p>质押数量</p>
+              <p>{t('stakeNum')}</p>
               {/* <span>余额：{getCoinDisplay(formatAmountByApi(userInfo?.baoBalanceCake || '0'))} </span> */}
-              <span>余额：{getBalanceDisplay(cakeTokenBalance)} </span>
+              <span>
+                {t('balance')}：{getBalanceDisplay(cakeTokenBalance)}{' '}
+              </span>
             </div>
             <Input
               className="fundIpt"
@@ -201,15 +203,15 @@ const Fund = () => {
           </div>
           <div className="infoBox">
             <div>
-              <p>我的质押</p>
+              <p>{t('myStake')}</p>
               <span>{getCoinDisplay(formatAmountByApi(userInfo?.pledgeCake))}</span>
             </div>
             <div>
-              <p>享有算力</p>
+              <p>{t('suanli')}</p>
               <span>{getCoinDisplay(formatAmountByApi(userInfo?.power))}</span>
             </div>
             <div>
-              <p>当前等级</p>
+              <p>{t('currLevel')}</p>
               <span>V{userInfo?.vip}</span>
             </div>
           </div>
@@ -219,26 +221,26 @@ const Fund = () => {
           </button>
         </div>
         <div className="recordStakeBox">
-          <div className="recordTitle">质押记录</div>
+          <div className="recordTitle">{t('stakeRecord')}</div>
           {swapRecord?.map((item: any) => {
             return (
               <div className="recordBoxItem">
                 <div>
-                  <p>质押状态</p>
+                  <p>{t('stakeStatus')}</p>
                   <span className={item.status === 0 ? 'doing yuEDay' : 'done yuEDay'}>
-                    {item.status === 0 ? '进行中' : '已完成'}
+                    {item.status === 0 ? t('pending') : t('complete')}
                   </span>
                 </div>
                 <div>
-                  <p>质押数量</p>
+                  <p>{t('stakeNum')}</p>
                   <span>{getCoinDisplay(formatAmountByApi(item.pledgeCake))}</span>
                 </div>
                 <div>
-                  <p>享有算力</p>
+                  <p>{t('suanli')}</p>
                   <span>{getCoinDisplay(formatAmountByApi(item.power))}</span>
                 </div>
                 <div>
-                  <p>质押时间</p>
+                  <p>{t('stakeTime')}</p>
                   <span>{datetime()(item.pledgeTime)}</span>
                 </div>
               </div>
@@ -266,14 +268,14 @@ const Fund = () => {
             <div className={'currToken noramToken'}>CAKE</div>
           </div>
           <div className="withdrawIptBox">
-            <p>请输入数量</p>
+            <p>{t('inputAdd')}</p>
             <div>
               <Input className="withdrawIpt" value={goOutValue} onChange={handleChangeGoOutValue}></Input>
-              <div onClick={handleMaxWithdraw}>最大</div>
+              <div onClick={handleMaxWithdraw}>{t('max')}</div>
             </div>
           </div>
           <div className="sureBtn" onClick={handleSureWithdraw}>
-            确认
+            {t('confirm')}
           </div>
         </Modal>
         <Modal
@@ -291,19 +293,19 @@ const Fund = () => {
           className="WithdrawalTokenBox"
           footer={null}
         >
-          <div className="withdrawTitle">转出余额宝</div>
+          <div className="withdrawTitle">{t('zhuanchu')}</div>
           <div className="tokenBox">
             <div className={'currToken noramToken'}>CAKE</div>
           </div>
           <div className="withdrawIptBox">
-            <p>请输入数量</p>
+            <p>{t('inputAdd')}</p>
             <div>
               <Input className="withdrawIpt" value={withdrawValue} onChange={handleChangeWithdrawValue}></Input>
-              <div onClick={handleMaxWithdraw}>最大</div>
+              <div onClick={handleMaxWithdraw}>{t('max')}</div>
             </div>
           </div>
           <div className="sureBtn" onClick={handleMaxGoOut}>
-            确认
+            {t('confirm')}
           </div>
         </Modal>
       </div>

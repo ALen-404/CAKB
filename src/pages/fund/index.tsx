@@ -177,15 +177,15 @@ const Fund = () => {
 
           <div className="currBox">
             <div>
-              <p>我的存入</p>
+              <p>{t('myCun')}</p>
               <span>{getCoinDisplay(formatAmountByApi(userInfo?.baoBalanceCake))}</span>
             </div>
             <div>
-              <p>累计收益</p>
+              <p>{t('leiShou')}</p>
               <span>{getCoinDisplay(formatAmountByApi(userInfo?.baoBalanceCumulativeIncomeCake))}</span>
             </div>
             <div>
-              <p>昨日收益</p>
+              <p>{t('TodayEarnings')}</p>
               <span>{getCoinDisplay(formatAmountByApi(userInfo?.baoBalanceYesterdayIncomeCake))}</span>
             </div>
           </div>
@@ -204,12 +204,12 @@ const Fund = () => {
                 setIsGoOutModalOpen(true)
               }}
             >
-              转出至余额
+              {t('zhuanYu')}
             </div>
           </div>
         </div>
         <div className="fundChooseBox">
-          <div className="fundChooseTitle">选择天数</div>
+          <div className="fundChooseTitle">{t('xuanDay')}</div>
           <div className="daysBox">
             {fundConfig?.map((item: any) => {
               return (
@@ -227,27 +227,27 @@ const Fund = () => {
           </div>
           <div className="fundInputBox">
             <div className="fundInputBoxTop">
-              <p>可转入余额</p>
+              <p>{t('ruyu')}</p>
               <span>{getCoinDisplay(formatAmountByApi(userInfo?.baoBalanceCake || '0'))} cake</span>
             </div>
             <Input
               className="fundIpt"
               value={baoPldgeValue}
               onChange={changeBaoPldgeValue}
-              placeholder="最少转入100CAKE"
+              placeholder={t('zuiZhuan')}
             ></Input>
           </div>
           <div className="DailyYieldBox">
-            <p>每日收益率</p>
+            <p>{t('meiRate')}</p>
             <span>{Number(fundConfig[isCurrenDays - 1]?.baoDistribute || 0) * 100}%</span>
           </div>
           <div className="ResumptionBox">
-            <p>到期是否复投</p>
+            <p>{t('isTou')}</p>
             <span>
               {' '}
               <Radio.Group onChange={onChangeIsReopen} value={isReopen}>
-                <Radio value={0}>是</Radio>
-                <Radio value={1}>否</Radio>
+                <Radio value={0}>{t('yes')} </Radio>
+                <Radio value={1}>{t('no')}</Radio>
               </Radio.Group>
             </span>
           </div>
@@ -256,28 +256,28 @@ const Fund = () => {
           </div>
         </div>
         <div className="recordYuEBox">
-          <div className="recordTitle">账单记录</div>
+          <div className="recordTitle">{t('zhangRecord')}</div>
           {swapRecord?.map((item: any) => {
             return (
               <div className="recordBoxItem">
                 <div>
-                  <p>时间周期</p>
+                  <p>{t('timeZhou')}</p>
                   <span className="yuEDay">{item.pledgeCycle}天</span>
                 </div>
                 <div>
-                  <p>贡献数量</p>
+                  <p>{t('gongNum')}</p>
                   <span>{getCoinDisplay(formatAmountByApi(item.pledgeCake))}</span>
                 </div>
                 <div>
-                  <p>收益率</p>
+                  <p>{t('shouRates')}</p>
                   <span>{Number(item.baoDistribute || 0) * 100}%</span>
                 </div>
                 <div>
-                  <p>质押时间</p>
+                  <p>{t('stakeTime')}</p>
                   <span>{date()(item.pledgeTime)}</span>
                 </div>
                 <div>
-                  <p>是否复投</p>
+                  <p>{t('isRepay')}</p>
                   <span>
                     <Switch
                       checked={item.isReinvest === 0}
@@ -312,14 +312,14 @@ const Fund = () => {
             <div className={'currToken noramToken'}>CAKE</div>
           </div>
           <div className="withdrawIptBox">
-            <p>请输入数量</p>
+            <p>{t('inputAdd')}</p>
             <div>
               <Input className="withdrawIpt" value={withdrawValue} onChange={handleChangeWithdrawValue}></Input>
-              <div onClick={handleMaxWithdraw}>最大</div>
+              <div onClick={handleMaxWithdraw}>{t('max')}</div>
             </div>
           </div>
           <div className="sureBtn" onClick={handleSureWithdraw}>
-            确认
+            {t('confirm')}
           </div>
         </Modal>
         <Modal
@@ -337,19 +337,19 @@ const Fund = () => {
           className="WithdrawalTokenBox"
           footer={null}
         >
-          <div className="withdrawTitle">转出余额宝</div>
+          <div className="withdrawTitle">{t('zhuanchu')}</div>
           <div className="tokenBox">
             <div className={'currToken noramToken'}>CAKE</div>
           </div>
           <div className="withdrawIptBox">
-            <p>请输入数量</p>
+            <p>{t('inputAdd')}</p>
             <div>
               <Input className="withdrawIpt" value={goOutValue} onChange={handleChangeGoOutValue}></Input>
-              <div onClick={handleMaxGoOutValue}>最大</div>
+              <div onClick={handleMaxGoOutValue}>{t('max')}</div>
             </div>
           </div>
           <div className="sureBtn" onClick={handleMaxGoOut}>
-            确认
+            {t('confirm')}
           </div>
         </Modal>
       </div>

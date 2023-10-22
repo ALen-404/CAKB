@@ -54,7 +54,7 @@ const Home = () => {
 
   const columns: ColumnsType<DataType> = [
     {
-      title: '排名',
+      title: t('ranktext'),
       dataIndex: 'rank',
       key: 'rank',
       render: (res, _, index) => {
@@ -68,7 +68,7 @@ const Home = () => {
       },
     },
     {
-      title: '地址',
+      title: t('address'),
       dataIndex: 'userAddr',
       key: 'address',
       render: (res) => {
@@ -76,7 +76,7 @@ const Home = () => {
       },
     },
     {
-      title: '额度',
+      title: t('edu'),
       dataIndex: 'pledgeCake',
       key: 'stakeNum',
       render: (res) => {
@@ -84,7 +84,7 @@ const Home = () => {
       },
     },
     {
-      title: '奖励',
+      title: t('rewardS'),
       dataIndex: 'cumulativeIncomeCake',
       key: 'cumulativeIncomeCake',
       render: (res) => {
@@ -164,7 +164,7 @@ const Home = () => {
     <LayoutElement>
       <div className="rankTop">
         <div className="rankTopTextBox">
-          <p>排行榜</p>
+          <p>{t('rank')}</p>
         </div>
         <div className="indexTopImgBox">
           <img src={topBackground} alt="topBackground" />
@@ -178,7 +178,7 @@ const Home = () => {
         </div>
 
         <div className="cakeBotBox"></div>
-        <p className="cakeBotText">引领WEB3.0新时代</p>
+        <p className="cakeBotText">{t('footerText')}</p>
         <img className="cakeBot" src={cakeBot} alt="cakeBot" />
       </div>
     </LayoutElement>
