@@ -1,0 +1,181 @@
+.assetDetailsBox {
+  border-radius: 0px 0px 0px 0px;
+  opacity: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15px;
+  box-sizing: border-box;
+  background: #F6F7FB;
+  min-height: 100vh;
+  padding: 15px 20px;
+  width: 100%;
+}
+.assetDetailsBox .assetsContentBox {
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 10px 10px 10px 10px;
+  opacity: 1;
+}
+.assetDetailsBox .assetsContentBox .assetsContentTop {
+  display: flex;
+  align-items: center;
+}
+.assetDetailsBox .assetsContentBox .assetsContentTop .assetsContentTopLeft img {
+  width: 22px;
+  height: 22px;
+}
+.assetDetailsBox .assetsContentBox .assetsContentTop .avatar {
+  width: 40px;
+  height: 40px;
+  background: #5164BF;
+  opacity: 1;
+  line-height: 40px;
+  text-align: center;
+  color: #fff;
+  border-radius: 50%;
+}
+.assetDetailsBox .assetsContentBox .assetsContentTop p {
+  font-size: 15px;
+  font-weight: 500;
+  color: #161D30;
+  margin-left: 10px;
+}
+.assetDetailsBox .assetsContentBox .assetsContentMid p {
+  font-size: 25px;
+  font-family: Source Han Sans SC, Source Han Sans SC;
+  font-weight: 500;
+  color: #161D30;
+  margin-top: 14px;
+}
+.assetDetailsBox .assetsContentBox .assetsContentMid .assetsContentMidTitle {
+  font-size: 15px;
+  font-family: Source Han Sans SC, Source Han Sans SC;
+  font-weight: 400;
+  color: #67738D;
+}
+.assetDetailsBox .assetsContentBox .assetsContentBot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+.assetDetailsBox .assetsContentBox .assetsContentBot .assetsContentBotItem p {
+  font-size: 20px;
+  font-family: Source Han Sans SC, Source Han Sans SC;
+  font-weight: 500;
+  color: #161D30;
+}
+.assetDetailsBox .assetsContentBox .assetsContentBot .assetsContentBotItem .assetsContentBotItemTitle {
+  font-size: 15px;
+  font-family: Source Han Sans SC, Source Han Sans SC;
+  font-weight: 400;
+  color: #67738D;
+  margin-top: 15px;
+}
+.assetDetailsBox .detailsRecord {
+  width: 100%;
+  margin-top: 20px;
+}
+.assetDetailsBox .detailsRecord .recordTitle {
+  font-size: 17px;
+  font-family: Source Han Sans SC, Source Han Sans SC;
+  font-weight: 500;
+  color: #161D30;
+}
+.assetDetailsBox .detailsRecord .recordCoontent .recordCoontentItem {
+  width: 100%;
+  height: 91px;
+  background: #FFFFFF;
+  border-radius: 10px 10px 10px 10px;
+  opacity: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-top: 15px;
+}
+.assetDetailsBox .detailsRecord .recordCoontent .recordCoontentItem .recordCoontentItemTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.assetDetailsBox .detailsRecord .recordCoontent .recordCoontentItem .recordCoontentItemTop .recordCoontentItemTopLeft {
+  display: flex;
+  align-items: center;
+}
+.assetDetailsBox .detailsRecord .recordCoontent .recordCoontentItem .recordCoontentItemTop .recordCoontentItemTopLeft img {
+  width: 22px;
+  height: 22px;
+}
+.assetDetailsBox .detailsRecord .recordCoontent .recordCoontentItem .recordCoontentItemTop .recordCoontentItemTopLeft p {
+  font-size: 15px;
+  font-family: Source Han Sans SC, Source Han Sans SC;
+  font-weight: 400;
+  color: #161D30;
+  margin-left: 7px;
+}
+.assetDetailsBox .detailsRecord .recordCoontent .recordCoontentItem .recordCoontentItemTop .recordCoontentItemTopRight {
+  font-size: 15px;
+  font-weight: 400;
+  color: #161D30;
+}
+.assetDetailsBox .detailsRecord .recordCoontent .recordCoontentItem .recordCoontentItemBot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.assetDetailsBox .detailsRecord .recordCoontent .recordCoontentItem .recordCoontentItemBot p {
+  font-size: 13px;
+  font-weight: 400;
+  color: #67738D;
+}
+.assetDetailsBox .detailsRecord .recordCoontent .recordCoontentItem .recordCoontentItemBot .yellow {
+  font-size: 13px;
+  font-weight: 400;
+  color: #EBA80C;
+}
+.assetDetailsBox .detailsRecord .recordCoontent .recordCoontentItem .recordCoontentItemBot .green {
+  font-size: 13px;
+  font-weight: 400;
+  color: #4bbb9a;
+}
+.assetDetailsBox .detailsRecord .recordCoontent .recordCoontentItem .recordCoontentItemBot .red {
+  font-size: 13px;
+  font-weight: 400;
+  color: #ff0056;
+}
+.assetDetailsBox .confirmBuy {
+  width: 100%;
+  height: 85px;
+  background: #FFFFFF;
+  border-radius: 0px 0px 0px 0px;
+  opacity: 1;
+  position: fixed;
+  bottom: 0;
+  padding: 7px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.assetDetailsBox .confirmBuy .cancelOrder {
+  width: 124px;
+  height: 44px;
+  background: #E4E9EE;
+  border-radius: 10px 10px 10px 10px;
+  opacity: 1;
+  font-size: 17px;
+  font-weight: 400;
+  color: #A9ACB2;
+}
+.assetDetailsBox .confirmBuy .sureBtn {
+  width: 100%;
+  height: 44px;
+  background: #5164BF;
+  border-radius: 10px 10px 10px 10px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #FFFFFF;
+}

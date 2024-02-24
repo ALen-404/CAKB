@@ -1,0 +1,148 @@
+.payPwdBox {
+  width: 100%;
+  border-radius: 0px 0px 0px 0px;
+  opacity: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15px;
+  box-sizing: border-box;
+  background: #F6F7FB;
+  min-height: 100vh;
+  padding-top: 20px;
+  padding-bottom: 100px;
+}
+.payPwdBox .payPwdTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.payPwdBox .payPwdTop .payPwdTopTitle {
+  font-size: 17px;
+  font-weight: 500;
+  color: #161D30;
+}
+.payPwdBox .payPwdTop .moreBox {
+  display: flex;
+  align-items: center;
+}
+.payPwdBox .payPwdTop .moreBox p {
+  font-size: 13px;
+  font-weight: 400;
+  color: #67738D;
+  line-height: 13px;
+}
+.payPwdBox .payPwdTop .moreBox img {
+  width: 5px;
+  height: 10px;
+  margin-left: 8px;
+}
+.payPwdBox .payPwdContent {
+  width: 100%;
+  border-radius: 10px 10px 10px 10px;
+  opacity: 1;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+.payPwdBox .payPwdContent .payPwdContentItem {
+  margin-top: 15px;
+  position: relative;
+}
+.payPwdBox .payPwdContent .payPwdContentItem p {
+  font-size: 14px;
+  font-family: Source Han Sans SC, Source Han Sans SC;
+  font-weight: 400;
+  color: #161D30;
+}
+.payPwdBox .payPwdContent .payPwdContentItem .herfLinkBox {
+  position: relative;
+}
+.payPwdBox .payPwdContent .payPwdContentItem .herfLinkBox .herfLink {
+  height: 20px;
+  font-size: 14px;
+  font-family: Source Han Sans SC, Source Han Sans SC;
+  font-weight: 400;
+  color: #5164BF;
+  line-height: 0px;
+  position: absolute;
+  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: 17px;
+  right: 15px;
+}
+.payPwdBox .payPwdContent .payPwdContentItem input {
+  width: 100%;
+  height: 60px;
+  background: #fff;
+  border-radius: 10px 10px 10px 10px;
+  opacity: 1;
+  outline: none;
+  margin-top: 15px;
+  font-size: 16px;
+  font-family: Source Han Sans SC, Source Han Sans SC;
+  font-weight: 500;
+  color: #161D30;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+.payPwdBox .payPwdContent .payPwdContentItem .payPwdContentMax {
+  font-size: 14px;
+  font-family: Source Han Sans SC, Source Han Sans SC;
+  font-weight: 400;
+  color: #5164BF;
+  position: absolute;
+  right: 20px;
+  top: 60%;
+}
+.payPwdBox .payPwdContent .payPwdContentItemText {
+  font-size: 13px;
+  font-family: Source Han Sans SC, Source Han Sans SC;
+  font-weight: 400;
+  color: #67738D;
+  margin-top: 10px;
+}
+.payPwdBox .confirmBuy {
+  width: 100%;
+  height: 85px;
+  background: #FFFFFF;
+  border-radius: 0px 0px 0px 0px;
+  opacity: 1;
+  position: fixed;
+  bottom: 0;
+  padding: 7px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.payPwdBox .confirmBuy .cancelOrder {
+  width: 124px;
+  height: 44px;
+  background: #E4E9EE;
+  border-radius: 10px 10px 10px 10px;
+  opacity: 1;
+  font-size: 17px;
+  font-weight: 400;
+  color: #A9ACB2;
+}
+.payPwdBox .confirmBuy .sureBtn {
+  width: 100%;
+  height: 44px;
+  background: #5164BF;
+  border-radius: 10px 10px 10px 10px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.payPwdBox .confirmBuy .confirmBuyBox {
+  width: 100%;
+  position: absolute;
+  top: -24px;
+}
+.payPwdBox .confirmBuy .confirmBuyBox .confirmBuyBoxTitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: #B4BDCF;
+}

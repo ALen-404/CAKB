@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 export const http = axios.create({
-  baseURL: 'https://webapi.cakepro.xyz/',
-  // baseURL: 'http://45.136.15.41:8092/',
+  // baseURL: 'https://cgrapi.zykj.club/',
+  baseURL: 'https://api.chatgeometrypro.online/',
   // baseURL: 'http://lplss.natapp1.cc/',
 })
 

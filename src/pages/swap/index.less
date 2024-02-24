@@ -1,4 +1,4 @@
-.indexTop {
+.swapWrap {
   width: 100%;
   border-radius: 0px 0px 0px 0px;
   opacity: 1;
@@ -8,406 +8,374 @@
   align-items: center;
   padding: 0 15px;
   box-sizing: border-box;
+  background: #F6F7FB;
+  min-height: 100vh;
 
-  .indexTopImgBox {
-    height: 236px;
-    width: 100%;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
 
-    img {
-      width: 100%;
-      background: linear-gradient(70deg, rgb(90, 186, 215), rgb(121, 135, 230));
-      margin-top: -110px;
-    }
-  }
 
-  .topEthIcon {
-    width: 125px;
-    height: 125px;
-    position: absolute;
-    z-index: 3;
-    right: 15px;
-    top: 16px;
-  }
-
-  .buyBox {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    z-index: 2;
-    margin-top: 15px;
-
-    .buyItem {
-      width: 165px;
-      height: 71px;
-      background: linear-gradient(180deg, #E7FAFE 0%, #FFFFFF 100%);
-      box-shadow: -2px -2px 8px 0px rgba(116, 158, 207, 0.2), 2px 2px 8px 0px rgba(116, 158, 207, 0.2);
-      border-radius: 12px 12px 12px 12px;
-      opacity: 1;
-      border: 1px solid #FFFFFF;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 10px 0;
-      box-sizing: border-box;
-
-      p {
-        font-size: 13px;
-        font-weight: 400;
-        color: #888888;
-      }
-
-      span {
-        font-size: 16px;
-        font-weight: 400;
-        color: #51C7D3;
-        margin-top: 5px;
-      }
-    }
-  }
 
   .swapCard {
     position: relative;
     z-index: 2;
     width: 100%;
-    // height: 296px;
-    background: linear-gradient(180deg, #D8F1FF 0%, #FFFFFF 52%);
-    box-shadow: -2px -2px 8px 0px rgba(116, 158, 207, 0.2), 2px 2px 8px 0px rgba(116, 158, 207, 0.2);
-    border-radius: 16px 16px 16px 16px;
+    background: #FFFFFF;
+    border-radius: 10px;
     opacity: 1;
     border: 2px solid #FFFFFF;
     margin-top: 20px;
     padding: 20px 15px;
     box-sizing: border-box;
 
+    .swapTitleBox {
+      .swapTitleTop {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-    .swapTitle {
-      font-size: 20px;
-      font-weight: bold;
-      color: #222222;
-      line-height: 23px;
-      text-align: center;
-    }
-
-    .inputBox {
-      width: 100%;
-      height: 70px;
-      background: #FFFFFF;
-      border-radius: 14px 14px 14px 14px;
-      opacity: 1;
-      border: 1px solid #51C7D3;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 14px;
-      box-sizing: border-box;
-      margin-top: 20px;
-
-      .inputBoxLeft {
-        .inputBtn {
-          border: none;
-          padding: 0;
+        .swapTitle {
+          font-size: 17px;
+          font-weight: 500;
+          color: #161D30;
         }
 
-        p {
-          font-size: 12px;
-          font-weight: 500;
-          color: #AFB4C0;
-          line-height: 14px;
+        .swapImg {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          img {
+            width: 17px;
+            height: 17px;
+            margin-right: 4px;
+          }
+
+          .swapImgInfo {
+            font-size: 14px;
+            font-weight: 500;
+            color: #161D30;
+          }
         }
       }
 
-      .inputBoxRight {
+      .swapTitleBot {
+        font-size: 14px;
+        font-weight: 400;
+        color: #161D30;
+        margin-top: 10px;
+      }
+    }
+
+    .swapContent {
+      .swapContentTop {
+        margin-top: 6px;
         display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+          font-size: 14px;
+          font-weight: 400;
+          color: #67738D;
+        }
+      }
+
+      .swapIptTop {
+        width: 100%;
+        height: 60px;
+        background: #F6F7FB;
+        border-radius: 10px 10px 10px 10px;
+        opacity: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        box-sizing: border-box;
+        margin-top: 6px;
+
+        .swapIptTopItem {
+          width: 115px;
+          height: 42px;
+          background: #FFFFFF;
+          border-radius: 5px 5px 5px 5px;
+          opacity: 1;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          box-sizing: border-box;
+          padding: 10px;
+          .ant-select{
+            .ant-select-selector{
+              border: none;
+              padding: 0;
+            }
+          }
+
+          .itemLeft {
+            display: flex;
+            align-items: center;
+
+            p {
+              font-size: 14px;
+              font-weight: 500;
+              color: #161D30;
+              margin-left: 5px;
+            }
+
+            img {
+              width: 22px;
+              height: 22px;
+            }
+          }
+
+          img {
+            width: 6px;
+            height: 3px;
+          }
+
+        }
+        .inputNumber{
+          background-color: transparent !important;
+          outline: none !important;
+          text-align: right;
+          border: none !important;
+        }
+
+        input {
+          background-color: transparent !important;
+          outline: none !important;
+          text-align: right;
+          border: none !important;
+        }
+      }
+
+      .swapConMid {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-top: 9px;
 
         img {
-          width: 24px;
-          height: 24px;
+          width: 22px;
+          height: 22px;
         }
 
         p {
-          margin-left: 7px;
+          font-size: 14px;
+          font-weight: 400;
+          color: #67738D;
+          margin-top: 5px;
+        }
+      }
+
+      .swapConBot {
+        margin-top: 10px;
+        overflow: hidden;
+
+        .priceInfo {
+          margin-top: 10px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          p {
+            font-size: 14px;
+            font-weight: 400;
+            color: #67738D;
+          }
+        }
+
+        .sureBtn {
+          width: 100%;
+          height: 45px;
+          background: #5164BF;
+          border-radius: 10px 10px 10px 10px;
+          opacity: 1;
+          font-size: 17px;
+          font-weight: 400;
+          color: #FFFFFF;
+          margin-top: 15px;
         }
       }
 
     }
 
-    .btnBox {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 30px;
-
-      .arrowBtn {
-        width: 140px;
-        height: 46px;
-        background: #FFFFFF;
-        border-radius: 6px 6px 6px 6px;
-        opacity: 1;
-        border: 2px solid #51C7D3;
-        font-size: 14px;
-        font-weight: 500;
-        color: #51C7D3;
-        line-height: 46px;
-        text-align: center;
-      }
-
-      .normalBtn {
-        width: 140px;
-        height: 46px;
-        background: #51C7D3;
-        border-radius: 6px 6px 6px 6px;
-        opacity: 1;
-        font-size: 14px;
-        font-weight: 500;
-        color: #FFFFFF;
-        line-height: 46px;
-        text-align: center;
-      }
-    }
-
-    .inputIcon {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0;
-
-      svg {
-        width: 13px;
-        height: 17px;
-        color: #51C7D3;
-        border-radius: 0px 0px 0px 0px;
-        opacity: 1;
-      }
-    }
-
-    .rate {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      margin-top: 20px;
-
-      img {
-        width: 18px;
-      }
-
-      p {
-        font-size: 12px;
-        font-weight: 500;
-        color: #51C7D3;
-        line-height: 14px;
-        letter-spacing: 1px;
-        margin-left: 7px;
-      }
-    }
-
-    .normalBtn {
-      width: 100%;
-      height: 46px;
-      background: #51C7D3;
-      border-radius: 6px 6px 6px 6px;
-      opacity: 1;
-      font-size: 14px;
-      font-weight: 500;
-      color: #FFFFFF;
-      line-height: 46px;
-      text-align: center;
-      margin-top: 35px;
 
 
-    }
+
   }
 
   .recordBox {
     width: 100%;
-    margin-top: 30px;
+    margin-top: 20px;
 
-    .recordTitle {
-      font-size: 18px;
-      font-weight: bold;
-      color: #51C7D3;
-      line-height: 21px;
-      padding-left: 10px;
-      border-left: 4px solid #51C7D3;
-    }
-
-    .recordBoxItem {
-      width: 100%;
-      height: 130px;
-      background: linear-gradient(180deg, #F2F9F8 0%, #FFFFFF 100%);
-      box-shadow: -2px -2px 8px 0px rgba(116, 158, 207, 0.2), 2px 2px 8px 0px rgba(116, 158, 207, 0.2);
-      border-radius: 12px 12px 12px 12px;
-      opacity: 1;
-      border: 2px solid #FFFFFF;
-      padding: 20px 15px;
-      margin-top: 15px;
-
-      div {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 15px;
-
-        p {
-          font-size: 14px;
-          font-weight: 400;
-          color: #888888;
-          line-height: 16px;
-        }
-
-        span {
-          font-size: 14px;
-          font-weight: 400;
-          color: #222222;
-          line-height: 16px;
-        }
-      }
-    }
-  }
-
-
-  .mask {
-    content: '';
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-
-  }
-
-  .marketQuotationsBox {
-    width: 100%;
-    // height: 426px;
-    background: #FFFFFF;
-    opacity: 1;
-    position: fixed;
-    z-index: 99999;
-    bottom: 0;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-    box-sizing: border-box;
-    padding: 15px;
-
-    .marketQuotationsTop {
+    .recordTop {
       display: flex;
+      align-items: center;
       justify-content: space-between;
 
-      p {
-        font-size: 16px;
+      .recordTopTitle {
+        font-size: 17px;
         font-weight: 500;
-        color: #51C7D3;
-        line-height: 19px;
-      }
-    }
-
-    .currBox {
-      width: 100%;
-      height: 114px;
-      background: #FFFFFF;
-      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-      border-radius: 13px 13px 13px 13px;
-      opacity: 1;
-      box-sizing: border-box;
-      padding: 15px 20px;
-      margin-top: 21px;
-
-      .currBoxTop {
-        display: flex;
-        justify-content: space-between;
-
-        .logoBox {
-          display: flex;
-          align-items: center;
-
-          img {
-            width: 24px;
-            height: 24px;
-          }
-
-          p {
-            font-size: 18px;
-            font-weight: 500;
-            color: #51C7D3;
-            line-height: 21px;
-            margin-left: 9px;
-          }
-        }
-
-        .priceBox {
-          display: flex;
-          align-items: center;
-
-          p {
-            font-size: 12px;
-            font-weight: 400;
-            color: #0F1112;
-            line-height: 14px;
-          }
-
-          span {
-            color: #51C7D3;
-
-          }
-        }
+        color: #161D30;
       }
 
-      .currBoxBot {
+      .moreBox {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        margin-top: 15px;
 
-        P {
-          font-size: 12px;
-          font-weight: 500;
-          color: #888888;
-          line-height: 14px;
+        p {
+          font-size: 13px;
+          font-weight: 400;
+          color: #67738D;
+          line-height: 13px;
         }
 
-        span {
-          font-size: 16px;
-          font-weight: 500;
-          color: #9C83FF;
-          line-height: 19px;
-          margin-top: 5px;
-          display: block;
+        img {
+          width: 5px;
+          height: 10px;
+          margin-left: 8px;
         }
       }
-
-    
     }
 
-    .charts {
+    .recordCon {
       width: 100%;
-      height: 300px;
       background: #FFFFFF;
-      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-      border-radius: 15px 15px 15px 15px;
+      border-radius: 10px 10px 10px 10px;
       opacity: 1;
-      margin-top: 20px;
+      padding: 20px;
       box-sizing: border-box;
-      padding: 15px;
-      .chartsItem{
-        width: 100%;
-        height: 200px;
+      margin-top: 15px;
+
+      .recordConCell {
+        display: flex;
+        align-items: center;
+
+        .recordConCellTitle {
+          font-size: 14px;
+          font-weight: 400;
+          color: #67738D;
+        }
+
+        img {
+          width: 22px;
+          height: 22px;
+          margin-left: 15px;
+          margin-right: 7px;
+        }
+
+        p {
+          font-size: 15px;
+          font-weight: 400;
+          color: #161D30;
+        }
+      }
+
+      .recordConCell2 {
+        margin-top: 20px;
+      }
+
+      .recordConBot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+
+        .time {
+          font-size: 13px;
+          font-weight: 400;
+          color: #67738D;
+        }
+
+        .status {
+          width: 90px;
+          height: 33px;
+          background: rgba(75, 187, 154, 0.06);
+          border-radius: 5px 5px 5px 5px;
+          font-weight: 400;
+          color: #4BBB9A;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
       }
     }
-
   }
 
-.quotationsIcon{
-  position: absolute;
-  right: 30px;
-  top: 20px;
-  img{
-    width: 20px;
-    height: 20px;
-  }
+
+
+
+
 }
 
+.pwdBox {
+  padding: 15px;
+  box-sizing: border-box;
 
+  .pwdBoxTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(228, 228, 228, 0.6);
+
+    .pwdBoxTopTitle {
+      font-size: 17px;
+      font-weight: 400;
+      color: #161D30;
+    }
+
+    .pwdBoxTopCancel {
+      font-size: 14px;
+      font-weight: normal;
+      color: #B4BDCF;
+    }
+  }
+
+  .pwdBoxBot {
+    width: 100%;
+    height: 52px;
+    outline: none;
+    border-bottom: 1px solid rgba(228, 228, 228, 0.6);
+    margin-top: 15px;
+  }
+
+  .sureBtn {
+    width: 100%;
+    height: 45px;
+    background: #5164BF;
+    border-radius: 10px 10px 10px 10px;
+    opacity: 1;
+    font-size: 17px;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-top: 57px;
+  }
+
+  .disBtn {
+    width: 100%;
+    height: 45px;
+    background: rgba(81, 100, 191, 1);
+    color: #FFFFFF;
+    border-radius: 0px 0px 0px 0px;
+    opacity: 1;
+  }
+}
+.ant-select-dropdown{
+  .itemLeft {
+    display: flex;
+    align-items: center;
+
+    p {
+      font-size: 14px;
+      font-weight: 500;
+      color: #161D30;
+      margin-left: 5px;
+    }
+
+    img {
+      width: 22px;
+      height: 22px;
+    }
+  }
 }

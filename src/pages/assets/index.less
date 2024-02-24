@@ -1,0 +1,132 @@
+.assetBox {
+  width: 100%;
+  border-radius: 0px 0px 0px 0px;
+  opacity: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15px;
+  box-sizing: border-box;
+  background: #F6F7FB;
+  min-height: 100vh;
+  padding: 15px 20px;
+  width: 100%;
+
+  .assetsContent {
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 495px;
+    background: #FFFFFF;
+    border-radius: 10px 10px 10px 10px;
+    opacity: 1;
+
+    .assetsContentTop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .avatar {
+        width: 40px;
+        height: 40px;
+        background: #5164BF;
+        opacity: 1;
+        line-height: 40px;
+        text-align: center;
+        color: #fff;
+        border-radius: 50%;
+      }
+
+      p {
+        font-size: 15px;
+        font-weight: 500;
+        color: #161D30;
+        margin-left: 10px;
+      }
+      .assetsContentRight{
+        .more{
+          display: flex;
+          align-items: center;
+          img{
+            width: 15px;
+          }
+        }
+      }
+    }
+
+    .assetsContentMid {
+      .assetsContentMidTitle {
+        width: 34px;
+        height: 25px;
+        font-size: 17px;
+        font-weight: 500;
+        color: #161D30;
+        margin-top: 22px;
+        margin-bottom: 15px;
+        white-space: nowrap;
+      }
+
+      .assetsContentMidCell {
+        width: 100%;
+        background: #F6F7FB;
+        border-radius: 10px 10px 10px 10px;
+        opacity: 1;
+      
+        box-sizing: border-box;
+        padding: 10px 15px;
+        margin-top: 15px;
+        .cellTop{
+          display: flex;
+          justify-content: space-between;
+          padding-bottom: 10px;
+          border-bottom: 1px solid #fff;
+        
+        }
+        .cellTopLeft {
+          width: 45px;
+          height: 25px;
+          font-size: 17px;
+          font-weight: 500;
+          color: #161D30;
+          display: flex;
+          align-items: center;
+          img{
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+          }
+        }
+
+        p {
+          font-size: 17px;
+          font-weight: 500;
+          color: #161D30;
+        }
+      }
+
+      .cellBot {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        .cellBotItem {
+          p {
+            font-size: 16px;
+            font-weight: 500;
+            color: #161D30;
+          }
+
+          span {
+            font-size: 13px;
+            font-weight: 400;
+            color: #67738D;
+            margin-top: 10px;
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+
+
+}

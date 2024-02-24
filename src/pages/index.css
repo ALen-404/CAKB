@@ -1,0 +1,371 @@
+.indexTop {
+  width: 100%;
+  border-radius: 0px 0px 0px 0px;
+  opacity: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding-bottom: 300px !important;
+}
+.indexTop .indexTopImgBox {
+  height: 236px;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.indexTop .indexTopImgBox img {
+  width: 100%;
+  background: linear-gradient(70deg, #5abad7, #7987e6);
+  margin-top: 0px !important;
+}
+.indexTop .topEthIcon {
+  width: 125px;
+  height: 125px;
+  position: absolute;
+  z-index: 3;
+  right: 15px;
+  top: 16px;
+}
+.indexTop .topText {
+  margin-top: 51px;
+  position: absolute;
+  z-index: 9;
+  text-align: left;
+  width: 100%;
+  margin-left: 39px;
+}
+.indexTop .topText p {
+  font-size: 18px;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.indexTop .topText .botText {
+  font-size: 14px;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin-top: 50px;
+}
+.indexTop .incomeCard {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin-top: 180px;
+  padding: 20px 15px;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  box-shadow: 0px 0 10px 1px #E9EDFF;
+  border-radius: 10px 10px 10px 10px;
+  opacity: 1;
+  border: 1px solid #E9EDFF;
+  backdrop-filter: blur(15px);
+}
+.indexTop .incomeCard .cardCell {
+  width: 325px;
+  margin: 0 auto;
+  text-align: center;
+  border-bottom: 1px solid #E9EDFF;
+  padding: 17px 0;
+}
+.indexTop .incomeCard .cardCell:last-child {
+  border: none;
+}
+.indexTop .incomeCard .cardCell p {
+  font-size: 18px;
+  font-weight: 400;
+  color: #161D30;
+}
+.indexTop .incomeCard .cardCell span {
+  font-size: 16px;
+  font-weight: 400;
+  color: #161D30;
+  display: inline-block;
+  margin-top: 10px;
+}
+.indexTop .usePlace {
+  margin-top: 25px;
+  width: 100%;
+}
+.indexTop .usePlace .usePlaceTitle {
+  font-size: 18px;
+  font-weight: 400;
+  color: #161D30;
+  text-align: center;
+}
+.indexTop .usePlace .usePlaceBotBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  width: 100%;
+}
+.indexTop .usePlace .usePlaceBotBox .usePlaceBotCell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.indexTop .usePlace .usePlaceBotBox .usePlaceBotCell img {
+  width: 31px;
+  height: 31px;
+}
+.indexTop .usePlace .usePlaceBotBox .usePlaceBotCell p {
+  font-size: 17px;
+  font-weight: 400;
+  color: #161D30;
+  margin-top: 14px;
+}
+.indexTop .usePlace .usePlaceBotBox .usePlaceBotCell span {
+  width: 106px;
+  height: 16px;
+  font-size: 11px;
+  font-weight: 400;
+  color: #67738D;
+  white-space: nowrap;
+  margin-top: 4px;
+}
+.indexTop .partners {
+  width: 100%;
+  height: 387px;
+  background: #F6F7FB;
+  opacity: 1;
+  margin-top: 25px;
+  position: absolute;
+  top: 500px;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.indexTop .partners .partnersTitle {
+  font-size: 20px;
+  font-weight: 400;
+  color: #00001F;
+  text-align: center;
+  margin-top: 21px;
+}
+.indexTop .partners .partnersBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.indexTop .partners .partnersBox img {
+  width: 100px;
+  height: 36px;
+  margin-top: 14px;
+}
+.indexTop .partners .footerPng {
+  width: 100%;
+  height: 125px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.indexTop .aboutCard {
+  margin-top: 30px;
+  width: 100%;
+}
+.indexTop .aboutCard .aboutTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #51C7D3;
+  line-height: 21px;
+  text-align: center;
+}
+.indexTop .aboutCard .aboutBox {
+  width: 100%;
+  height: 98px;
+  background: linear-gradient(180deg, #E7FAFE 0%, #FFFFFF 100%);
+  box-shadow: -2px -2px 8px 0px rgba(116, 158, 207, 0.2), 2px 2px 8px 0px rgba(116, 158, 207, 0.2);
+  border-radius: 13px 13px 13px 13px;
+  opacity: 1;
+  border: 2px solid #FFFFFF;
+  padding: 16px 20px;
+  box-sizing: border-box;
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.indexTop .aboutCard .aboutBox .aboutBoxItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.indexTop .aboutCard .aboutBox .aboutBoxItem img {
+  width: 38px;
+}
+.indexTop .aboutCard .aboutBox .aboutBoxItem p {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222222;
+  line-height: 16px;
+}
+.indexTop .cakeBotBox {
+  width: 100%;
+  height: 266px;
+  position: relative;
+  margin-top: 20px;
+}
+.indexTop .cakeBot {
+  position: absolute;
+  width: 100vw;
+  height: 266px;
+  bottom: 0px;
+}
+.indexTop .mask {
+  content: '';
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+.indexTop .mustBox {
+  width: 100%;
+  height: 426px;
+  background: #FFFFFF;
+  opacity: 1;
+  position: fixed;
+  z-index: 99999;
+  bottom: 0;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  box-sizing: border-box;
+  padding: 15px;
+}
+.indexTop .mustBox p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #0F1112;
+  line-height: 21px;
+  text-align: center;
+  margin-top: 20px;
+}
+.indexTop .mustBox .bindIpt {
+  width: 100%;
+  height: 48px;
+  background: #F5F5F5;
+  border-radius: 11px 11px 11px 11px;
+  opacity: 1;
+  border: none;
+  margin-top: 25px;
+}
+.indexTop .mustBox .mustBoxTips {
+  margin-top: 30px;
+}
+.indexTop .mustBox .mustBoxTips p {
+  margin: 0;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 400;
+  color: #888888;
+  line-height: 16px;
+  margin-top: 12px;
+}
+.indexTop .mustBox .mustBoxTips .mustBoxTipsTitle {
+  font-size: 14px;
+  font-weight: 500;
+  color: #0F1112;
+  line-height: 16px;
+}
+.indexTop .mustBox .sureBtn {
+  width: 100%;
+  height: 48px;
+  background: #51C7D3;
+  border-radius: 11px 11px 11px 11px;
+  opacity: 1;
+  font-size: 14px;
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 48px;
+  text-align: center;
+  margin-top: 45px;
+}
+.WithdrawalTokenBox .withdrawTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #222222;
+  line-height: 21px;
+  text-align: center;
+}
+.WithdrawalTokenBox .tokenBox {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 26px;
+  margin-top: 15px;
+}
+.WithdrawalTokenBox .tokenBox .noramToken {
+  width: 74px;
+  height: 36px;
+  background: #fff;
+  border-radius: 8px 8px 8px 8px;
+  opacity: 1;
+  border: 1px solid #DADADA;
+  line-height: 36px;
+  text-align: center;
+}
+.WithdrawalTokenBox .tokenBox .currToken {
+  background: #9C83FF;
+  border: none;
+  color: #fff;
+}
+.WithdrawalTokenBox .withdrawIptBox {
+  width: 100%;
+  height: 102px;
+  border-radius: 10px 10px 10px 10px;
+  opacity: 1;
+  border: 1px solid #F4F5F7;
+  box-sizing: border-box;
+  padding: 15px 18px;
+  margin-top: 20px;
+}
+.WithdrawalTokenBox .withdrawIptBox p {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222222;
+  line-height: 16px;
+}
+.WithdrawalTokenBox .withdrawIptBox > div {
+  display: flex;
+  margin-top: 16px;
+  justify-content: space-between;
+}
+.WithdrawalTokenBox .withdrawIptBox > div .withdrawIpt {
+  width: 144px;
+  height: 32px;
+  background: #F4F5F7;
+  border-radius: 8px 8px 8px 8px;
+  opacity: 1;
+  border: none;
+}
+.WithdrawalTokenBox .withdrawIptBox > div div {
+  width: 50px;
+  height: 32px;
+  background: #51C7D3;
+  border-radius: 10px 10px 10px 10px;
+  opacity: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 32px;
+  text-align: center;
+}
+.WithdrawalTokenBox .sureBtn {
+  width: 100%;
+  height: 48px;
+  background: #51C7D3;
+  border-radius: 12px 12px 12px 12px;
+  opacity: 1;
+  text-align: center;
+  line-height: 48px;
+  color: #fff;
+  margin-top: 25px;
+}

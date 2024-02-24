@@ -1,4 +1,4 @@
-.indexTop {
+.stakeWarp {
   width: 100%;
   border-radius: 0px 0px 0px 0px;
   opacity: 1;
@@ -8,395 +8,419 @@
   align-items: center;
   padding: 0 15px;
   box-sizing: border-box;
+  background: #F6F7FB;
+  min-height: 100vh;
 
-  .fundTopCard {
-    background: url('../../assets/image/stake/banner.png') no-repeat;
+
+
+
+  .swapCard {
+    position: relative;
+    z-index: 2;
     width: 100%;
-    height: 100px;
-    background-size: cover;
-    border-radius: 30px;
-    overflow: hidden;
-    text-align: center;
-    margin-top: 15px;
-
-    p {
-      font-size: 16px;
-      font-weight: 400;
-      color: #FFFFFF;
-      line-height: 19px;
-      margin-top: 18px;
-    }
-
-    span {
-      display: block;
-      font-size: 18px;
-      font-weight: bold;
-      color: #FFFFFF;
-      line-height: 21px;
-      margin-top: 16px;
-    }
-  }
-
-
-
-  .stakeChooseBox {
-    width: 100%;
-    // height: 410px;
-    background: linear-gradient(180deg, #E7FAFE 0%, #FFFFFF 100%);
-    box-shadow: -2px -2px 8px 0px rgba(116, 158, 207, 0.2), 2px 2px 8px 0px rgba(116, 158, 207, 0.2);
-    border-radius: 16px 16px 16px 16px;
+    background: #FFFFFF;
+    border-radius: 10px;
     opacity: 1;
     border: 2px solid #FFFFFF;
+    margin-top: 20px;
+    padding: 20px 15px;
     box-sizing: border-box;
-    padding: 30px 25px;
-    margin-top: 30px;
 
-    .stakeChooseTitle {
-      font-size: 20px;
-      font-weight: bold;
-      color: #51C7D3;
-      line-height: 23px;
-      text-align: center;
-    }
-
-    .daysBox {
-      display: flex;
-      justify-content: space-between;
-      box-sizing: border-box;
-      margin-top: 25px;
-      width: 100%;
-
-      .dayItemBox {
+    .swapTitleBox {
+      .swapTitleTop {
         display: flex;
-        flex-direction: column;
         align-items: center;
-
-        img {
-          width: 50px;
-          height: 50px;
-          margin-bottom: 16px;
-
-        }
-      }
-
-      .noramToken {
-        width: 80px;
-        height: 40px;
-        background: #FFFFFF;
-        border-radius: 8px 8px 8px 8px;
-        opacity: 1;
-        border: 1px solid #51C7D3;
-        line-height: 40px;
-        text-align: center;
-      }
-
-      .currToken {
-        background: #9C83FF;
-        border: none;
-        color: #fff;
-      }
-    }
-
-    .fundInputBoxTop {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-
-      p {
-        font-size: 14px;
-        font-weight: 400;
-        color: #888888;
-        line-height: 16px;
-      }
-
-      span {
-        font-size: 14px;
-        font-weight: bold;
-        color: #51C7D3;
-        line-height: 16px;
-      }
-
-    }
-
-    .fundIpt {
-      width: 100%;
-      height: 46px;
-      background: #FFFFFF;
-      border-radius: 7px 7px 7px 7px;
-      opacity: 1;
-      border: 1px solid #51C7D3;
-      margin-top: 8px;
-    }
-
-    .DailyYieldBox,
-    .ResumptionBox {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 43px;
-
-      p {
-        font-size: 14px;
-        font-weight: 400;
-        color: #888888;
-        line-height: 16px;
-      }
-
-      span {
-        font-size: 14px;
-        font-weight: 400;
-        color: #222222;
-        line-height: 16px;
-      }
-    }
-
-    .ResumptionBox {
-      margin-top: 20px;
-    }
-
-    .normalBtn {
-      width: 100%;
-      height: 46px;
-      background: #51C7D3;
-      border-radius: 6px 6px 6px 6px;
-      opacity: 1;
-      font-size: 14px;
-      font-weight: 500;
-      color: #FFFFFF;
-      line-height: 46px;
-      text-align: center;
-      margin-top: 25px;
-    }
-
-    .infoBox {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      height: 71px;
-      background: #FFFFFF;
-      border-radius: 10px 10px 10px 10px;
-      opacity: 1;
-      border: 1px solid #51C7D3;
-      box-sizing: border-box;
-      padding: 15px 25px;
-      margin-top: 35px;
-
-      p {
-        font-size: 12px;
-        font-weight: 500;
-        color: #888888;
-        line-height: 14px;
-        text-align: center;
-      }
-      span {
-        font-size: 14px;
-        font-weight: 500;
-        color: #51C7D3;
-        line-height: 16px;
-        display: block;
-        margin-top: 8px;
-        text-align: center;
-
-      }
-    }
-  }
-
-
-  .recordStakeBox {
-    width: 100%;
-    margin-top: 30px;
-
-    .recordTitle {
-      font-size: 18px;
-      font-weight: bold;
-      color: #222222;
-      line-height: 21px;
-      padding-left: 10px;
-      border-left: 4px solid #51C7D3;
-    }
-
-    .recordBoxItem {
-      width: 100%;
-      // height: 130px;
-      background: linear-gradient(180deg, #F2F9F8 0%, #FFFFFF 100%);
-      box-shadow: -2px -2px 8px 0px rgba(116, 158, 207, 0.2), 2px 2px 8px 0px rgba(116, 158, 207, 0.2);
-      border-radius: 12px 12px 12px 12px;
-      opacity: 1;
-      border: 2px solid #FFFFFF;
-      padding: 20px 15px;
-      margin-top: 15px;
-
-      div {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 15px;
-
-        p {
-          font-size: 14px;
-          font-weight: 400;
-          color: #888888;
-          line-height: 16px;
-        }
-
-        span {
-          font-size: 14px;
-          font-weight: 400;
-          color: #222222;
-          line-height: 16px;
-        }
-        .doing{
-          color: #51C7D3;
-        }
-        .done{
-          color: #FF8832;
-
-        }
-      }
-    }
-  }
-
-
-  .mask {
-    content: '';
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-
-  }
-
-  .marketQuotationsBox {
-    width: 100%;
-    // height: 426px;
-    background: #FFFFFF;
-    opacity: 1;
-    position: fixed;
-    z-index: 99999;
-    bottom: 0;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-    box-sizing: border-box;
-    padding: 15px;
-
-    .marketQuotationsTop {
-      display: flex;
-      justify-content: space-between;
-
-      p {
-        font-size: 16px;
-        font-weight: 500;
-        color: #51C7D3;
-        line-height: 19px;
-      }
-    }
-
-    .currBox {
-      width: 100%;
-      height: 114px;
-      background: #FFFFFF;
-      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-      border-radius: 13px 13px 13px 13px;
-      opacity: 1;
-      box-sizing: border-box;
-      padding: 15px 20px;
-      margin-top: 21px;
-
-      .currBoxTop {
-        display: flex;
         justify-content: space-between;
 
-        .logoBox {
+        .swapTitle {
+          font-size: 17px;
+          font-weight: 500;
+          color: #161D30;
           display: flex;
           align-items: center;
 
           img {
-            width: 24px;
-            height: 24px;
-          }
-
-          p {
-            font-size: 18px;
-            font-weight: 500;
-            color: #51C7D3;
-            line-height: 21px;
-            margin-left: 9px;
+            width: 28px;
           }
         }
 
-        .priceBox {
+        .swapImg {
           display: flex;
           align-items: center;
+          justify-content: space-between;
 
-          p {
-            font-size: 12px;
-            font-weight: 400;
-            color: #0F1112;
-            line-height: 14px;
+          img {
+            width: 17px;
+            height: 17px;
+            margin-right: 4px;
           }
 
-          span {
-            color: #51C7D3;
-
+          .swapImgInfo {
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(103, 115, 141, 1);
           }
         }
       }
 
-      .currBoxBot {
+      .swapTitleBot {
+        font-size: 14px;
+        font-weight: 400;
+        color: rgba(103, 115, 141, 1);
+        margin-top: 34px;
+      }
+    }
+
+    .swapContent {
+      .swapContentTop {
+        margin-top: 6px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 15px;
 
-        P {
-          font-size: 12px;
-          font-weight: 500;
-          color: #888888;
-          line-height: 14px;
-        }
-
-        span {
-          font-size: 16px;
-          font-weight: 500;
-          color: #9C83FF;
-          line-height: 19px;
-          margin-top: 5px;
-          display: block;
+        p {
+          font-size: 14px;
+          font-weight: 400;
+          color: #67738D;
         }
       }
 
-
-    }
-
-    .charts {
-      width: 100%;
-      height: 300px;
-      background: #FFFFFF;
-      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-      border-radius: 15px 15px 15px 15px;
-      opacity: 1;
-      margin-top: 20px;
-      box-sizing: border-box;
-      padding: 15px;
-
-      .chartsItem {
+      .swapIptTop {
         width: 100%;
-        height: 200px;
+        height: 60px;
+        background: #F6F7FB;
+        border-radius: 10px 10px 10px 10px;
+        opacity: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        box-sizing: border-box;
+        margin-top: 6px;
+
+        .swapIptTopItem {
+          width: 100%;
+          height: 42px;
+
+          background: #F6F7FB;
+          border-radius: 5px 5px 5px 5px;
+          opacity: 1;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          box-sizing: border-box;
+          padding: 10px;
+
+          .ant-select {
+            width: 100% !important;
+            background: #F6F7FB !important;
+
+            .ant-select-selector {
+              border: none;
+              padding: 0;
+              background: #F6F7FB !important;
+
+            }
+          }
+
+          .itemLeft {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-right: 20px;
+
+            p {
+              font-size: 14px;
+              font-weight: 500;
+              color: #161D30;
+              margin-left: 5px;
+            }
+
+            img {
+              width: 22px;
+              height: 22px;
+            }
+          }
+
+          img {
+            width: 6px;
+            height: 3px;
+          }
+
+        }
+
+        input {
+          background-color: transparent;
+          outline: none;
+          text-align: right;
+        }
       }
+
+      .swapConMid {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-top: 9px;
+
+        img {
+          width: 22px;
+          height: 22px;
+        }
+
+        p {
+          font-size: 14px;
+          font-weight: 400;
+          color: #67738D;
+          margin-top: 5px;
+        }
+      }
+
+      .swapConBot {
+        margin-top: 10px;
+        overflow: hidden;
+
+        .priceInfo {
+          margin-top: 10px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          p {
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(22, 29, 48, 1);
+
+          }
+        }
+
+        .expectedRate {
+          color: rgba(103, 115, 141, 1);
+          margin-top: 20px;
+        }
+
+        .stakeRules {
+          font-size: 13px;
+          font-weight: 400;
+          color: #67738D;
+          margin-top: 20px;
+          text-align: center;
+        }
+
+
+
+        .sureBtn {
+          width: 100%;
+          height: 45px;
+          background: #5164BF;
+          border-radius: 10px 10px 10px 10px;
+          opacity: 1;
+          font-size: 17px;
+          font-weight: 400;
+          color: #FFFFFF;
+          margin-top: 15px;
+        }
+        .disBtn{
+    background: rgba(81, 100, 191, 0.6);
+
+        }
+      }
+
     }
+
+
+
 
   }
 
-  .quotationsIcon {
-    position: absolute;
-    right: 30px;
-    top: 20px;
+  .recordBox {
+    width: 100%;
+    margin-top: 20px;
+
+    .recordTop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .recordTopTitle {
+        font-size: 17px;
+        font-weight: 500;
+        color: #161D30;
+      }
+
+      .moreBox {
+        display: flex;
+        align-items: center;
+
+        p {
+          font-size: 13px;
+          font-weight: 400;
+          color: #67738D;
+          line-height: 13px;
+        }
+
+        img {
+          width: 5px;
+          height: 10px;
+          margin-left: 8px;
+        }
+      }
+    }
+
+    .recordDetailsTop {
+      .ant-segmented {
+        width: 100%;
+        margin-top: 20px;
+
+        .ant-segmented-group {
+          width: 100%;
+          height: 40px;
+          background: #FFFFFF;
+          border-radius: 10px 10px 10px 10px;
+          opacity: 1;
+
+          .ant-segmented-item-label {
+            height: 40px;
+            line-height: 40px;
+          }
+        }
+
+
+
+        .ant-segmented-item {
+          width: 50%;
+          font-size: 16px;
+          font-weight: 400;
+          color: #161D30;
+        }
+
+        .ant-segmented-item-selected {
+          height: 40px;
+          background: #5164BF;
+          border-radius: 10px 10px 10px 10px;
+          opacity: 1;
+          font-size: 16px;
+          font-weight: 400;
+          color: #FFFFFF;
+        }
+      }
+    }
+
+    .recordCon {
+      width: 100%;
+      background: #FFFFFF;
+      border-radius: 10px 10px 10px 10px;
+      opacity: 1;
+      padding: 20px;
+      box-sizing: border-box;
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+
+      .recordConLeft {
+        .leftCell {
+          display: flex;
+          align-items: center;
+          margin-top: 15px;
+          &:first-child{
+            margin-top: 0;
+          }
+
+          .leftCellTitle {
+            font-size: 14px;
+            font-weight: 400;
+            color: #67738D;
+          }
+
+          .leftImg {
+            width: 22px;
+          }
+
+          .leftCellAmout {
+            font-size: 15px;
+            font-weight: 400;
+            color: #161D30;
+          }
+        }
+      }
+    }
+  }
+
+
+
+
+
+}
+
+.pwdBox {
+  padding: 15px;
+  box-sizing: border-box;
+
+  .pwdBoxTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(228, 228, 228, 0.6);
+
+    .pwdBoxTopTitle {
+      font-size: 17px;
+      font-weight: 400;
+      color: #161D30;
+    }
+
+    .pwdBoxTopCancel {
+      font-size: 14px;
+      font-weight: normal;
+      color: #B4BDCF;
+    }
+  }
+
+  .pwdBoxBot {
+    width: 100%;
+    height: 52px;
+    outline: none;
+    border-bottom: 1px solid rgba(228, 228, 228, 0.6);
+    margin-top: 15px;
+  }
+
+  .sureBtn {
+    width: 100%;
+    height: 45px;
+    background: #5164BF;
+    border-radius: 10px 10px 10px 10px;
+    opacity: 1;
+    font-size: 17px;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin-top: 57px;
+  }
+
+  .disBtn {
+    width: 100%;
+    height: 45px;
+    background: rgba(81, 100, 191, 0.6);
+    color: #FFFFFF;
+    border-radius: 0px 0px 0px 0px;
+    opacity: 1;
+  }
+}
+
+.ant-select-dropdown {
+  .itemLeft {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      font-size: 14px;
+      font-weight: 500;
+      color: #161D30;
+      margin-left: 5px;
+    }
 
     img {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
     }
   }
-
-
 }

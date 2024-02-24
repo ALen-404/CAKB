@@ -1,0 +1,138 @@
+.guessingBox {
+  width: 100%;
+  border-radius: 0px 0px 0px 0px;
+  opacity: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15px;
+  box-sizing: border-box;
+  background: #F6F7FB;
+  min-height: 100vh;
+  padding-top: 20px;
+  background: url('../../assets/image/guessing/jc_bg.png') no-repeat;
+  background-size: 100% 100%;
+
+  .guessingCon {
+    width: 100%;
+    // height: 423px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px 10px 10px 10px;
+    opacity: 1;
+    backdrop-filter: blur(10px);
+    padding: 20px 15px;
+    box-sizing: border-box;
+
+    .guessingConItem {
+      display: flex;
+      justify-content: space-between;
+
+      .guessingConItemLeft {
+        display: flex;
+
+        .conItemleftLeft {
+          position: relative;
+          width: 70px;
+
+          .jcIcon {
+            width: 70px;
+            height: 70px;
+            position: absolute;
+            top: 0px;
+
+          }
+
+          .jcChu {
+            width: 54px;
+            height: 30px;
+            position: absolute;
+            top: 0px;
+            z-index: 9;
+
+          }
+        }
+
+        .conItemleftRight {
+          margin-left: 10px;
+
+          .game {
+            font-size: 14px;
+            font-family: Source Han Sans CN, Source Han Sans CN;
+            font-weight: 500;
+            color: #161D30;
+          }
+
+          .time {
+            font-size: 12px;
+            font-family: Source Han Sans CN, Source Han Sans CN;
+            font-weight: 400;
+            color: #161D30;
+            margin-top: 8px;
+
+          }
+
+          .venue {
+            font-size: 12px;
+            font-family: Source Han Sans CN, Source Han Sans CN;
+            font-weight: 400;
+            color: #161D30;
+            margin-top: 8px;
+          }
+        }
+      }
+
+      .guessingConItemRight {
+        p {
+          font-size: 11px;
+          font-family: Source Han Sans CN, Source Han Sans CN;
+          font-weight: 500;
+          color: #5164BF;
+        }
+
+        div {
+          width: 80px;
+          height: 32px;
+          background: #5164BF;
+          border-radius: 10px 10px 10px 10px;
+          opacity: 1;
+          text-align: center;
+          line-height: 32px;
+          color: #FFFFFF;
+          margin-top: 20px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .guessingTop {
+    position: relative;
+
+    .currPoint {
+      background: linear-gradient(to left, #FCFEED, #E6FE84);
+      height: 30px;
+      border-radius: 15px 15px 15px 15px;
+      text-align: center;
+      line-height: 30px;
+      font-size: 14px;
+      font-family: Source Han Sans CN, Source Han Sans CN;
+      font-weight: 500;
+      color: #161D30;
+      position: absolute;
+      top: 113px;
+      left: 50%;
+      box-sizing: border-box;
+      padding: 0 15px;
+      white-space: nowrap;
+    }
+  }
+
+  .communityFoter {
+    margin-top: 20px;
+
+    img {
+      width: 100%;
+    }
+  }
+}

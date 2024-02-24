@@ -1,21 +1,23 @@
-import { GlobalOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
+import { GlobalOutlined } from '@ant-design/icons'
 import { shorten } from '@did-network/dapp-sdk'
 import { Button, Dropdown, Layout, MenuProps } from 'antd'
 import { changeLanguage, t } from 'i18next'
 import { Link } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 
+import { copyMsg } from '@/utils/formatter'
+
 import FundRecords from '../../assets/image/fundRecords.png'
-import Icon from '../../assets/image/icon.png'
-import Index from '../../assets/image/index.png'
+import Assets from '../../assets/image/header/assets.png'
+import Buy from '../../assets/image/header/buy.png'
+import Community from '../../assets/image/header/community.png'
+import Guessing from '../../assets/image/header/guessing.png'
+import Index from '../../assets/image/header/home.png'
+import noticeS from '../../assets/image/header/noticeS.png'
+import Stake from '../../assets/image/header/stake.png'
+import Swap from '../../assets/image/header/swap.png'
 import Logo from '../../assets/image/index/logo.png'
-import Mining from '../../assets/image/mining.png'
-import MyCommunity from '../../assets/image/myCommunity.png'
-import Rank from '../../assets/image/rankingList.png'
-import Share from '../../assets/image/share.png'
-import Swap from '../../assets/image/swap.png'
-import Telegram from '../../assets/image/telegram.png'
-import Twitter from '../../assets/image/twitter.png'
+import Menu from '../../assets/image/swap/menu.png'
 import { NetworkSwitcher } from '../SwitchNetworks'
 import { ToastActionElement } from '../ui/toast'
 import { WalletModal } from '../WalletModal'
@@ -39,47 +41,66 @@ export const LayoutElement = ({ children }: { children: ToastActionElement | und
 
   const menuArr = [
     {
-      label: t('index'),
+      label: '首頁',
       key: 'index',
       link: '/index',
       img: Index,
     },
     {
-      label: t('pledge'),
+      label: '質押',
       key: 'stake',
       link: '/stake',
-      img: Mining,
+      img: Stake,
     },
     {
-      label: t('swap'),
+      label: '兌換',
       key: 'swap',
       link: '/swap',
       img: Swap,
     },
     {
-      label: t('rank'),
-      key: 'rank',
-      link: '/rank',
-      img: Rank,
+      label: '購買CGR',
+      key: 'buyCGR',
+      link: '/buyCGR',
+      img: Buy,
     },
     {
-      label: t('MyCommunity'),
-      key: 'MyCommunity',
-      link: '/share',
-      img: MyCommunity,
+      label: '我的社區',
+      key: 'community',
+      link: '/community',
+      img: Community,
     },
     {
-      label: t('YuEbao'),
-      key: 'fundRecords',
-      link: '/fund',
-      img: FundRecords,
+      label: '我的資產',
+      key: 'assets',
+      link: '/assets',
+      img: Assets,
     },
     {
-      label: t('shar'),
-      key: 'share',
-      link: '/share',
-      img: Share,
+      label: '競猜',
+      key: 'guessing',
+      link: '/guessing',
+      img: Guessing,
     },
+
+    // {
+    //   label: t('MyCommunity'),
+    //   key: 'MyCommunity',
+    //   link: '/share',
+    //   img: MyCommunity,
+    // },
+    // {
+    //   label: t('YuEbao'),
+    //   key: 'fundRecords',
+    //   link: '/fund',
+    //   img: FundRecords,
+    // },
+    // {
+    //   label: t('shar'),
+    //   key: 'share',
+    //   link: '/share',
+    //   img: Share,
+    // },
   ]
 
   const items = [
@@ -107,8 +128,27 @@ export const LayoutElement = ({ children }: { children: ToastActionElement | und
         className="border-gray siderBox"
       >
         <div className="iconBox">
-          <img src={Icon} alt="Icon" />
-          <p>{t('welecome')}CAKE</p>
+          <p className="iconBoxTitle">ID {address?.slice(0, 8)}</p>
+          <p className="iconBoxInfo">
+            {address?.slice(0, 4)}...
+            {address?.slice(address?.length - 4, address?.length)}
+          </p>
+        </div>
+        <div className="inviteBox">
+          <div className="inviteBoxTop">
+            <p className="inviteTitle">邀請鏈接</p>
+            <p
+              onClick={() => {
+                copyMsg(`https://chatgeometrypro.online/?address=${address}`, '複製成功')
+              }}
+              className="inviteCopy"
+            >
+              複製鏈接
+            </p>
+          </div>
+          <div className="inviteAddress">
+            <p>https://chatgeometrypro.online/?address={address}</p>
+          </div>
         </div>
         <div className="menuBox">
           {menuArr.map((item) => {
@@ -122,7 +162,7 @@ export const LayoutElement = ({ children }: { children: ToastActionElement | und
             )
           })}
         </div>
-        <div className="tgBox">
+        {/* <div className="tgBox">
           <a href="" target="_blank">
             <div className="menuItem">
               <img src={Telegram} alt={'Telegram'} />
@@ -135,18 +175,16 @@ export const LayoutElement = ({ children }: { children: ToastActionElement | und
               <p>Twitter</p>
             </div>
           </a>
-        </div>
+        </div> */}
       </Sider>
       {!collapsed && <div className="mask" onClick={toggleCollapsed}></div>}
       <Layout className="bg-white">
         <div className="header h-16  border-white box-border">
           <div className="h-16 border-b-1 border-white box-border">
             <div className="max-w-6xl m-auto h-full flex justify-between items-center sm:px-8 lt-sm:px-4">
-              <div className="flex items-center font-bold cursor-pointer" onClick={toggleCollapsed}>
-                <MenuUnfoldOutlined />
-              </div>
               <div className="flex items-center font-bold cursor-pointer">
                 <img className="w-9 h-9" src={Logo} alt="Icon" />
+                <p className="ml-2 ">CGR</p>
               </div>
               <div className="flex items-center gap-2 bg-white networkBox">
                 <NetworkSwitcher />
@@ -161,8 +199,15 @@ export const LayoutElement = ({ children }: { children: ToastActionElement | und
                   )}
                 </WalletModal>
               </div>
-              <div>
-                <GlobalOutlined
+              <div className="notice">
+                <Link to={'/notice'}>
+                  <img src={noticeS} alt="noticeS" />
+                </Link>
+              </div>
+              {/* <div>
+                <img
+                  src={Language}
+                  className="w-12 h-12"
                   onClick={() => {
                     setIsShowLauBox(!isShowLauBox)
                   }}
@@ -185,6 +230,10 @@ export const LayoutElement = ({ children }: { children: ToastActionElement | und
                     })}
                   </div>
                 )}
+              </div> */}
+              <div className="flex items-center font-bold cursor-pointer text-black" onClick={toggleCollapsed}>
+                {/* <MenuUnfoldOutlined /> */}
+                <img className="w-12 h-12" src={Menu} alt="menu" />
               </div>
             </div>
           </div>

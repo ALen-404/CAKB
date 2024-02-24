@@ -1,0 +1,193 @@
+.netRewards {
+  width: 100%;
+  border-radius: 0px 0px 0px 0px;
+  opacity: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15px;
+  box-sizing: border-box;
+  background: #F6F7FB;
+  min-height: 100vh;
+  padding-top: 20px;
+  padding-bottom: 100px;
+}
+.netRewards .netRewardsTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.netRewards .netRewardsTop .netRewardsTopTitle {
+  font-size: 17px;
+  font-weight: 500;
+  color: #161D30;
+}
+.netRewards .netRewardsTop .moreBox {
+  display: flex;
+  align-items: center;
+}
+.netRewards .netRewardsTop .moreBox p {
+  font-size: 13px;
+  font-weight: 400;
+  color: #67738D;
+  line-height: 13px;
+}
+.netRewards .netRewardsTop .moreBox img {
+  width: 5px;
+  height: 10px;
+  margin-left: 8px;
+}
+.netRewards .netRewardCon {
+  width: 100%;
+}
+.netRewards .netRewardCon .netRewardConTop {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background: #FFFFFF;
+  border-radius: 10px 10px 10px 10px;
+  margin-top: 20px;
+}
+.netRewards .netRewardCon .netRewardConTop .netRewardConTopItem {
+  width: 50%;
+  text-align: center;
+  padding: 25px 50px;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(109, 125, 201, 0.1);
+}
+.netRewards .netRewardCon .netRewardConTop .netRewardConTopItem:nth-child(2n) {
+  border-left: 1px solid rgba(109, 125, 201, 0.1);
+}
+.netRewards .netRewardCon .netRewardConTop .netRewardConTopItem .netRewardConTopItemTitle {
+  font-size: 15px;
+  font-family: Source Han Sans SC, Source Han Sans SC;
+  font-weight: 400;
+  color: #67738D;
+}
+.netRewards .netRewardCon .netRewardConTop .netRewardConTopItem .netRewardConTopItemNum {
+  font-size: 20px;
+  font-family: Source Han Sans SC, Source Han Sans SC;
+  font-weight: 500;
+  color: #5164BF;
+  margin-top: 10px;
+}
+.netRewards .netRewardCon .netRewardConBot {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 10px 10px 10px 10px;
+  opacity: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-top: 15px;
+  text-align: center;
+}
+.netRewards .netRewardCon .netRewardConBot .netRewardConBotTop {
+  display: flex;
+  justify-content: space-between;
+}
+.netRewards .netRewardCon .netRewardConBot .netRewardConBotTop div {
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(109, 125, 201, 0.1);
+  width: 33.333%;
+}
+.netRewards .netRewardCon .netRewardConBot .netRewardConBotTop div P {
+  font-size: 15px;
+  font-family: Source Han Sans SC, Source Han Sans SC;
+  font-weight: 400;
+  color: #67738D;
+}
+.netRewards .netRewardCon .netRewardConBot .netRewardConBotBot .netRewardConBotBotItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0px;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(109, 125, 201, 0.1);
+}
+.netRewards .netRewardCon .netRewardConBot .netRewardConBotBot .netRewardConBotBotItem p {
+  width: 33.33%;
+  font-size: 15px;
+  font-family: Source Han Sans SC, Source Han Sans SC;
+  font-weight: 400;
+  color: #161D30;
+}
+.netRewards .confirmBuy {
+  width: 100%;
+  height: 85px;
+  background: #FFFFFF;
+  border-radius: 0px 0px 0px 0px;
+  opacity: 1;
+  position: fixed;
+  bottom: 0;
+  padding: 7px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.netRewards .confirmBuy .cancelOrder {
+  width: 124px;
+  height: 44px;
+  background: #E4E9EE;
+  border-radius: 10px 10px 10px 10px;
+  opacity: 1;
+  font-size: 17px;
+  font-weight: 400;
+  color: #A9ACB2;
+}
+.netRewards .confirmBuy .sureBtn {
+  width: 100%;
+  height: 44px;
+  background: #5164BF;
+  border-radius: 10px 10px 10px 10px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.pwdBox {
+  padding: 15px;
+  box-sizing: border-box;
+}
+.pwdBox .pwdBoxTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(228, 228, 228, 0.6);
+}
+.pwdBox .pwdBoxTop .pwdBoxTopTitle {
+  font-size: 17px;
+  font-weight: 400;
+  color: #161D30;
+}
+.pwdBox .pwdBoxTop .pwdBoxTopCancel {
+  font-size: 14px;
+  font-weight: normal;
+  color: #B4BDCF;
+}
+.pwdBox .pwdBoxBot {
+  width: 100%;
+  height: 52px;
+  outline: none;
+  border-bottom: 1px solid rgba(228, 228, 228, 0.6);
+  margin-top: 15px;
+}
+.pwdBox .sureBtn {
+  width: 100%;
+  height: 45px;
+  background: #5164BF;
+  border-radius: 10px 10px 10px 10px;
+  opacity: 1;
+  font-size: 17px;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin-top: 57px;
+}
+.pwdBox .disBtn {
+  width: 100%;
+  height: 45px;
+  background: #5164bf;
+  color: #FFFFFF;
+  border-radius: 0px 0px 0px 0px;
+  opacity: 1;
+}

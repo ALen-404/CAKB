@@ -1,0 +1,294 @@
+.gussItemBox {
+  width: 100%;
+  border-radius: 0px 0px 0px 0px;
+  opacity: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  background: #F6F7FB;
+  min-height: 100vh;
+  padding: 0;
+  // background: url('../../assets/image/gussItem/zdGame.png') no-repeat;
+  // background-size: 100% 100%;
+  
+
+  .gussItemTop {
+    position: relative;
+    width: 100%;
+    height: 236px;
+    .gussItemMenuBox {
+      padding: 0 15px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background-color: transparent;
+      margin-top: 10px;
+      position: relative;
+      z-index: 99;
+      .recordTopTitle {
+        font-size: 17px;
+        font-weight: 500;
+        color: #FFFFFF;
+      }
+  
+      .moreBox {
+        display: flex;
+        align-items: center;
+  
+        p {
+          font-size: 13px;
+          font-weight: 400;
+          color: #67738D;
+          line-height: 13px;
+        }
+  
+        img {
+          width: 5px;
+          height: 10px;
+          margin-left: 8px;
+        }
+      }
+    }
+    .ZdGame {
+      position: absolute;
+      width: 100%;
+      left: 0px;
+      z-index: 3;
+      top: 0px;
+
+      img {
+        width: 100%;
+        height: 236px;
+
+      }
+    }
+
+    .ZdGameBoxTop {
+      position: relative;
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      margin-top: 24px;
+
+      .ZdGameBox {
+        width: 54px;
+        height: 24px;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 7px 7px 7px 7px;
+        opacity: 1;
+
+        font-size: 12px;
+        font-family: Source Han Sans SC, Source Han Sans SC;
+        font-weight: 500;
+        color: #5164BF;
+        line-height: 12px;
+        text-align: center;
+        line-height: 24px;
+        margin-left: 15px;
+      }
+
+      .ZdGameInfo {
+        margin-left: 10px;
+
+        font-size: 12px;
+        font-family: Source Han Sans SC, Source Han Sans SC;
+        font-weight: 500;
+        color: #FFFFFF;
+      }
+    }
+
+    .balance {
+      font-size: 30px;
+      font-family: DIN Alternate, DIN Alternate;
+      font-weight: bold;
+      color: #FFFFFF;
+      position: relative;
+      z-index: 99;
+      margin-left: 15px;
+      margin-top: 20px;
+    }
+
+    .gussItemTopRecharge {
+      position: relative;
+      z-index: 99;
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 15px;
+      box-sizing: border-box;
+
+      p {
+        font-size: 12px;
+        font-family: Source Han Sans SC, Source Han Sans SC;
+        font-weight: 400;
+        color: #FFFFFF;
+      }
+
+      div {
+
+        p {
+          border-radius: 7px;
+          background-color: transparent;
+          border: 1px solid #fff;
+          padding: 4px 15px;
+        }
+      }
+    }
+
+    .currPoint {
+      background: linear-gradient(to left, #FCFEED, #E6FE84);
+      width: 145px;
+      height: 30px;
+      border-radius: 15px 15px 15px 15px;
+      text-align: center;
+      line-height: 30px;
+      font-size: 14px;
+      font-family: Source Han Sans CN, Source Han Sans CN;
+      font-weight: 500;
+      color: #161D30;
+      position: absolute;
+      top: 113px;
+      right: 43px;
+    }
+  }
+
+
+  .gussItemCon {
+    width: 100%;
+    opacity: 1;
+    padding: 0 15px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 99;
+    margin-top: -30px;
+
+    .gussItemConItem {
+      width: 100%;
+      background: #FFFFFF;
+      border-radius: 10px 10px 10px 10px;
+      opacity: 1;
+      padding: 15px;
+      box-sizing: border-box;
+
+      .topChart {
+        height: 187px;
+        background: #FFFFFF;
+        border-radius: 10px 10px 10px 10px;
+        opacity: 1;
+
+        canvas {
+          height: 187px !important;
+
+        }
+      }
+
+      .gasBox {
+        width: 100%;
+        height: 66px;
+        background: #F6F7FB;
+        border-radius: 10px 10px 10px 10px;
+        opacity: 1;
+        padding: 10px 12px;
+        box-sizing: border-box;
+
+        .gasItem {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: 15px;
+
+          &:first-child {
+            margin-top: 0;
+          }
+
+          margin-top: 10px;
+
+          p {
+            font-size: 12px;
+            font-family: Source Han Sans SC, Source Han Sans SC;
+            font-weight: 400;
+            color: #67738D;
+          }
+        }
+      }
+
+      .controlBox {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+
+        .controlLeft {
+          width: 146px;
+          height: 45px;
+          border-radius: 10px 10px 10px 10px;
+          opacity: 1;
+          border: 1px solid #5164BF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          font-size: 17px;
+          font-family: Source Han Sans SC, Source Han Sans SC;
+          font-weight: 400;
+          color: #5164BF;
+        }
+
+        .controlRight {
+          width: 146px;
+          height: 45px;
+          background: #5164BF;
+          border-radius: 10px 10px 10px 10px;
+          opacity: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          font-size: 17px;
+          font-family: Source Han Sans SC, Source Han Sans SC;
+          font-weight: 400;
+          color: #FFFFFF;
+        }
+      }
+    }
+  }
+
+  .gussItemTitle {
+    font-size: 15px;
+    font-family: Source Han Sans SC, Source Han Sans SC;
+    font-weight: 500;
+    color: #161D30;
+    margin-top: 20px;
+    text-align: left;
+    width: 100%;
+    margin-left: 15px;
+  }
+
+  .gussItemBot {
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+
+    .gussItemBotItem{
+      width: 100%;
+      height: 257px;
+      background: #FFFFFF;
+      border-radius: 10px 10px 10px 10px;
+      opacity: 1;
+      margin-top: 12px;
+    }
+  }
+
+  .communityFoter {
+    margin-top: 20px;
+
+    img {
+      width: 100%;
+    }
+  }
+}

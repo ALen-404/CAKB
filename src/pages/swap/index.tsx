@@ -1,13 +1,15 @@
 import { ArrowDownOutlined } from '@ant-design/icons'
-import { Button, Input, message, Pagination, Table } from 'antd'
+import { Button, Input, InputNumber, message, Modal, Pagination, Select, Table } from 'antd'
+import { Popup } from 'antd-mobile'
 import BigNumber from 'bignumber.js'
 import ReactECharts from 'echarts-for-react'
 import { BigNumber as BN, utils } from 'ethers'
 import { t } from 'i18next'
+import { Link, useNavigate } from 'react-router-dom'
 import { getBalance } from 'viem/_types/actions/public/getBalance'
 import { useAccount, useBalance, useContractRead, useNetwork } from 'wagmi'
 
-import { getQuotes, getSwap, getUser } from '@/apis'
+import { getAssetsByUser, getExchangePrice, getExchangeRecord, getUserInfo, handleSwap, verifyPassword } from '@/apis'
 import { LayoutElement } from '@/components/layout'
 import { getCakbAddress } from '@/contracts/cakb'
 import { getCakeAddress } from '@/contracts/cake'
@@ -15,293 +17,445 @@ import { getSwapAddress, swapABI } from '@/contracts/swap'
 import { date, datetime, formatAmountByApi, getBalanceDisplay, getCoinDisplay } from '@/utils/formatter'
 import useSwap from '@/utils/use-swap'
 
-import topBackground from '../../assets/image/index/topBackground.png'
-import cakb from '../../assets/image/swap/cakb.png'
-import cake from '../../assets/image/swap/cake.png'
-import quotationsIcon from '../../assets/image/swap/quotationsIcon.png'
-import swapIcon from '../../assets/image/swap/swapIcon.png'
+import Cgz from '../../assets/image/assets/cgz.png'
+import Cgr from '../../assets/image/swap/cgr.png'
+import DownArrow from '../../assets/image/swap/downArrow.png'
+import LeftArrow from '../../assets/image/swap/leftArrow.png'
+import Price from '../../assets/image/swap/price.png'
+import SwapImg from '../../assets/image/swap/swap.png'
+import Usdt from '../../assets/image/swap/usdt.png'
 
 import './index.less'
 
 const Home = () => {
   const { address } = useAccount()
   const { chain } = useNetwork()
-  const [swapCakeAmount, setSwapCakeAmount] = useState('0')
-  const [swapCakbAmount, setSwapCakbAmount] = useState('0')
-  const [marketQuotationsShow, setMarketQuotationsShow] = useState(false)
-  const [isPending, setIsPending] = useState(false)
-
-  const [userInfo, setUserInfo] = useState<any>({})
+  const [isShowPwd, setIsPwd] = useState(false)
+  const [timesNumber, setTimesNumber] = useState('1')
+  const [topSelectNumber, setTopSelectNumber] = useState(0)
+  const [botSelectNumber, setBotSelectNumber] = useState(0)
+  const [currTopSelect, setCurrTopSelect] = useState('USDT')
+  const [payPwd, setPayPwd] = useState('')
+  const [userPayPwd, setUserPayPwd] = useState('')
+  const [currBotSelect, setCurrBotSelect] = useState('CGR')
   const [swapRecord, setSwapRecord] = useState<any>([])
-  const [cakbQuotes, setCakbQuotes] = useState<any>([])
-  const [cakbQuotesTime, setCakbQuotesTime] = useState<any>([])
+  const navigate = useNavigate()
+  const [isShowSetPwd, setIsShowSetPwd] = useState(false)
+  const [assets, setAssets] = useState<any>({})
+  const formatDate = (timestamp: string | number | Date) => {
+    const date = new Date(timestamp)
 
-  const cakbBurnTokenBalance = useBalance({
-    address: '0x000000000000000000000000000000000000dEaD',
-    token: getCakbAddress(chain?.id),
-    watch: true,
-  })
+    const year = date.getFullYear()
+    const month = `0${date.getMonth() + 1}`.slice(-2)
+    const day = `0${date.getDate()}`.slice(-2)
 
-  const cakbTokenBalance = useBalance({
-    address,
-    token: getCakbAddress(chain?.id),
-    watch: true,
-  })
-  const cakeTokenBalance = useBalance({
-    address,
-    token: getCakeAddress(chain?.id),
-    watch: true,
-  })
+    const hours = `0${date.getHours()}`.slice(-2)
+    const minutes = `0${date.getMinutes()}`.slice(-2)
+    const seconds = `0${date.getSeconds()}`.slice(-2)
 
-  const swapInfo = useContractRead({
-    address: getSwapAddress(chain?.id),
-    abi: swapABI,
-    functionName: 'getSwapInfo',
-  })
-
-  const getSwapEstimate = useContractRead({
-    address: getSwapAddress(chain?.id),
-    abi: swapABI,
-    functionName: 'swapEstimate',
-    args: [false, BN.from(swapCakeAmount || '0').toBigInt()],
-  })
-
-  const handleCakeChange = (e: any) => {
-    if (!Number(e.target.value)) {
-      setSwapCakeAmount('')
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+  }
+  useEffect(() => {
+    if (!address) {
       return
     }
-    setSwapCakeAmount(e.target.value)
+    getAssetsByUser()
+      .then((res: any) => {
+        if (res.code === 200) {
+          setAssets(res.data)
+        } else {
+          message.error(res.msg)
+          navigate('/')
+        }
+      })
+      .catch(() => {
+        message.error('請求失敗')
+        navigate('/')
+      })
+  }, [address, navigate])
+
+  const handleSwapToken = () => {
+    verifyPassword({
+      newPassword: payPwd,
+      oldPassword: payPwd,
+    })
+      .then((res: any) => {
+        if (res.code === 200) {
+          handleSwap({
+            quantity: topSelectNumber,
+            symbol: `${currTopSelect}/${currBotSelect}`,
+          })
+            .then((res: any) => {
+              if (res.code === 200) {
+                message.success('兌換成功')
+                setIsPwd(false)
+                getExchangeRecord().then((res: any) => {
+                  setSwapRecord(res.data.records)
+                })
+              } else {
+                message.error(res.msg)
+              }
+            })
+            .catch(() => {
+              message.error('請求失敗')
+            })
+        } else {
+          message.error(res.msg)
+        }
+      })
+      .catch(() => {
+        message.error('請求失敗')
+      })
   }
-  useEffect(() => {
-    setSwapCakbAmount(getSwapEstimate?.data?.toString() || '0')
-  }, [getSwapEstimate?.data])
+  // const handleGetExchangePrice = () => {
+  //   getExchangePrice({
+  //     fromSymbol: currTopSelect,
+  //     toSymbol: currBotSelect,
+  //   }).then((res) => {
+  //     console.log(res)
+  //   })
+  // }
 
   useEffect(() => {
-    getUser().then((res: any) => {
-      if (res.code === 200) {
-        setUserInfo(res.data.records)
-      } else {
-        message.error(res.msg)
-      }
+    getExchangePrice({
+      fromSymbol: currTopSelect,
+      toSymbol: currBotSelect,
+    }).then((res: any) => {
+      setTimesNumber(res.data)
     })
-  }, [])
-
-  const onSwap = useSwap({ value: swapCakeAmount || '0', setIsPending })
+  }, [currBotSelect, currTopSelect, setTimesNumber])
 
   useEffect(() => {
-    getSwap().then((res: any) => {
-      if (res.code === 200) {
-        setSwapRecord(res.data.records)
-      } else {
-        message.error(res.msg)
-      }
+    getExchangeRecord().then((res: any) => {
+      setSwapRecord(res.data.records.filter((item: any) => item.toSymbol !== 'GPO' && item.formSymbol !== 'GPO'))
     })
+    getUserInfo()
+      .then((res: any) => {
+        if (res.code === 200) {
+          setUserPayPwd(res?.data?.transactionPassword)
+          if (res?.data?.transactionPassword) {
+            setIsShowSetPwd(false)
+          } else {
+            setIsShowSetPwd(true)
+          }
+          // setOrderDate(res.data.records)
+        } else {
+          message.error(res.msg)
+        }
+      })
+      .catch(() => {
+        message.error('請求失敗')
+      })
   }, [])
-
-  useEffect(() => {
-    getQuotes().then((res: any) => {
-      if (res.code === 200) {
-        const cakbArketValueList = res?.data?.records?.map((res: any) =>
-          formatAmountByApi(res.cakbArketValue)
-            ?.match(/^-?\d+(?:\.\d{0,2})?/)
-            ?.toString()
-        )
-        const cakbArketTimeList = res?.data?.records?.map((res: any) => date()(res.time))
-        setCakbQuotes(cakbArketValueList)
-        setCakbQuotesTime(cakbArketTimeList)
-      } else {
-        message.error(res.msg)
-      }
-    })
-  }, [])
-
-  const options = {
-    title: {
-      text: '',
-    },
-    tooltip: {
-      trigger: 'axis',
-    },
-    legend: {
-      data: [t('market')],
-    },
-
-    init: {
-      innerHeight: '220px',
-    },
-    grid: {
-      left: '3%',
-      containLabel: true,
-    },
-
-    xAxis: [
-      {
-        type: 'category',
-        boundaryGap: false,
-        data: cakbQuotesTime,
-      },
-    ],
-    yAxis: [
-      {
-        type: 'value',
-      },
-    ],
-    series: [
-      {
-        name: t('market'),
-        type: 'line',
-        stack: t('total'),
-        areaStyle: { normal: {} },
-        data: cakbQuotes,
-      },
-    ],
+  const topSelectChange = (e: any) => {
+    setCurrTopSelect(e)
+    if (e === 'USDT' && currBotSelect === 'USDT') {
+      setCurrBotSelect('CGR')
+    }
+    if (e === 'CGR' && currBotSelect === 'CGR') {
+      setCurrBotSelect('USDT')
+    }
+    if (e === 'CGZ' && currBotSelect === 'CGZ') {
+      setCurrBotSelect('USDT')
+    }
   }
+  const botSelectChange = (e: any) => {
+    setCurrBotSelect(e)
+  }
+
+  const handleChangeTopValue = (val: any) => {
+    console.log(val)
+
+    if (!val || new BigNumber(val).gt(getCoin(currTopSelect).value)) {
+      setTopSelectNumber(0)
+      setBotSelectNumber(0)
+    } else {
+      setTopSelectNumber(val)
+      setBotSelectNumber(Number(new BigNumber(val).times(timesNumber).toString()))
+    }
+  }
+
+  const handleChangeBotValue = (val: any) => {
+    if (!val) {
+      setTopSelectNumber(0)
+      setBotSelectNumber(0)
+    } else {
+      setBotSelectNumber(val)
+      setTopSelectNumber(Number(new BigNumber(val).div(timesNumber).toString()))
+    }
+  }
+
+  const getStatus = (status: any) => {
+    switch (status) {
+      case 1:
+        return <p style={{ color: 'rgba(75, 187, 154, 1)' }}>交易成功</p>
+      case 2:
+        return <p style={{ color: 'rgba(255, 0, 11, 1)' }}>交易失敗</p>
+      default:
+        return <p style={{ color: 'rgba(75, 187, 154, 1)' }}>交易成功</p>
+    }
+  }
+
+  const getCoin = (symbol: any) => {
+    console.log(symbol)
+
+    switch (symbol) {
+      case 'USDT':
+        return {
+          value: assets?.USDT?.usable,
+          icon: Usdt,
+        }
+      case 'CGR':
+        return {
+          value: assets?.CGR?.usable,
+          icon: Cgr,
+        }
+      case 'CGZ':
+        return {
+          value: assets?.CGZ?.usable,
+          icon: Cgz,
+        }
+      default:
+        return {
+          value: assets?.USDT?.usable,
+          icon: Usdt,
+        }
+    }
+  }
+  const handleShowSwap = () => {
+    if (userPayPwd === '') {
+      setIsShowSetPwd(true)
+    } else {
+      setIsPwd(true)
+    }
+  }
+
   return (
     <LayoutElement>
-      <div className="indexTop">
-        <div className="indexTopImgBox">
-          <img src={topBackground} alt="topBackground" />
-        </div>
-        <div className="buyBox">
-          <div className="buyItem">
-            <p>{t('TotalPurchaseAmount')}CAKB</p>
-            <span>{getCoinDisplay(formatAmountByApi(swapInfo?.data?.total_exchange_amount.toString() || '0'))}</span>
-          </div>
-          <div className="buyItem">
-            <p>{t('TotalAmountDestroyed')}CAKB</p>
-            <span>{getBalanceDisplay(cakbBurnTokenBalance)}</span>
-          </div>
-        </div>
+      <div className="swapWrap">
         <div className="swapCard">
-          <p className="swapTitle">{t('swap')}</p>
-          <div
-            className="quotationsIcon"
-            onClick={() => {
-              setMarketQuotationsShow(true)
-            }}
-          >
-            <img src={quotationsIcon} alt="quotationsIcon" />
-          </div>
-          <div className="inputBox">
-            <div className="inputBoxLeft">
-              <Input className="inputBtn" value={swapCakeAmount} onChange={handleCakeChange}></Input>
-              <p>Balance：{getBalanceDisplay(cakeTokenBalance)}</p>
+          <div className="swapTitleBox">
+            <div className="swapTitleTop">
+              <p className="swapTitle">兌換</p>
+              <Link to={'/marketQuotations'}>
+                <div className="swapImg">
+                  <img src={Price} alt="Price" />
+                  <p className="swapImgInfo">行情</p>
+                </div>
+              </Link>
             </div>
-            <div className="inputBoxRight">
-              <img src={cake} alt="" />
-              <p>CAKE</p>
+            <div className="swapTitleBot">即時兌換代幣</div>
+          </div>
+          <div className="swapContent">
+            <div className="swapContentTop">
+              <p>消耗</p>
+              <p>資產餘額：{getCoin(currTopSelect).value}</p>
+            </div>
+            <div className="swapIptTop">
+              <div className="swapIptTopItem">
+                <Select
+                  defaultValue="USDT"
+                  onChange={topSelectChange}
+                  style={{ width: 120 }}
+                  options={[
+                    {
+                      value: 'USDT',
+                      label: (
+                        <div className="itemLeft">
+                          <img src={Usdt} alt="usdt" />
+                          <p>USDT</p>
+                        </div>
+                      ),
+                    },
+                    {
+                      value: 'CGR',
+                      label: (
+                        <div className="itemLeft">
+                          <img src={Cgr} alt="usdt" />
+                          <p>CGR</p>
+                        </div>
+                      ),
+                    },
+                  ]}
+                />
+              </div>
+              <InputNumber
+                type="text"
+                onChange={(e) => {
+                  handleChangeTopValue(e)
+                }}
+                className="inputNumber"
+                value={topSelectNumber}
+              />
+            </div>
+            <div className="swapConMid">
+              <p>獲取</p>
+              <img src={SwapImg} alt="SwapImg" />
+              <div></div>
+            </div>
+            <div className="swapIptTop">
+              <div className="swapIptTopItem">
+                <Select
+                  style={{ width: 120 }}
+                  value={currBotSelect}
+                  onChange={botSelectChange}
+                  options={[
+                    {
+                      value: 'USDT',
+                      label: (
+                        <div className="itemLeft">
+                          <img src={Usdt} alt="usdt" />
+                          <p>USDT</p>
+                        </div>
+                      ),
+                      disabled: currTopSelect === 'USDT',
+                    },
+                    {
+                      value: 'CGR',
+                      label: (
+                        <div className="itemLeft">
+                          <img src={Cgr} alt="usdt" />
+                          <p>CGR</p>
+                        </div>
+                      ),
+                      disabled: currTopSelect === 'CGR',
+                    },
+                    {
+                      value: 'CGZ',
+                      label: (
+                        <div className="itemLeft">
+                          <img src={Cgz} alt="usdt" />
+                          <p>CGZ</p>
+                        </div>
+                      ),
+                      disabled: currTopSelect === 'CGZ',
+                    },
+                  ]}
+                />
+              </div>
+              <InputNumber
+                type="text"
+                onChange={(e) => {
+                  handleChangeBotValue(e)
+                }}
+                className="inputNumber"
+                disabled
+                value={botSelectNumber}
+              />
+            </div>
+            <div className="swapConBot">
+              <div className="priceInfo">
+                <p>兌換價格</p>
+                <p>
+                  1{currTopSelect}≈{timesNumber}
+                  {currBotSelect}
+                </p>
+              </div>
+              <div className="priceInfo">
+                <p>手續費</p>
+                <p>0.3%</p>
+              </div>
+              <Button onClick={handleShowSwap} className="sureBtn">
+                兌換
+              </Button>
             </div>
           </div>
-          <div className="inputIcon">
-            <ArrowDownOutlined />
-          </div>
-          <div className="inputBox">
-            <div className="inputBoxLeft">
-              <Input className="inputBtn" value={swapCakbAmount}></Input>
-              <p>Balance：{getBalanceDisplay(cakbTokenBalance)}</p>
-            </div>
-            <div className="inputBoxRight">
-              <img src={cakb} alt="" />
-              <p>CAKB</p>
-            </div>
-          </div>
-          <div className="rate">
-            <img src={swapIcon} alt="" />
-            <p>
-              1CAKE=
-              {getCoinDisplay(
-                new BigNumber(swapInfo.data?.cakePrice?.toString() || '0')
-                  .div(swapInfo.data?.cakbPrice?.toString() || '0')
-                  .toString()
-              )}
-              CAKB
-            </p>
-          </div>
-          <button disabled={isPending} className="normalBtn" onClick={onSwap}>
-            {t('confirm')}
-          </button>
         </div>
         <div className="recordBox">
-          <div className="recordTitle">
-            {t('swap')}
-            {t('record')}
-          </div>
-          {swapRecord?.map((item: any) => {
-            return (
-              <div className="recordBoxItem">
-                <div>
-                  <p>
-                    {t('swap')}
-                    {t('time')}
-                  </p>
-                  <span>{datetime()(item.transactionTime)}</span>
-                </div>
-                <div>
-                  <p>
-                    {t('swap')}
-                    {t('token')}
-                  </p>
-                  <span>cake-Cakb</span>
-                </div>
-                <div>
-                  <p>
-                    {t('swap')}
-                    {t('amount')}
-                  </p>
-                  <span>{getCoinDisplay(formatAmountByApi(item.cakbAmount))}</span>
-                </div>
+          <div className="recordTop">
+            <p className="recordTopTitle">兌換記錄</p>
+            <Link to={'/swapRecord'}>
+              <div className="moreBox">
+                <p>更多記錄</p>
+                <img src={LeftArrow} alt="LeftArrow" />
               </div>
-            )
-          })}
+            </Link>
+          </div>
+          {swapRecord.length > 0 && (
+            <div className="recordCon">
+              <div className="recordConCell">
+                <p className="recordConCellTitle">消耗</p>
+                <img src={getCoin(swapRecord[0]?.formSymbol).icon} alt="usdt" />
+                <p>
+                  {swapRecord[0]?.fromAmount} {swapRecord[0]?.formSymbol}
+                </p>
+              </div>
+              <div className="recordConCell recordConCell2">
+                <p className="recordConCellTitle">消耗</p>
+                <img src={getCoin(swapRecord[0]?.toSymbol).icon} alt="usdt" />
+                <p>
+                  {swapRecord[0]?.toAmount} {swapRecord[0]?.toSymbol}
+                </p>
+              </div>
+              <div className="recordConBot">
+                <p className="time">{formatDate(swapRecord[0]?.addtime)}</p>
+                <div className="status">{getStatus(swapRecord[0]?.status)}</div>
+              </div>
+            </div>
+          )}
         </div>
-        {marketQuotationsShow && <div className="mask"></div>}
-        {marketQuotationsShow && (
-          <div className="marketQuotationsBox">
-            <div className="marketQuotationsTop">
-              <p>{t('hangqin')}</p>
+        <Popup
+          visible={isShowPwd}
+          onMaskClick={() => {
+            setIsPwd(false)
+          }}
+          onClose={() => {
+            setIsPwd(false)
+          }}
+          bodyStyle={{
+            borderTopLeftRadius: '8px',
+            borderTopRightRadius: '8px',
+            minHeight: '258px',
+          }}
+        >
+          <div className="pwdBox">
+            <div className="pwdBoxTop">
+              <div></div>
+              <p className="pwdBoxTopTitle">交易密碼</p>
               <p
                 onClick={() => {
-                  setMarketQuotationsShow(false)
+                  setIsPwd(false)
                 }}
+                className="pwdBoxTopCancel"
               >
-                X
+                取消
               </p>
             </div>
-
-            <div className="currBox">
-              <div className="currBoxTop">
-                <div className="logoBox">
-                  <img src={cake} alt="cakb" />
-                  <p>CAKB</p>
-                </div>
-                <div className="priceBox">
-                  <p>{t('currPrice')}：</p>
-                  <span>{getCoinDisplay(formatAmountByApi(swapInfo?.data?.cakbPrice?.toString() || '0'))} </span>
-                </div>
-              </div>
-              <div className="currBoxBot">
-                <div className="currBoxBotItem">
-                  <p>{t('cakbTotalMarket')}</p>
-                  <span>{getCoinDisplay(formatAmountByApi(swapInfo?.data?.cakb_arket_value?.toString() || '0'))}</span>
-                </div>
-                <div className="currBoxBotItem">
-                  <p>{t('liudongchi')}</p>
-                  <span>
-                    {getCoinDisplay(
-                      new BigNumber(formatAmountByApi(swapInfo?.data?.cakb_arket_value?.toString() || '0'))
-                        .div(formatAmountByApi(swapInfo?.data?.cakbPrice?.toString() || '0'))
-                        .toString()
-                    )}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="charts">
-              <ReactECharts className="chartsItem" option={options} />
-            </div>
+            <input
+              value={payPwd}
+              onChange={(e) => {
+                setPayPwd(e.target.value)
+              }}
+              type="password"
+              placeholder="請輸入交易密碼"
+              className="pwdBoxBot"
+            />
+            <Button
+              onClick={() => {
+                handleSwapToken()
+              }}
+              className="sureBtn"
+            >
+              兌換
+            </Button>
           </div>
-        )}
+        </Popup>
+        <Modal
+          title=""
+          open={isShowSetPwd}
+          onOk={() => {
+            navigate('/payPwd')
+          }}
+          className="modalTips"
+          onCancel={() => {
+            setIsShowSetPwd(false)
+          }}
+          okText={'去設置'}
+          cancelText={'取消'}
+        >
+          <p className="modalTipsTitle">提示</p>
+          <p className="modalTipsTitleInfo">您還未設置交易密碼，請先設置！</p>
+        </Modal>
       </div>
     </LayoutElement>
   )

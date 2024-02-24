@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import { HashRouter } from 'react-router-dom'
+import { BrowserRouter, HashRouter } from 'react-router-dom'
 import { configureChains, createConfig, WagmiConfig } from 'wagmi'
 import { arbitrum, arbitrumGoerli, bsc, bscTestnet, goerli, mainnet, polygon } from 'wagmi/chains'
 import { InjectedConnector } from 'wagmi/connectors/injected'
@@ -18,12 +18,12 @@ import 'uno.css'
 console.table(import.meta.env)
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [arbitrum, arbitrumGoerli, bsc, bscTestnet, mainnet, polygon, goerli],
+  [bsc],
   [
     // publicProvider(),
     jsonRpcProvider({
       rpc: (chain) => {
-        if (chain.id !== 97 && chain.id !== 56) return null
+        if (chain.id !== 56) return null
         return { http: chain.rpcUrls.default.http[0] }
       },
     }),
@@ -90,8 +90,8 @@ const config = createConfig({
 const root = createRoot(document.getElementById('root')!)
 root.render(
   <WagmiConfig config={config}>
-    <HashRouter>
+    <BrowserRouter>
       <App />
-    </HashRouter>
+    </BrowserRouter>
   </WagmiConfig>
 )
