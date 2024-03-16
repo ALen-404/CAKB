@@ -35,7 +35,6 @@ import highLevel from '../../assets/image/guessing/highLevel.png'
 import jcChu from '../../assets/image/guessing/jc_chu.png'
 import jcIcon from '../../assets/image/guessing/jc_icon.png'
 import ZdGame from '../../assets/image/guessing/zdGame.png'
-import zjBg from '../../assets/image/guessing/zj_bg.png'
 
 import './index.less'
 
@@ -68,10 +67,8 @@ const Home = () => {
   }
 
   useEffect(() => {
-    const type = localStorage.getItem('guessingType')
-    setGuessingType(type || '1')
     if (address) {
-      getAssetsByConditions({ symbol: guessingType == '1' ? 'GPO' : guessingType == '2' ? 'GPT' : 'GPTH' })
+      getAssetsByConditions({ symbol: 'GPF' })
         .then((res: any) => {
           if (res.code === 200) {
             setUserInfo(res.data)
@@ -85,6 +82,8 @@ const Home = () => {
           // navigate('/')
         })
 
+      const type = localStorage.getItem('guessingType')
+      setGuessingType(type || '1')
       getUpsDowns({ type: guessingType })
         .then((res: any) => {
           if (res.code === 200) {
@@ -216,7 +215,7 @@ const Home = () => {
               navigate('/')
             })
 
-          getAssetsByConditions({ symbol: guessingType == '1' ? 'GPO' : guessingType == '2' ? 'GPT' : 'GPTH' })
+          getAssetsByConditions({ symbol: 'GPF' })
             .then((res: any) => {
               if (res.code === 200) {
                 setUserInfo(res.data)
@@ -262,16 +261,16 @@ const Home = () => {
               }}
               fill="#fff"
             />
-            <p className="recordTopTitle">競猜</p>
+            <p className="recordTopTitle">方位玩法</p>
             <div>
-              <img
+              {/* <img
                 style={{
                   width: '64px',
                   height: '36px',
                 }}
-                src={guessingType == '1' ? jcChu : guessingType == '2' ? highLevel : zjBg}
+                src={guessingType == '1' ? jcChu : highLevel}
                 alt="jcChu"
-              />
+              /> */}
             </div>
           </div>
           <img className="ZdGame" src={ZdGame} alt="jcBg" />
@@ -291,38 +290,31 @@ const Home = () => {
           <div className="balance">{scientificToDecimal(userInfo?.usable || '0')}</div>
           <div className="gussItemTopRecharge">
             <p>遊戲積分</p>
-            <div className="gussItemBtnBox">
-              <div
-                onClick={() => {
-                  navigate('/transfer')
-                }}
-              >
-                <p>劃轉</p>
-              </div>
-              <div
-                onClick={() => {
-                  navigate('/rechargeJi')
-                }}
-              >
-                <p>充值</p>
-              </div>
+            <div
+              onClick={() => {
+                navigate('/rechargeJi')
+              }}
+            >
+              <p>充值</p>
             </div>
           </div>
         </div>
         <div className="gussItemCon">
           <div className="gussItemConItem">
-            <div className="topTitle">漲跌圖</div>
-            <Line className="topChart" {...config} />
-            <div className="gasBox">
-              <div className="gasItem">
-                <p>手續費</p>
-                <p>{new BigNumber(gasData).times(100).toString()}%</p>
-              </div>
-              <div className="gasItem">
-                <p>手續費</p>
-                <p>{new BigNumber(gasData).times(participationIntegral).toFixed(2)}</p>
-              </div>
+            <div className="topTitle">方位圖</div>
+            {/* <Line className="topChart" {...config} /> */}
+            <div className="fangweiBox">
+              <div className="fangweiBoxItem">北</div>
+              <div className="fangweiBoxItem">東北</div>
+              <div className="fangweiBoxItem">東</div>
+              <div className="fangweiBoxItem">西北</div>
+              <div className="fangweiBoxItem shengcheng">生成中</div>
+              <div className="fangweiBoxItem">東南</div>
+              <div className="fangweiBoxItem">西</div>
+              <div className="fangweiBoxItem">西南</div>
+              <div className="fangweiBoxItem">南</div>
             </div>
+
             <div className="controlBox">
               <div
                 className="controlLeft"
@@ -330,7 +322,7 @@ const Home = () => {
                   takeGames(1)
                 }}
               >
-                漲
+                我的道具
               </div>
               <div
                 onClick={() => {
@@ -338,7 +330,7 @@ const Home = () => {
                 }}
                 className="controlRight"
               >
-                跌
+                我的匹配
               </div>
             </div>
           </div>

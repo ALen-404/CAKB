@@ -411,8 +411,8 @@ export const getGameRecord = (data: any) => {
   })
 }
 
-export const getGameSet = () => {
-  return get(`/game/getGameSet?type=1`, {
+export const getGameSet = (type: any) => {
+  return get(`/game/getGameSet?type=${type}`, {
     headers: {
       authorization: localStorage.getItem('authorization'),
     },

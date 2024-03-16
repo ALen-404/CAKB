@@ -40,6 +40,7 @@ const Home = () => {
   const [segmentedValue, setSegmentedValue] = useState('99')
   const [isShowPwd, setIsPwd] = useState(false)
   const [payPwd, setPayPwd] = useState('')
+  const [guessingType, setGuessingType] = useState('1')
 
   const formatDate = (timestamp: string | number | Date) => {
     const date = new Date(timestamp)
@@ -55,8 +56,14 @@ const Home = () => {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
   }
   useEffect(() => {
+    const type = localStorage.getItem('guessingType')
+    setGuessingType(type || '1')
+
     if (address) {
-      getExchangePrice({ fromSymbol: 'GPO', toSymbol: 'CGZ' })
+      getExchangePrice({
+        fromSymbol: guessingType == '1' ? 'GPO' : guessingType == '2' ? 'GPT' : 'GPTH',
+        toSymbol: 'CGZ',
+      })
         .then((res: any) => {
           if (res.code === 200) {
             console.log(res.data, 'setTradingData')
@@ -69,7 +76,7 @@ const Home = () => {
           message.error('請求失敗')
         })
     }
-  }, [address, segmentedValue])
+  }, [address, guessingType, segmentedValue])
 
   const navigate = useNavigate()
 
@@ -90,7 +97,7 @@ const Home = () => {
         if (res.code === 200) {
           handleSwap({
             quantity: new BigNumber(tradingData || 0).times(withdrawValue || 0).toString(),
-            symbol: `CGZ/GPO`,
+            symbol: `CGZ/${guessingType == '1' ? 'GPO' : guessingType == '2' ? 'GPT' : 'GPTH'}`,
           })
             .then((res: any) => {
               if (res.code === 200) {
