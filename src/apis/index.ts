@@ -380,6 +380,22 @@ export const takeGame = ({ bet }: any) => {
   )
 }
 
+export const takeGame3 = ({ bet }: any) => {
+  return post(
+    `/game/takeGame3`,
+    {
+      bet: 0,
+      gid: '',
+    },
+    {
+      headers: {
+        authorization: localStorage.getItem('authorization'),
+        'Accept-Language': 'zh',
+      },
+    }
+  )
+}
+
 export const getUserInfo = () => {
   return get(`/user/getUserInfo`, {
     headers: {
@@ -411,8 +427,24 @@ export const getGameRecord = (data: any) => {
   })
 }
 
+export const getGameRecordThree = () => {
+  return get(`/game/getGameRecordThree?offset=10&page=1`, {
+    headers: {
+      authorization: localStorage.getItem('authorization'),
+    },
+  })
+}
+
 export const getGameSet = (type: any) => {
   return get(`/game/getGameSet?type=${type}`, {
+    headers: {
+      authorization: localStorage.getItem('authorization'),
+    },
+  })
+}
+
+export const getGameSet3 = () => {
+  return get(`/game/getGameSet3`, {
     headers: {
       authorization: localStorage.getItem('authorization'),
     },

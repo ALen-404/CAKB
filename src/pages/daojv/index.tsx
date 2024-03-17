@@ -252,7 +252,7 @@ const Home = () => {
 
   return (
     <LayoutElement>
-      <div className="gussItemBox">
+      <div className="daojvBox">
         <div className="gussItemTop">
           <div className="gussItemMenuBox">
             <LeftOutline
@@ -261,7 +261,7 @@ const Home = () => {
               }}
               fill="#fff"
             />
-            <p className="recordTopTitle">方位玩法</p>
+            <p className="recordTopTitle">我的道具</p>
             <div>
               {/* <img
                 style={{
@@ -273,68 +273,29 @@ const Home = () => {
               /> */}
             </div>
           </div>
-          <img className="ZdGame" src={ZdGame} alt="jcBg" />
-          <div className="ZdGameBoxTop">
-            <p className="ZdGameBox">進行中</p>
-            <p className="ZdGameInfo">
-              游戏時間：
-              {timeData.map((item) => {
-                return `${new BigNumber(item.startTime).div(60 * 60 * 1000).toFixed(0)}:00-${new BigNumber(
-                  item.stopTime
-                )
-                  .div(60 * 60 * 1000)
-                  .toFixed(0)}:00 `
-              })}
-            </p>
-          </div>
-          <div className="balance">{scientificToDecimal(userInfo?.usable || '0')}</div>
-          <div className="gussItemTopRecharge">
-            <p>遊戲積分</p>
-            <div
-              onClick={() => {
-                navigate('/rechargeJi')
-              }}
-            >
-              <p>充值</p>
-            </div>
-          </div>
         </div>
-        <div className="gussItemCon">
-          <div className="gussItemConItem">
-            <div className="topTitle">方位圖</div>
-            {/* <Line className="topChart" {...config} /> */}
-            <div className="fangweiBox">
-              <div className="fangweiBoxItem">北</div>
-              <div className="fangweiBoxItem">東北</div>
-              <div className="fangweiBoxItem">東</div>
-              <div className="fangweiBoxItem">西北</div>
-              <div className="fangweiBoxItem shengcheng">生成中</div>
-              <div className="fangweiBoxItem">東南</div>
-              <div className="fangweiBoxItem">西</div>
-              <div className="fangweiBoxItem">西南</div>
-              <div className="fangweiBoxItem">南</div>
-            </div>
 
-            <div className="controlBox">
-              <div
-                className="controlLeft"
-                onClick={() => {
-                  navigate('/daojv')
-                }}
-              >
-                我的道具
-              </div>
-              <div
-                onClick={() => {
-                  takeGame3s(2)
-                }}
-                className="controlRight"
-              >
-                開始匹配
-              </div>
+        <div className="daojvItemBox">
+          <div className="daojvItem">
+            <div className="daojvItemCell">
+              <p>道具</p>
+              <span>東</span>
+            </div>
+            <div className="daojvItemCell">
+              <p>數量</p>
+              <span>10</span>
+            </div>
+            <div className="daojvItemCell">
+              <p>待匹配</p>
+              <span>1</span>
+            </div>
+            <div className="daojvItemCell">
+              <p>排隊中</p>
+              <span>9</span>
             </div>
           </div>
         </div>
+
         <p className="gussItemTitle">參與記錄</p>
         <div className="gussItemBot">
           <div className="gussItemBotItem">
