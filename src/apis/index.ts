@@ -240,6 +240,14 @@ export const getUpsDowns = ({ type }: any) => {
   })
 }
 
+export const getGame3Props = () => {
+  return get(`/game/getGame3Props`, {
+    headers: {
+      authorization: localStorage.getItem('authorization'),
+    },
+  })
+}
+
 export const getExchangePrice = ({ fromSymbol, toSymbol }: any) => {
   return get(`/exchange/getExchangePrice?fromSymbol=${fromSymbol}&toSymbol=${toSymbol}`, {
     headers: {
@@ -380,12 +388,12 @@ export const takeGame = ({ bet }: any) => {
   )
 }
 
-export const takeGame3 = ({ bet }: any) => {
+export const takeGame3 = ({ gameId }: any) => {
   return post(
     `/game/takeGame3`,
     {
       bet: 0,
-      gid: '',
+      gid: gameId,
     },
     {
       headers: {
@@ -396,6 +404,38 @@ export const takeGame3 = ({ bet }: any) => {
   )
 }
 
+export const payGame3Fee = ({ payPwd, gameId }: any) => {
+  return post(
+    `/game/payGame3Fee`,
+    {
+      pwd: payPwd,
+      gid: gameId,
+    },
+    {
+      headers: {
+        authorization: localStorage.getItem('authorization'),
+        'Accept-Language': 'zh',
+      },
+    }
+  )
+}
+
+//
+export const payGame3 = ({ payPwd, gameId }: any) => {
+  return post(
+    `/game/payGame3`,
+    {
+      pwd: payPwd,
+      gid: gameId,
+    },
+    {
+      headers: {
+        authorization: localStorage.getItem('authorization'),
+        'Accept-Language': 'zh',
+      },
+    }
+  )
+}
 export const getUserInfo = () => {
   return get(`/user/getUserInfo`, {
     headers: {
@@ -428,7 +468,23 @@ export const getGameRecord = (data: any) => {
 }
 
 export const getGameRecordThree = () => {
-  return get(`/game/getGameRecordThree?offset=10&page=1`, {
+  return get(`/game/getGameRecordThree?offset=10&page=1&type=1`, {
+    headers: {
+      authorization: localStorage.getItem('authorization'),
+    },
+  })
+}
+
+export const getGameRecordThreeKJ = ({ id }: any) => {
+  return get(`/game/getGameRecordThreeKJ?id=${id}`, {
+    headers: {
+      authorization: localStorage.getItem('authorization'),
+    },
+  })
+}
+
+export const getGameRecordThreeByStatus = (status: any) => {
+  return get(`/game/getGameRecordThree?offset=10&page=1&type=1&status=${status}`, {
     headers: {
       authorization: localStorage.getItem('authorization'),
     },

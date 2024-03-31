@@ -14,6 +14,7 @@ import { useAccount, useBalance, useContractRead, useNetwork } from 'wagmi'
 import {
   getAssetsByConditions,
   getAssetsByUser,
+  getGame3Props,
   getGameRecordThree,
   getGameSet3,
   getUpsDowns,
@@ -50,6 +51,7 @@ const Home = () => {
   const [participationIntegral, setParticipationIntegral] = useState('0')
   const [guessingType, setGuessingType] = useState('1')
   const [timeData, setTimeData] = useState<any[]>([])
+  const [daojvData, setDaojvData] = useState<any[]>([])
   const [gasData, setGasData] = useState<any>('')
 
   const formatDate = (timestamp: string | number | Date) => {
@@ -84,19 +86,21 @@ const Home = () => {
 
       const type = localStorage.getItem('guessingType')
       setGuessingType(type || '1')
-      getUpsDowns({ type: guessingType })
+      getGame3Props()
         .then((res: any) => {
           if (res.code === 200) {
-            const initData = res.data.slice(0, 5).map((item: any) => {
-              const parsedItem = JSON.parse(item)
-              const date = new Date(parsedItem.time[0])
-              const formattedDate = `${date.getFullYear()} ${String(date.getMonth() + 1).padStart(2, '0')}-${String(
-                date.getDate()
-              ).padStart(2, '0')} `
+            // const initData = res.data.slice(0, 5).map((item: any) => {
+            //   const parsedItem = JSON.parse(item)
+            //   const date = new Date(parsedItem.time[0])
+            //   const formattedDate = `${date.getFullYear()} ${String(date.getMonth() + 1).padStart(2, '0')}-${String(
+            //     date.getDate()
+            //   ).padStart(2, '0')} `
 
-              return { time: date, type: String(parsedItem.upsDownsQuota[0]) }
-            })
-            setUpsDownsRecord(initData)
+            //   return { time: date, type: String(parsedItem.upsDownsQuota[0]) }
+            // })
+            // setUpsDownsRecord(initData)
+            console.log(res.data)
+            setDaojvData(res.data)
             // setUserInfo(res.data)
           } else {
             message.error(res.msg)
@@ -139,7 +143,29 @@ const Home = () => {
         })
     }
   }, [address, guessingType, navigate])
-
+  const getFangwei = (type: any) => {
+    //1：东，2：南，3：西，4：北，5：东北，6：西北，7：东南，8：西南
+    switch (type) {
+      case 1:
+        return '东'
+      case 2:
+        return '南'
+      case 3:
+        return '西'
+      case 4:
+        return '北'
+      case 5:
+        return '东北'
+      case 6:
+        return '西北'
+      case 7:
+        return '东南'
+      case 8:
+        return '西南'
+      default:
+        return '东'
+    }
+  }
   const navigateTo = (item: any) => {
     localStorage.setItem('currOrderDate', JSON.stringify(item))
     localStorage.setItem('isPush', 'false')
@@ -173,27 +199,16 @@ const Home = () => {
 
   const columns: any = [
     {
+      title: '方位',
+      dataIndex: 'bet',
+      key: 'bet',
+      render: (bet: any) => <p>{getFangwei(bet)}</p>,
+    },
+    {
       title: '時間',
       dataIndex: 'addTime',
       key: 'addTime',
       render: (text: any) => <p>{formatDate(text)}</p>,
-    },
-    {
-      title: '選擇方向',
-      dataIndex: 'bet',
-      key: 'bet',
-      render: (bet: any) => <p>{bet === 1 ? '涨' : '跌'}</p>,
-    },
-    {
-      title: '實際方向',
-      dataIndex: 'draw',
-      key: 'draw',
-      render: (draw: any) => <p>{draw ? (draw === 1 ? '涨' : '跌') : '--'}</p>,
-    },
-    {
-      title: '獎勵',
-      dataIndex: 'reward',
-      key: 'reward',
     },
   ]
 
@@ -276,24 +291,28 @@ const Home = () => {
         </div>
 
         <div className="daojvItemBox">
-          <div className="daojvItem">
-            <div className="daojvItemCell">
-              <p>道具</p>
-              <span>東</span>
-            </div>
-            <div className="daojvItemCell">
-              <p>數量</p>
-              <span>10</span>
-            </div>
-            <div className="daojvItemCell">
-              <p>待匹配</p>
-              <span>1</span>
-            </div>
-            <div className="daojvItemCell">
-              <p>排隊中</p>
-              <span>9</span>
-            </div>
-          </div>
+          {daojvData.map((item) => {
+            return (
+              <div className="daojvItem">
+                <div className="daojvItemCell">
+                  <p>道具</p>
+                  <span>{getFangwei(item.type)}</span>
+                </div>
+                <div className="daojvItemCell">
+                  <p>數量</p>
+                  <span>{item.amount}</span>
+                </div>
+                <div className="daojvItemCell">
+                  <p>待匹配</p>
+                  <span>{item.matched}</span>
+                </div>
+                <div className="daojvItemCell">
+                  <p>排隊中</p>
+                  <span>{item.queue}</span>
+                </div>
+              </div>
+            )
+          })}
         </div>
 
         <p className="gussItemTitle">參與記錄</p>

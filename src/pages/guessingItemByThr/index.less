@@ -195,6 +195,7 @@
         align-items: center;
         margin: 0 auto;
         margin-top: 14px;
+
         .fangweiBoxItem {
           background: url('../../assets/image/guessing/fw_bg.png') 100% no-repeat;
           width: 91px;
@@ -207,7 +208,8 @@
           font-size: 21px;
           color: #5164BF;
         }
-        .shengcheng{
+
+        .shengcheng {
           background: url('../../assets/image/guessing/choose_bg.png') 100% no-repeat;
           font-weight: 500;
           font-size: 15px;
@@ -309,18 +311,39 @@
     margin-left: 15px;
   }
 
-  .gussItemBot {
+  .gussItemBotByThree {
     width: 100%;
     padding: 0 15px;
     box-sizing: border-box;
 
     .gussItemBotItem {
       width: 100%;
-      height: 257px;
       background: #FFFFFF;
       border-radius: 10px 10px 10px 10px;
       opacity: 1;
       margin-top: 12px;
+      padding: 12px 15px;
+      box-sizing: border-box;
+      .gussItemBotItemCell {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        &:first-child{
+          margin-top: 0px;
+        }
+   
+        p {
+          font-weight: 400;
+          font-size: 14px;
+          color: #67738D;
+        }
+
+        span {
+          font-weight: 400;
+          font-size: 14px;
+          color: #161D30;
+        }
+      }
     }
   }
 
@@ -330,5 +353,22 @@
     img {
       width: 100%;
     }
+  }
+}
+
+.modalTips {
+  .fangweiBoxItem {
+    background: url('../../assets/image/guessing/fw_bg.png') 100% no-repeat;
+    width: 91px;
+    height: 91px;
+    background-size: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 21px;
+    color: #5164BF;
+    margin: 0 auto;
+    margin-top: 10px;
   }
 }

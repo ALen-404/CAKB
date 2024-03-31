@@ -213,7 +213,7 @@ const Home = () => {
               <p>最低參與積分：{participationIntegral3}</p>
               <div
                 onClick={() => {
-                  localStorage.setItem('guessingType', '3')
+                  localStorage.setItem('guessingType', '4')
                   navigate('/guessingItem')
                 }}
               >

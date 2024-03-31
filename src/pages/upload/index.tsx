@@ -106,7 +106,7 @@ const Home = () => {
         </div>
         <div className="uploadWarpCon">
           <Upload
-            action="https://cgrapi.zykj.club/picture/upload"
+            action="https://api.chatgeometrypro.online/picture/upload"
             listType="picture-card"
             showUploadList={false}
             // onPreview={handlePreview}

@@ -14,10 +14,13 @@ import { useAccount, useBalance, useContractRead, useNetwork } from 'wagmi'
 import {
   getAssetsByConditions,
   getAssetsByUser,
+  getGameRecord,
   getGameRecordThree,
+  getGameRecordThreeKJ,
   getGameSet3,
   getUpsDowns,
   getUserInfo,
+  payGame3Fee,
   takeGame3,
 } from '@/apis'
 import { LayoutElement } from '@/components/layout'
@@ -44,11 +47,17 @@ const Home = () => {
   const [isShowPwd, setIsPwd] = useState(false)
   const [isShowSetPwd, setIsShowSetPwd] = useState(true)
   const [upsDownsRecord, setUpsDownsRecord] = useState(true)
+  const [upsdowns, setUpsdowns] = useState('1')
+  const [isWinner, setIsWinner] = useState(false)
+  const [isNotWinner, setIsNotWinner] = useState(false)
   const [gameRecord, setGameRecord] = useState<any[]>([])
   const [userInfo, setUserInfo] = useState<any>({})
   const navigate = useNavigate()
   const [participationIntegral, setParticipationIntegral] = useState('0')
   const [guessingType, setGuessingType] = useState('1')
+  const [payPwd, setPayPwd] = useState('')
+
+  const [gameId, setGameId] = useState('1')
   const [timeData, setTimeData] = useState<any[]>([])
   const [gasData, setGasData] = useState<any>('')
 
@@ -112,6 +121,8 @@ const Home = () => {
         .then((res: any) => {
           if (res.code === 200) {
             setParticipationIntegral(res.data[0]?.reward)
+            setUpsdowns(res.data[0]?.upsdowns)
+            setGameId(res.data[0]?.id)
             setTimeData(JSON.parse(res.data[0]?.gameTime || '[]'))
             setGasData(JSON.parse(res.data[0]?.charge || '[]'))
           } else {
@@ -124,10 +135,15 @@ const Home = () => {
           // navigate('/')
         })
 
-      getGameRecordThree()
+      getGameRecordThreeKJ({ id: gameId })
         .then((res: any) => {
           if (res.code === 200) {
-            setGameRecord(res.data.records)
+            const initArr = res.data.map((item: any) => {
+              return JSON.parse(item)
+            })
+            console.log(initArr)
+
+            setGameRecord(initArr)
           } else {
             message.error(res.msg)
             navigate('/')
@@ -138,7 +154,7 @@ const Home = () => {
           navigate('/')
         })
     }
-  }, [address, guessingType, navigate])
+  }, [address, gameId, guessingType, navigate])
 
   const navigateTo = (item: any) => {
     localStorage.setItem('currOrderDate', JSON.stringify(item))
@@ -197,16 +213,18 @@ const Home = () => {
     },
   ]
 
-  const takeGame3s = (bet: any) => {
-    takeGame3({ bet })
+  const takeGame3s = () => {
+    takeGame3({ gameId })
       .then((res: any) => {
         if (res.code === 200) {
-          getGameRecordThree()
+          setIsWinner(true)
+          getGameRecord({ type: 1 })
             .then((res: any) => {
               if (res.code === 200) {
-                setGameRecord(res.data.records)
+                setIsWinner(true)
               } else {
                 message.error(res.msg)
+
                 navigate('/')
               }
             })
@@ -221,6 +239,7 @@ const Home = () => {
                 setUserInfo(res.data)
               } else {
                 message.error(res.msg)
+                setIsWinner(true)
                 // navigate('/')
               }
             })
@@ -228,12 +247,32 @@ const Home = () => {
               message.error('請求失敗')
               // navigate('/')
             })
+        } else if (res.code === 522) {
+          setIsNotWinner(true)
         } else {
           message.error(res.msg)
         }
       })
       .catch(() => {
         message.error('請求失敗')
+      })
+  }
+
+  const payGame3Fees = () => {
+    payGame3Fee({ gameId: gameId, payPwd: payPwd })
+      .then((res: any) => {
+        if (res.code === 200) {
+          message.success('支付成功')
+
+          setIsPwd(false)
+        } else {
+          message.error(res.msg)
+          setIsPwd(false)
+        }
+      })
+      .catch(() => {
+        message.error('請求失敗')
+        setIsPwd(false)
       })
   }
 
@@ -247,6 +286,30 @@ const Home = () => {
       return decimalNum.toLocaleString('fullwide', { useGrouping: false })
     } else {
       return num
+    }
+  }
+
+  const getFangwei = (type: any) => {
+    //1：东，2：南，3：西，4：北，5：东北，6：西北，7：东南，8：西南
+    switch (type) {
+      case 1:
+        return '东'
+      case 2:
+        return '南'
+      case 3:
+        return '西'
+      case 4:
+        return '北'
+      case 5:
+        return '东北'
+      case 6:
+        return '西北'
+      case 7:
+        return '东南'
+      case 8:
+        return '西南'
+      default:
+        return '东'
     }
   }
 
@@ -290,12 +353,22 @@ const Home = () => {
           <div className="balance">{scientificToDecimal(userInfo?.usable || '0')}</div>
           <div className="gussItemTopRecharge">
             <p>遊戲積分</p>
-            <div
-              onClick={() => {
-                navigate('/rechargeJi')
-              }}
-            >
-              <p>充值</p>
+
+            <div className="gussItemBtnBox">
+              <div
+                onClick={() => {
+                  navigate('/transfer')
+                }}
+              >
+                <p>劃轉</p>
+              </div>
+              <div
+                onClick={() => {
+                  navigate('/rechargeJi')
+                }}
+              >
+                <p>充值</p>
+              </div>
             </div>
           </div>
         </div>
@@ -308,7 +381,14 @@ const Home = () => {
               <div className="fangweiBoxItem">東北</div>
               <div className="fangweiBoxItem">東</div>
               <div className="fangweiBoxItem">西北</div>
-              <div className="fangweiBoxItem shengcheng">生成中</div>
+              <div
+                className="fangweiBoxItem shengcheng"
+                onClick={() => {
+                  takeGame3s()
+                }}
+              >
+                開始匹配
+              </div>
               <div className="fangweiBoxItem">東南</div>
               <div className="fangweiBoxItem">西</div>
               <div className="fangweiBoxItem">西南</div>
@@ -326,21 +406,68 @@ const Home = () => {
               </div>
               <div
                 onClick={() => {
-                  takeGame3s(2)
+                  navigate('/MyMatching')
                 }}
                 className="controlRight"
               >
-                開始匹配
+                我的匹配
               </div>
             </div>
           </div>
         </div>
-        <p className="gussItemTitle">參與記錄</p>
-        <div className="gussItemBot">
-          <div className="gussItemBotItem">
-            <Table pagination={false} columns={columns} dataSource={gameRecord} />
-          </div>
+        <p className="gussItemTitle">方位生成記錄</p>
+        <div className="gussItemBotByThree">
+          {gameRecord.map((item) => {
+            return (
+              <div className="gussItemBotItem">
+                <div className="gussItemBotItemCell">
+                  <p>時間</p>
+                  <span>{formatDate(item.time[0])}</span>
+                </div>
+                <div className="gussItemBotItemCell">
+                  <p>方位</p>
+                  <span>{getFangwei(item.upsdowns[0])}</span>
+                </div>
+              </div>
+            )
+          })}
         </div>
+
+        <Modal
+          title=""
+          open={isNotWinner}
+          onOk={() => {
+            takeGame3s()
+            setIsNotWinner(false)
+          }}
+          className="modalTips"
+          onCancel={() => {
+            setIsNotWinner(false)
+          }}
+          okText={'再來一次'}
+          cancelText={'取消'}
+        >
+          <p className="modalTipsTitle">提示</p>
+          <p className="modalTipsTitleInfo">很遺憾，您未搶到道具！</p>
+        </Modal>
+        <Modal
+          title=""
+          open={isWinner}
+          onOk={() => {
+            setIsWinner(false)
+            setIsPwd(true)
+          }}
+          className="modalTips"
+          onCancel={() => {
+            setIsWinner(false)
+          }}
+          okText={'確定'}
+          cancelText={'取消'}
+        >
+          <p className="modalTipsTitle">獲取道具</p>
+          <div className="fangweiBoxItem">{getFangwei(upsdowns)}</div>
+          <p className="modalTipsTitleInfo">您還需支付手續費：10積分</p>
+        </Modal>
 
         <Popup
           visible={isShowPwd}
@@ -369,14 +496,21 @@ const Home = () => {
                 取消
               </p>
             </div>
-            <input placeholder="請輸入交易密碼" className="pwdBoxBot" type="text" />
+            <input
+              onChange={(e) => {
+                setPayPwd(e.target.value)
+              }}
+              placeholder="請輸入交易密碼"
+              className="pwdBoxBot"
+              type="password"
+            />
             <Button
               onClick={() => {
-                setIsPwd(true)
+                payGame3Fees()
               }}
               className="sureBtn"
             >
-              资产不足
+              确认支付
             </Button>
           </div>
         </Popup>

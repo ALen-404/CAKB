@@ -3,7 +3,7 @@ import axios from 'axios'
 export const http = axios.create({
   // baseURL: 'http://38.147.171.132:8092',
   baseURL: 'https://api.chatgeometrypro.online/',
-  // baseURL: 'http://lplss.natapp1.cc/',
+  // baseURL: 'http://devlp.natapp1.cc/',
 })
 
 http.interceptors.request.use(

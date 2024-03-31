@@ -47,6 +47,7 @@ const Home = () => {
   const [currUseableGpo, setCurrUseableGpo] = useState('0')
   const [currUseableGpt, setCurrUseableGpt] = useState('0')
   const [currUseableGpf, setCurrUseableGpf] = useState('0')
+  const [currUseableGpth, setCurrUseableGpth] = useState('0')
   const [payPwd, setPayPwd] = useState('')
   const [userPayPwd, setUserPayPwd] = useState('')
   const [currBotSelect, setCurrBotSelect] = useState('GPT')
@@ -225,10 +226,17 @@ const Home = () => {
     setCurrUseableGpf(assets?.data?.usable)
     return assets
   }
+  const getAssetByGPTH = async () => {
+    const assets: any = await getAssetsByConditions({ symbol: 'GPTH' })
+    console.log(assets)
+    setCurrUseableGpth(assets?.data?.usable)
+    return assets
+  }
   useEffect(() => {
     getAssetByGPO()
     getAssetByGPT()
     getAssetByGPF()
+    getAssetByGPTH()
   }, [])
 
   const getCoin = (symbol: any) => {
@@ -247,6 +255,11 @@ const Home = () => {
       case 'GPF':
         return {
           value: currUseableGpf,
+          icon: Cgz,
+        }
+      case 'GPTH':
+        return {
+          value: currUseableGpth,
           icon: Cgz,
         }
       default:
@@ -318,6 +331,16 @@ const Home = () => {
                       ),
                       disabled: currTopSelect === 'GPF',
                     },
+                    {
+                      value: 'GPTH',
+                      label: (
+                        <div className="itemLeft">
+                          {/* <img src={Cgz} alt="usdt" /> */}
+                          <p>方位賬戶</p>
+                        </div>
+                      ),
+                      disabled: currTopSelect === 'GPTH',
+                    },
                   ]}
                 />
               </div>
@@ -372,6 +395,16 @@ const Home = () => {
                       ),
                       disabled: currTopSelect === 'GPF',
                     },
+                    {
+                      value: 'GPTH',
+                      label: (
+                        <div className="itemLeft">
+                          {/* <img src={Cgz} alt="usdt" /> */}
+                          <p>方位賬戶</p>
+                        </div>
+                      ),
+                      disabled: currTopSelect === 'GPTH',
+                    },
                   ]}
                 />
               </div>
@@ -389,9 +422,24 @@ const Home = () => {
               <div className="priceInfo">
                 <p>兌換價格</p>
                 <p>
-                  1{currTopSelect == 'GPO' ? '初級賬戶' : currTopSelect == 'GPT' ? '中級賬戶' : '終極賬戶'}積分≈
+                  1
+                  {currTopSelect == 'GPO'
+                    ? '初級賬戶'
+                    : currTopSelect == 'GPT'
+                    ? '中級賬戶'
+                    : currTopSelect == 'GPTH'
+                    ? '方位游戏'
+                    : '終極賬戶'}
+                  積分≈
                   {timesNumber}
-                  {currBotSelect == 'GPO' ? '初級賬戶' : currTopSelect == 'GPT' ? '中級賬戶' : '終極賬戶'}積分
+                  {currBotSelect == 'GPO'
+                    ? '初級賬戶'
+                    : currTopSelect == 'GPT'
+                    ? '中級賬戶'
+                    : currTopSelect == 'GPTH'
+                    ? '方位游戏'
+                    : '終極賬戶'}
+                  積分
                 </p>
               </div>
               <Button onClick={handleShowSwap} className="sureBtn">
